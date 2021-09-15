@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Eyo dit is de home pagina</h1>
+</div>
+
+<div class="container" id="knoppenHome">
+    <div class="row">
+        <div class="col-lg-4">
+            @using (Html.BeginForm("Algemeen", "Home"))
+            {
+
+                <button onclick="loading()" type="submit" class="homeKnop" style="vertical-align:middle"><span>Algemeen </span></button>
+
+            }
+        </div>
+        <div class="col-lg-4">
+            @using (Html.BeginForm("Afspraken", "Home"))
+            {
+
+                <button onclick="loading()" type="submit" class="homeKnop" style="vertical-align:middle"><span>Afspraken </span></button>
+
+            }
+        </div>
+        <div class="col-lg-4">
+            @using (Html.BeginForm("Financieel", "Home"))
+            {
+
+                <button onclick="loading()" type="submit" class="homeKnop" style="vertical-align:middle"><span>Financieel </span></button>
+
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            @using (Html.BeginForm("Technisch", "Home"))
+            {
+
+                <button onclick="loading()" type="submit" class="homeKnop" style="vertical-align:middle"><span>Technisch </span></button>
+
+            }
+        </div>
+        <div class="col-lg-6">
+            @using (Html.BeginForm("Overig", "Home"))
+            {
+
+                <button onclick="loading()" type="submit" class="homeKnop" style="vertical-align:middle"><span>Overig </span></button>
+
+            }
+        </div>
+    </div>
+
+</div>
