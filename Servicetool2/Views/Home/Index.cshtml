@@ -3,7 +3,7 @@
 }
 
 <div class="jumbotron">
-    <h1>Eyo dit is de home pagina</h1>
+    <h1 style="text-align:center;">HeatTransformers Service-tool</h1>
 </div>
 
 <div class="container" id="knoppenHome">
@@ -15,6 +15,7 @@
                 <button onclick="loading()" type="submit" class="homeKnop" style="vertical-align:middle"><span>Algemeen </span></button>
 
             }
+            <p>Algemene vragen over het bedrijf, het bestelproces, warmtepompen en het geluid dat ze maken.</p>
         </div>
         <div class="col-lg-4">
             @using (Html.BeginForm("Afspraken", "Home"))
@@ -23,6 +24,7 @@
                 <button onclick="loading()" type="submit" class="homeKnop" style="vertical-align:middle"><span>Afspraken </span></button>
 
             }
+            <p>Alles wat met afspraken te maken heeft; plannen, verzetten, afzeggen, etc.</p>
         </div>
         <div class="col-lg-4">
             @using (Html.BeginForm("Financieel", "Home"))
@@ -31,6 +33,7 @@
                 <button onclick="loading()" type="submit" class="homeKnop" style="vertical-align:middle"><span>Financieel </span></button>
 
             }
+            <p>Vragen over offertes, contracten, subsidies en overige financiële zaken.</p>
         </div>
     </div>
     <div class="row">
@@ -41,6 +44,7 @@
                 <button onclick="loading()" type="submit" class="homeKnop" style="vertical-align:middle"><span>Technisch </span></button>
 
             }
+            <p>Technische problemen, hulp met instellingen en vragen over koeling.</p>
         </div>
         <div class="col-lg-6">
             @using (Html.BeginForm("Overig", "Home"))
@@ -49,6 +53,7 @@
                 <button onclick="loading()" type="submit" class="homeKnop" style="vertical-align:middle"><span>Overig </span></button>
 
             }
+            <p>Overige vragen die niet in de andere categoriën passen.</p>
         </div>
     </div>
 

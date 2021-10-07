@@ -3,12 +3,12 @@
     ViewBag.Title = "Overig";
 }
 
-<h2>@ViewBag.Title</h2>
-<h3>@ViewBag.Message</h3>
+<div><h2 style="text-align:center;">Overige vragen</h2></div>
 
-<div id="algemeenVraagVlak">
+
+<div class="container-fluid">
     <div id="zoekbalk">
-        zoekbalk
+        <input type="text" id="zoekInput" onkeyup="zoekFunctie()" placeholder="Zoeken..">
     </div>
     <br>
     <br>
@@ -17,7 +17,7 @@
     </div>
     <br>
     <br />
-    <div id="vragen">
+    <div id="accordion">
 
     </div>
 
