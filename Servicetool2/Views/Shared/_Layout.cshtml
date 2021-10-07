@@ -3,9 +3,7 @@
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
 
-<script src="/Scripts/jquery-3.4.1.js"></script>
-<script src="/Scripts/bootstrap.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.1.0/uuidv4.min.js"></script>
+
 
 <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
 
@@ -28,6 +26,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-storage.js"></script>
 
+
 <html>
 <head>
     <meta charset="utf-8" />
@@ -37,29 +36,41 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" id="navbar">
+    <nav class="navbar navbar-expand-lg navbar-fixed-top" id="navbar">
         <div class="container" id="navbarText">
-            <div class="navbar-header">
+            <div>
 
                 @Html.ActionLink("HeatTransformers", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Algemeen", "Algemeen", "Home")</li>
-                    <li>@Html.ActionLink("Afspraken", "Afspraken", "Home")</li>
-                    <li>@Html.ActionLink("Financieel", "Financieel", "Home")</li>
-                    <li>@Html.ActionLink("Technisch", "Technisch", "Home")</li>
-                    <li>@Html.ActionLink("Overig", "Overig", "Home")</li>
+            
+            <div class="navbar-collapse collapse" id="navbarTogglerDemo02">
+                <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="nav-item">@Html.ActionLink("Algemeen", "Algemeen", "Home")</li>
+                    <li class="nav-item">@Html.ActionLink("Afspraken", "Afspraken", "Home")</li>
+                    <li class="nav-item">@Html.ActionLink("Financieel", "Financieel", "Home")</li>
+                    <li class="nav-item">@Html.ActionLink("Technisch", "Technisch", "Home")</li>
+                    <li class="nav-item">@Html.ActionLink("Overig", "Overig", "Home")</li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Account
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li class="dropdown-item" href="#">@Html.ActionLink("Inloggen", "Index", "Home")</li>
+                            <li class="dropdown-item" href="#">@Html.ActionLink("Dashboard", "Index", "Home")</li>
+                            <li class="dropdown-item" href="#">@Html.ActionLink("Vraag toevoegen", "vraagToevoegen", "Home")</li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
-    </div>
+    </nav>
+
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - HeatTransformers</p>
         </footer>
     </div>
 

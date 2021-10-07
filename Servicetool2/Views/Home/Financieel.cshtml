@@ -6,17 +6,22 @@
 
 <div id="algemeenVraagVlak">
     <div id="zoekbalk">
-        zoekbalk
+        <input type="text" id="zoekInput" onkeyup="zoekFunctie()" placeholder="Zoeken..">
     </div>
     <br>
     <br>
     <div id="vragenAlgemeen">
         Dit is de plek waar alle vragen komen te staan
+        <button onclick="sortFunctie()">Sort</button>
     </div>
     <br>
     <br />
-    <div id="vragen">
-    </div>
+    
+        @*Hier komen alle vragen terecht door gebruik van het script*@
+        <div id="accordion">
+
+        </div>
+    
 
 
 
