@@ -30,7 +30,7 @@ textarea {
 
 .navbar-nav > li {
     padding-left: 20px;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .navbar-nav > li > a{
@@ -40,8 +40,14 @@ textarea {
         color: #0f3647;
     }
 
-.container-fluid {
+.container-fluid{
     background-color: #337ae2;
+
+}
+
+#vragenAlgemeen{
+
+    color: white;
 }
 
 #accordion {

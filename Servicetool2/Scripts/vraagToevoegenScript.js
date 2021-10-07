@@ -59,7 +59,7 @@ function addRelated() {
             var opt = document.createElement('option');
             var Vraag = doc.data().Vraag;
             select.id = i;
-            select.className = 'form-control';
+            select.className = 'form-select';
             select.name = 'gerelateerd';
             opt.value = Vraag;
             opt.innerHTML = Vraag;

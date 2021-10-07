@@ -34,6 +34,7 @@ vraagRef.where("Categorie", "==", "Financieel")
             kliks.innerHTML = Kliks;
             kliks.id = kliks;
 
+
             var breakline = document.createElement("BR");
             var bl2 = document.createElement("BR");
             var bl3 = document.createElement("BR");
@@ -42,17 +43,21 @@ vraagRef.where("Categorie", "==", "Financieel")
 
             //lijst en divjes per vraag
             var card = document.createElement('div');
-            card.className = "card";
+            card.className = "accordion-item";
             card.id = Vraag;
+
             var cardHeader = document.createElement('div');
-            cardHeader.className = "card-header";
+            cardHeader.className = "accordion-header";
             cardHeader.id = "heading" + i;
+
             var h5 = document.createElement('h5');
             h5.className = "mb-0";
+
             var btn = document.createElement("button");
-            btn.className = "btn btn-block collapsed";
-            btn.setAttribute("data-toggle", "collapse");
-            btn.setAttribute("data-target", "#collapse" + i);
+            btn.className = "accordion-button";
+            btn.type = "button";
+            btn.setAttribute("data-bs-toggle", "collapse");
+            btn.setAttribute("data-bs-target", "#collapse" + i);
             btn.setAttribute("aria-expanded", "true");
             btn.setAttribute("aria-controls", "collapse" + i);
             btn.innerHTML = Vraag;
@@ -61,39 +66,48 @@ vraagRef.where("Categorie", "==", "Financieel")
             cardHeader.appendChild(h5);
             card.appendChild(cardHeader);
 
+            //voor het collapsen
             var collapse = document.createElement('div');
             collapse.id = "collapse" + i;
-            collapse.className = "collapse";
+            collapse.className = "accordion-collapse collapse";
             collapse.setAttribute("aria-labelledby", "heading" + i);
+
+            //inhoud van vraag
             var cardbody = document.createElement('div');
-            cardbody.className = "card-body";
+            cardbody.className = "accordion-body";
             collapse.appendChild(cardbody);
+
+            //trefwoorden
             for (k = 0; k < Trefwoorden.length; k++) {
                 var trefwoorden = document.createElement('label');
                 trefwoorden.innerHTML = Trefwoorden[k] + "&nbsp;";
-                trefwoorden.className = 'trefwoordID'+Vraag;
+                trefwoorden.className = 'trefwoordID' + Vraag;
                 cardbody.appendChild(trefwoorden);
                 cardbody.appendChild(bl2);
             }
-            
+
             cardbody.appendChild(bl4);
+
+            //antwoord
             var antwoord = document.createElement('p');
             antwoord.innerHTML = Antwoord;
             cardbody.appendChild(antwoord);
             cardbody.appendChild(bl3);
 
-            //gerelateerde vragen toevoegen aan de cardbody
+            //gerelateerde vragen
             for (j = 0; j < Gerelateerd.length; j++) {
                 var gerelateerdeVragenHyperlink = document.createElement("a");
-
                 gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
-                cardbody.appendChild(breakline);
                 gerelateerdeVragenHyperlink.innerHTML = Gerelateerd[j];
+                cardbody.appendChild(breakline);
                 cardbody.appendChild(gerelateerdeVragenHyperlink);
                 cardbody.appendChild(bl5);
-
             }
+
+            //aantal kliks
             cardbody.append(kliks);
+
+            //
             card.appendChild(collapse);
 
             //lijst in div zetten
@@ -115,24 +129,19 @@ function zoekFunctie() {
     var input, filter, ul, li, a, i, txtValue;
     input = document.getElementById('zoekInput');
     filter = input.value.toUpperCase();
-    ul = document.getElementsByClassName("card-header");
+    ul = document.getElementsByClassName("accordion-header");
 
     // Loop through all list items, and hide those who don't match the search query
     for (l = 0; l < ul.length; l++) {
         li = document.querySelectorAll('[id^="heading"]');
 
-        //console.log(li[l].children[0].children[0].innerHTML);
         var trefwoorden = document.querySelectorAll('[class^="trefwoordID' + li[l].children[0].children[0].innerHTML + '"]');
 
-        //console.log(trefwoorden);
         for (i = 0; i < trefwoorden.length; i++) {
             a = trefwoorden[i].innerHTML;
             console.log(a);
             txtValue = a;
             var ul1 = $(ul[l]).parents()[0];
-
-            //console.log(ul1);
-            //console.log(txtValue.toUpperCase().indexOf(filter));
 
             console.log(txtValue.toUpperCase().indexOf(filter));
             if (txtValue.toUpperCase().indexOf(filter) > -1) {

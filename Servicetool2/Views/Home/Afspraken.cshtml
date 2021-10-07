@@ -1,29 +1,27 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Afspraken";
 }
 
-<h1>@ViewBag.Title</h1>
-<h3>@ViewBag.Message</h3>
+<div><h2 style="text-align:center;">Vragen over afspraken</h2></div>
 
-<div id="algemeenVraagVlak">
-    <div id="zoekbalk">
-        <input type="text" id="zoekInput" onkeyup="zoekFunctie()" placeholder="Zoeken..">
+<div class="container-fluid">
+    <div id="algemeenVraagVlak">
+        <div id="zoekbalk">
+            <input type="text" id="zoekInput" onkeyup="zoekFunctie()" placeholder="Zoeken..">
+        </div>
+        <br>
+        <br>
+        <div id="vragenAlgemeen">
+            Dit is de plek waar alle vragen komen te staan
+        </div>
+        <br>
+        <br />
+        <div id="accordion">
+
+        </div>
+
+
     </div>
-    <br>
-    <br>
-    <div id="vragenAlgemeen">
-        Dit is de plek waar alle vragen komen te staan
-        <button onclick="sortFunctie()">Sort</button>
-    </div>
-    <br>
-    <br />
-    <div id="accordion">
-
-    </div>
-
-
-
 </div>
 
 <script src="~/Scripts/afsprakenScript.js">

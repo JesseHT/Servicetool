@@ -41,25 +41,25 @@
             <a>
                 @Html.ActionLink("HeatTransformers", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-collapse collapse" id="navbarTogglerDemo02">
                 <ul class="nav navbar-nav mr-auto">
-                    <li class="nav-item">@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li class="nav-item">@Html.ActionLink("Algemeen", "Algemeen", "Home")</li>
-                    <li class="nav-item">@Html.ActionLink("Afspraken", "Afspraken", "Home")</li>
-                    <li class="nav-item">@Html.ActionLink("Financieel", "Financieel", "Home")</li>
-                    <li class="nav-item">@Html.ActionLink("Technisch", "Technisch", "Home")</li>
-                    <li class="nav-item">@Html.ActionLink("Overig", "Overig", "Home")</li>
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { @class = "dropdown-item" })</li>
+                    <li>@Html.ActionLink("Algemeen", "Algemeen", "Home", new { @class = "dropdown-item" })</li>
+                    <li>@Html.ActionLink("Afspraken", "Afspraken", "Home", new { @class = "dropdown-item" })</li>
+                    <li>@Html.ActionLink("Financieel", "Financieel", "Home", new { @class = "dropdown-item" })</li>
+                    <li>@Html.ActionLink("Technisch", "Technisch", "Home", new { @class = "dropdown-item" })</li>
+                    <li>@Html.ActionLink("Overig", "Overig", "Home", new { @class = "dropdown-item" })</li>
                     <li class="nav-item dropdown" style="margin-top: 7px;">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Account
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li class="dropdown-item" href="#">@Html.ActionLink("Inloggen", "Index", "Home")</li>
-                            <li class="dropdown-item" href="#">@Html.ActionLink("Dashboard", "Index", "Home")</li>
-                            <li class="dropdown-item" href="#">@Html.ActionLink("Vraag toevoegen", "vraagToevoegen", "Home")</li>
+                            <li> <a>@Html.ActionLink("Inloggen", "Index", "Home", new { @class = "dropdown-item"})</a></li>
+                            <li> <a>@Html.ActionLink("Dashboard", "Index", "Home", new { @class = "dropdown-item" })</a></li>
+                            <li> <a>@Html.ActionLink("Vraag toevoegen", "vraagToevoegen", "Home", new { @class = "dropdown-item" })</a></li>
                         </ul>
                     </li>
                 </ul>

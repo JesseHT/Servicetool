@@ -43,20 +43,21 @@ vraagRef.where("Categorie", "==", "Overig")
 
             //lijst en divjes per vraag
             var card = document.createElement('div');
-            card.className = "card";
+            card.className = "accordion-item";
             card.id = Vraag;
 
             var cardHeader = document.createElement('div');
-            cardHeader.className = "card-header";
+            cardHeader.className = "accordion-header";
             cardHeader.id = "heading" + i;
 
             var h5 = document.createElement('h5');
             h5.className = "mb-0";
 
             var btn = document.createElement("button");
-            btn.className = "btn btn-block collapsed";
-            btn.setAttribute("data-toggle", "collapse");
-            btn.setAttribute("data-target", "#collapse" + i);
+            btn.className = "accordion-button";
+            btn.type = "button";
+            btn.setAttribute("data-bs-toggle", "collapse");
+            btn.setAttribute("data-bs-target", "#collapse" + i);
             btn.setAttribute("aria-expanded", "true");
             btn.setAttribute("aria-controls", "collapse" + i);
             btn.innerHTML = Vraag;
@@ -68,12 +69,12 @@ vraagRef.where("Categorie", "==", "Overig")
             //voor het collapsen
             var collapse = document.createElement('div');
             collapse.id = "collapse" + i;
-            collapse.className = "collapse";
+            collapse.className = "accordion-collapse collapse";
             collapse.setAttribute("aria-labelledby", "heading" + i);
 
             //inhoud van vraag
             var cardbody = document.createElement('div');
-            cardbody.className = "card-body";
+            cardbody.className = "accordion-body";
             collapse.appendChild(cardbody);
 
             //trefwoorden
@@ -128,7 +129,7 @@ function zoekFunctie() {
     var input, filter, ul, li, a, i, txtValue;
     input = document.getElementById('zoekInput');
     filter = input.value.toUpperCase();
-    ul = document.getElementsByClassName("card-header");
+    ul = document.getElementsByClassName("accordion-header");
 
     // Loop through all list items, and hide those who don't match the search query
     for (l = 0; l < ul.length; l++) {

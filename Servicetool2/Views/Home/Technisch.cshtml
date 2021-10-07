@@ -3,5 +3,49 @@
     ViewBag.Title = "Technisch";
 }
 
-<h2>Technisch</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h2>Hier komt de storingstool</h2>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-4">
+            <h3>Welke warmtepomp heeft u</h3>
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Kies een warmtepomp</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </div>
+        <div class="col-4">
+            <h3>Welke ketel heeft u</h3>
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Kies een ketel</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Overig</option>
+            </select>
+            <br />
+            <input type="text" class="form-control"/>
+        </div>
+        <div class="col-4">
+            <h3>Welke thermostaat heeft u</h3>
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Kies een thermostaat</option>
+                <option value="1">Daikin Thermostaat</option>
+                <option value="2">Honeywell Chronotherm</option>
+                <option value="3">Honeywell Lyric</option>
+            </select>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-12">
+            <button class="btn-lg">@Html.ActionLink("Volgende", "TechnischProbleemKeuze", "Home", new { @class = "dropdown-item" })</button>
+        </div>
+    </div>
+</div>
 

@@ -48,6 +48,11 @@ namespace ServiceTool2.Controllers
             return View();
         }
 
+        public ActionResult TechnischProbleemKeuze()
+        {
+            return View();
+        }
+
         public ActionResult Overig()
         {
             ViewBag.Message = "Je overige vragenpagina.";
