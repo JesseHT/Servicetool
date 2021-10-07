@@ -20,13 +20,6 @@ namespace ServiceTool2.Controllers
             return View();
         }
 
-        public ActionResult vraagToevoegen()
-        {
-            ViewBag.Message = "Je algemene vragenpagina.";
-
-            return View();
-        }
-
         public ActionResult Financieel()
         {
             ViewBag.Message = "Je financiele vragenpagina.";

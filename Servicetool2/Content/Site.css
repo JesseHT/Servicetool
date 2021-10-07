@@ -1,13 +1,12 @@
 ﻿body {
-    padding-top: 70px;
+    padding-top: 50px;
     padding-bottom: 20px;
-    margin: 0;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -21,56 +20,26 @@
 input,
 select,
 textarea {
-    max-width: 250px;
+    max-width: 280px;
 }
 
 #navbar {
-    background-color: #337ae2 !important;
-}
-
-.navbar-nav > li {
-    padding-left: 20px;
-    margin-top: 15px;
-}
-
-.navbar-nav > li > a{
-        font-size: 20px;
-        font-family: Montserrat;
-        font-weight: bold;
-        color: #0f3647;
-    }
-
-.container-fluid {
     background-color: #337ae2;
 }
 
-#accordion {
-    padding-bottom: 20px;
+.navbar-inverse .navbar-nav > li {
+    padding-left: 25px;
 }
 
-#form1 {
-    background-color: #d7d7d7;
-}
+    .navbar-inverse .navbar-nav > li > a {
+        font-size: large;
+        font-family: Montserrat;
+        color: #0f3647;
+    }
 
-#form2 {
-    background-color: #d7d7d7;
-}
-
-.navbar-dark .navbar-nav .nav-link {
-    color: rgb(0 0 0 / 50%);
-    margin-top: 0px;
-
-}
-
-label {
-    font-weight: bold;
-}
-
-.navbar-brand {
+.navbar-inverse .navbar-brand {
     font-family: Montserrat;
-    font-weight: bold;
     color: #0f3647;
-    margin-top: 7px;
 }
 
 #knoppenHome {
@@ -92,49 +61,32 @@ label {
     margin: 5px;
 }
 
+#algemeenVraagVlak {
+    background-color: lightgrey;
+    width: 90%;
+    height: 90%;
+    overflow: auto;
+}
+
 #zoekbalk {
     float: right;
-    margin-top: 5px;
 }
 
-
-#form1 {
-    max-width: 50%;
-    float: left;
-    padding: 20px;
-}
-
-#form2 {
-    max-width: 50%;
-    float: right;
-    padding: 20px;
-}
-
-
-#toevoegenForm {
-    padding: 15px;
-}
-
-#toevoegenForm label {
-    font-size: large;
-}
-
-#vraagToevoegenKnop {
-    float: left;
-}
-
-.btn-block {
+.showMore {
+    font-size: 14px;
     display: block;
-    width: 100%;
-    background-color: #337ae2;
-    color: white;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
-.card-body {
-    background-color: white;
-}
+    .showMore + input {
+        display: none;
+    }
 
-#kliks {
-    float: right;
-}
+        .showMore + input + * {
+            display: none;
+        }
 
+        .showMore + input:checked + * {
+            display: block;
+        }
