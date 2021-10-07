@@ -53,6 +53,10 @@ namespace ServiceTool2.Controllers
             return View();
         }
 
+        public ActionResult storingstoolToevoegen()
+        {
+            return View();
+        }
         public ActionResult Overig()
         {
             ViewBag.Message = "Je overige vragenpagina.";
