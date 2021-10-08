@@ -8,21 +8,13 @@
     <br />
     <div class="row">
         <div class="col-1">
-            @Html.ActionLink("Terug", "Technisch", "Home", new {@class = "btn-sm btn-primary" })
+            @Html.ActionLink("Terug", "Technisch", "Home", new { @class = "btn-sm btn-primary" })
         </div>
     </div>
     <br />
     <div class="row">
         <div class="col-12 d-grid gap-2" >
-            <div class="btn-group-vertical" role="group" aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                <label class="btn btn-outline-primary" for="btnradio1">Huis wordt niet warm maar geen storingscode</label>
-
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                <label class="btn btn-outline-primary" for="btnradio2">Geen warm water maar geen storingscode</label>
-
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                <label class="btn btn-outline-primary" for="btnradio3">Storingscode op de warmtepomp</label>
+            <div class="btn-group-vertical" role="group" aria-label="Basic radio toggle button group" id="probleemLijst">
             </div>
     </div>
         </div>
@@ -33,4 +25,6 @@
         </div>
     </div>
 </div>
+
+<script src="~/Scripts/technischProbleemKeuzeScript.js"></script>
 
