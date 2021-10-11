@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Technisch";
+}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <h2>Welkom bij de storingstool van HeatTransformers!</h2>
+            <p>Op de volgende pagina's is het mogelijk om de details over uw probleem te beschrijven. Hierna geven wij een indicatie van een mogelijke oplossing.</p>
+        </div>
+        <div class="col-1"></div>
+    </div>
+    <br />   
+    <br />
+
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            @Html.ActionLink("Volgende", "StoringtoolEersteKeuze", "Storing", null, new { @class = "btn btn-primary btn-block" })
+        </div>
+        <div class="col-1"></div>
+    </div>
+
+</div>
+
+<script src="~/Scripts/technischScript.js"></script>
+

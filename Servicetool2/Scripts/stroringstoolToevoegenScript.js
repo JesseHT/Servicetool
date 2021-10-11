@@ -15,52 +15,13 @@ $("[name = optie]").hide();
 
 function elementToevoegen() {
     //console.log("call methode");
-    var warmtepompMerk = document.getElementById('warmtepompMerk').value;
-    var warmtepompType = document.getElementById('warmtepompType').value;
-    var ketelMerk = document.getElementById('ketelMerk').value;
-    var ketelType = document.getElementById('ketelType').value;
-    var thermoMerk = document.getElementById('thermoMerk').value;
-    var thermoType = document.getElementById('thermoType').value;
     var probleemTekst = document.getElementById('probleemTekst').value;
     //var bonusveldTekst = document.getElementById('bonusveldTekst').value;
     //var bonusveldType = document.getElementById('bonusveldType').value;
 
     var categorie = document.getElementById('categorie-select').value;
 
-    if (categorie == "Warmtepomp") {
-        var docData = {
-            Merk: warmtepompMerk,
-            Type: warmtepompType,
-            Categorie: categorie
-        };
-
-        db.collection("Storingstool").doc(categorie + " | " + warmtepompMerk + " | " + warmtepompType).set(docData).then(() => {
-            console.log("Document successfully written!");
-        });
-    }
-    else if (categorie == "Ketel") {
-        var docData = {
-            Merk: ketelMerk,
-            Type: ketelType,
-            Categorie: categorie
-        };
-
-        db.collection("Storingstool").doc(categorie + " | " + ketelMerk + " | " + ketelType).set(docData).then(() => {
-            console.log("Document successfully written!");
-        });
-    }
-    else if (categorie == "Thermostaat") {
-        var docData = {
-            Merk: thermoMerk,
-            Type: thermoType,
-            Categorie: categorie
-        };
-
-        db.collection("Storingstool").doc(categorie + " | " + thermoMerk + " | " + thermoType).set(docData).then(() => {
-            console.log("Document successfully written!");
-        });
-    }
-    else if (categorie == "Probleem") {
+    if (categorie == "Probleem") {
         var docData = {
             Probleem: probleemTekst,
             Categorie: categorie

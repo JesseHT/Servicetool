@@ -17,10 +17,11 @@ using ZCRMSDK.OAuth.Client;
 using ZCRMSDK.OAuth.Contract;
 using Google.Cloud.Firestore;
 using Microsoft.Ajax.Utilities;
+using Servicetool2.Models;
 
 namespace Servicetool2.Controllers
 {
-    public class HomeController : Controller
+    public class StoringController : Controller
     {
         public static Dictionary<string, string> config = new Dictionary<string, string>()
 {
@@ -48,7 +49,7 @@ namespace Servicetool2.Controllers
 
         public ActionResult Index()
         {
-            /*string path = Server.MapPath("~/ZohoTokenfile");
+            string path = Server.MapPath("~/ZohoTokenfile");
             string filePath = Server.MapPath("~/ZohoTokenfile") + "\\" + "Zohotokenfile.txt";
 
             config["oauth_tokens_file_path"] = filePath;
@@ -60,64 +61,56 @@ namespace Servicetool2.Controllers
             ZCRMRestClient.SetCurrentUser(userMailId);
 
 
-            *//*                System.IO.StreamWriter file = new System.IO.StreamWriter(filePath);
+            /*                System.IO.StreamWriter file = new System.IO.StreamWriter(filePath);
             */
             /*            System.Threading.Thread.Sleep(5000);
-            *//*
+            */
             ZohoOAuthTokens tokens = client.GenerateAccessTokenFromRefreshToken(refreshToken, userMailId);
-            *//*
+            /*
                         file.WriteLine("Lijn 1");
-                        file.WriteLine("Lijn 2");*//*
+                        file.WriteLine("Lijn 2");*/
 
             Debug.WriteLine("dit is de acces code: " + tokens.AccessToken);
             zohotoken = tokens.AccessToken;
-            Debug.WriteLine("De mail: " + ZCRMRestClient.GetCurrentUserEmail());*/
+            Debug.WriteLine("De mail: " + ZCRMRestClient.GetCurrentUserEmail());
             return View();
         }
 
-        public ActionResult Algemeen()
+
+        public ActionResult StoringtoolEersteKeuze()
         {
-            ViewBag.Message = "Je algemene vragenpagina.";
+            object test = getRecords();
+            Debug.WriteLine(test.GetType());
 
-            return View();
+            List<ZCRMRecord> records = (List<ZCRMRecord>)test;
+
+            List<Product> producten = new List<Product>();
+            foreach(ZCRMRecord record in records)
+            {
+                Product product = new Product(record.GetFieldValue("Product_Name").ToString(), record.GetFieldValue("Partner").ToString());
+                producten.Add(product);
+            }
+
+            return View(producten);
         }
-
-        public ActionResult vraagToevoegen()
-        {
-            ViewBag.Message = "Je algemene vragenpagina.";
-
-            return View();
-        }
-
-        public ActionResult Financieel()
-        {
-            ViewBag.Message = "Je financiele vragenpagina.";
-
-            return View();
-        }
-
-        public ActionResult Afspraken()
-        {
-            ViewBag.Message = "Je afspraken vragenpagina.";
-
-            return View();
-        }
-
-
 
         public object getRecords()
         {
-            ZCRMModule moduleIns = ZCRMModule.GetInstance("Producten"); // api naam
-            BulkAPIResponse<ZCRMRecord> response = moduleIns.SearchByCriteria("(Partner:equals:Ketel)");
+            ZCRMModule moduleIns = ZCRMModule.GetInstance("Products"); // api naam
+            Debug.WriteLine(zohotoken);
+            Debug.WriteLine(moduleIns.Properties.Count);
+            BulkAPIResponse<ZCRMRecord> response = moduleIns.SearchByCriteria("((Partner:equals:Ketel)or(Partner:equals:Thermostaat)or((Partner:equals:HeatTransformers)and(Product_Name:starts_with:Remeha)or(Product_Name:starts_with:Daikin)))");
             List<ZCRMRecord> records = response.BulkData;
             return records;
-            
+
+        }
+        public ActionResult StoringtoolProbleemKeuze()
+        {
+            return View();
         }
 
-        public ActionResult Overig()
+        public ActionResult StoringtoolToevoegen()
         {
-            ViewBag.Message = "Je overige vragenpagina.";
-
             return View();
         }
     }

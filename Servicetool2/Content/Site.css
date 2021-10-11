@@ -83,6 +83,11 @@ label {
     text-align: center;
 }
 
+select {
+    width: 100%;
+    text-overflow: ellipsis;
+}
+
 .homeKnop {
     display: inline-block;
     border-radius: 4px;

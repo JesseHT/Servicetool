@@ -46,20 +46,20 @@
             </button>
             <div class="navbar-collapse collapse" id="navbarTogglerDemo02">
                 <ul class="nav navbar-nav mr-auto">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { @class = "dropdown-item" })</li>
-                    <li>@Html.ActionLink("Algemeen", "Algemeen", "Home", new { @class = "dropdown-item" })</li>
-                    <li>@Html.ActionLink("Afspraken", "Afspraken", "Home", new { @class = "dropdown-item" })</li>
-                    <li>@Html.ActionLink("Financieel", "Financieel", "Home", new { @class = "dropdown-item" })</li>
-                    <li>@Html.ActionLink("Technisch", "Technisch", "Home", new { @class = "dropdown-item" })</li>
-                    <li>@Html.ActionLink("Overig", "Overig", "Home", new { @class = "dropdown-item" })</li>
+                    <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "dropdown-item" })</li>
+                    <li>@Html.ActionLink("Algemeen", "Algemeen", "Home", null, new { @class = "dropdown-item" })</li>
+                    <li>@Html.ActionLink("Afspraken", "Afspraken", "Home", null, new { @class = "dropdown-item" })</li>
+                    <li>@Html.ActionLink("Financieel", "Financieel", "Home", null, new { @class = "dropdown-item" })</li>
+                    <li>@Html.ActionLink("Technisch", "Index", "Storing", null, new { @class = "dropdown-item" })</li>
+                    <li>@Html.ActionLink("Overig", "Overig", "Home", null, new { @class = "dropdown-item" })</li>
                     <li class="nav-item dropdown" style="margin-top: 7px;">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Account
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li> <a>@Html.ActionLink("Inloggen", "Index", "Home", new { @class = "dropdown-item"})</a></li>
-                            <li> <a>@Html.ActionLink("Storingstool aanpassen", "storingstoolToevoegen", "Home", new { @class = "dropdown-item" })</a></li>
-                            <li> <a>@Html.ActionLink("Vraag toevoegen", "vraagToevoegen", "Home", new { @class = "dropdown-item" })</a></li>
+                            <li> <a>@Html.ActionLink("Inloggen", "Index", "Home", null, new { @class = "dropdown-item"})</a></li>
+                            <li> <a>@Html.ActionLink("Storingstool aanpassen", "StoringtoolToevoegen", "Storing", null, new { @class = "dropdown-item" })</a></li>
+                            <li> <a>@Html.ActionLink("Vraag toevoegen", "vraagToevoegen", "Home", null, new { @class = "dropdown-item" })</a></li>
                         </ul>
                     </li>
                 </ul>

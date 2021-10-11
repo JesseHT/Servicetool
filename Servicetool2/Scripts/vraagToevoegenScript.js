@@ -64,12 +64,7 @@ function addRelated() {
             opt.value = Vraag;
             opt.innerHTML = Vraag;
             document.getElementById("gerelateerdSectie").appendChild(select);
-
-
-            document.getElementById(i).appendChild(opt);
-
-           
-            
+            document.getElementById(i).appendChild(opt);            
         });
     })
         .catch((error) => {
