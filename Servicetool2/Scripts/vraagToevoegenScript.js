@@ -112,6 +112,7 @@ function vraagToevoegen() {
     db.collection("Vraag").doc(categorie +" | " + vraag).set(docData).then(() => {
         console.log("Document successfully written!");
     });
+
 }
 
 

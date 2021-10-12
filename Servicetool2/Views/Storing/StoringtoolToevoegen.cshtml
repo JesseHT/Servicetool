@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "storingstoolToevoegen";
+    ViewBag.Title = "StoringtoolToevoegen";
 }
 
 <h2>Element toevoegen aan de storingstool</h2>
@@ -16,15 +16,15 @@
                 <label for="categorie">Categorie:</label><br />
                 <select class="form-select" name="categorie" id="categorie-select">
                     <option value="">Kies een categorie</option>
-                    <option value="Warmtepomp">Warmtepomp</option>
+                    @*<option value="Warmtepomp">Warmtepomp</option>
                     <option value="Ketel">Ketel</option>
-                    <option value="Thermostaat">Thermostaat</option>
+                    <option value="Thermostaat">Thermostaat</option>*@
                     <option value="Probleem">Probleem</option>
                  <!--   <option value="Bonusveld">Extra veld</option> -->
                 </select> <br /><br />
             </div>
 
-            <div class="Warmtepomp" id="Warmtepomp" name="optie">
+            @*<div class="Warmtepomp" id="Warmtepomp" name="optie">
                 <label for="documents">Voeg een warmtepomp toe aan de storingstool</label>
                 <br /><br />
                 <label>Merk:</label><br /><br />
@@ -50,7 +50,7 @@
                 <label for="select">Type:<span></span></label><br>
                 <input type="text" id="thermoType" /><br /><br />
             </div>
-
+*@
             <div class="Probleem" id="Probleem" name="optie">
                 <label for="documents">Voeg een probleem toe aan de storingstool</label>
                 <br /><br />

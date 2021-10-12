@@ -103,7 +103,19 @@ namespace Servicetool2.Controllers
             return View();
         }
 
+        public ActionResult Dashboard(string id)
+        {
+            if (id != "")
+            {
+                ViewBag.id = id;
+            }
+            else
+            {
+                ViewBag.id = 0;
+            }
 
+            return View();
+        }
 
         public object getRecords()
         {

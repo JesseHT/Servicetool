@@ -9,7 +9,7 @@ var i = 0;
 
 //document.getElementById("vragen").appendChild(fullLijst);
 
-vraagRef.where("Categorie", "==", "Algemeen")
+vraagRef
     .get()
     .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -18,6 +18,7 @@ vraagRef.where("Categorie", "==", "Algemeen")
             var Vraag = doc.data().Vraag;
             var Antwoord = doc.data().Antwoord;
             var Kliks = doc.data().Klikcount;
+            var Categorie = doc.data().Categorie;
             var Trefwoorden = doc.data().Trefwoorden;
             var Gerelateerd = doc.data().Gerelateerd;
 
@@ -103,12 +104,19 @@ vraagRef.where("Categorie", "==", "Algemeen")
             //
             card.appendChild(collapse);
 
+            
+
             //lijst in div zetten
             document.getElementById("accordion").appendChild(card);
 
-            console.log(doc.id, " => ", doc.data());
-            console.log(Vraag);
+            if (document.getElementById("categorieKeuze").innerText == Categorie) {
+                console.log("goed");
+            } else {
+                card.style.display = "none";
+            }
+
             i++;
+
         });
     })
     .catch((error) => {
@@ -116,10 +124,17 @@ vraagRef.where("Categorie", "==", "Algemeen")
     });
 
 
+
 function openVraag(vraagNaam) {
     var elements = document.getElementsByClassName("accordion-button");
+    console.log(elements.length);
     for (var i = 0; i < elements.length; i++) {
         if (elements[i].innerHTML == vraagNaam) {
+            console.log(elements[i].parentElement.parentElement.parentElement);
+            if (elements[i].parentElement.parentElement.parentElement.style.display == "none") {
+                console.log("test");
+                elements[i].parentElement.parentElement.parentElement.style.display = "block";
+            }
             elements[i].click();
         }
     }

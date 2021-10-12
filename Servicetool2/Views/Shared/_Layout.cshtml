@@ -36,23 +36,24 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary" id="navbar">
+    <nav class="navbar fixed-top navbar-expand-xxl navbar-dark bg-primary" id="navbar">
         <div class="container" id="navbarText">
-            <a>
+            @*<img class="img-fluid" src="~/Content/HeatTransformers-logo-icon-400px-white-on-blue.png" />
+*@          
                 @Html.ActionLink("HeatTransformers", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-collapse collapse" id="navbarTogglerDemo02">
                 <ul class="nav navbar-nav mr-auto">
-                    <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "dropdown-item" })</li>
-                    <li>@Html.ActionLink("Algemeen", "Algemeen", "Home", null, new { @class = "dropdown-item" })</li>
-                    <li>@Html.ActionLink("Afspraken", "Afspraken", "Home", null, new { @class = "dropdown-item" })</li>
-                    <li>@Html.ActionLink("Financieel", "Financieel", "Home", null, new { @class = "dropdown-item" })</li>
-                    <li>@Html.ActionLink("Technisch", "Index", "Storing", null, new { @class = "dropdown-item" })</li>
-                    <li>@Html.ActionLink("Overig", "Overig", "Home", null, new { @class = "dropdown-item" })</li>
-                    <li class="nav-item dropdown" style="margin-top: 7px;">
+                    <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Algemeen", "Dashboard", "Home", new { id = "Algemeen" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Afspraken", "Dashboard", "Home", new { id = "Afspraken" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Financieel", "Dashboard", "Home", new { id = "Financieel" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Technisch", "Index", "Storing", null, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Overig", "Dashboard", "Home", new { id = "Overig" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Account
                         </a>
