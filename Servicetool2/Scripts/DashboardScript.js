@@ -136,7 +136,15 @@ function openVraag(vraagNaam) {
                 elements[i].parentElement.parentElement.parentElement.style.display = "block";
             }
             elements[i].click();
+            var rect = elements[i].parentElement.getBoundingClientRect();
+            setTimeout(function () {
+                window.scroll(rect.width, rect.y);
+
+            }, 200)
+            
+            
         }
+        
     }
 
 }

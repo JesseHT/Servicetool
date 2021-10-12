@@ -1,7 +1,13 @@
-﻿body {
+﻿html {
+    height: 100%;
+    overflow: auto;
+}
+
+body {
     padding-top: 70px;
     padding-bottom: 20px;
     margin: 0;
+    height: 100%;
 }
 
 /* Set padding to keep content from hitting the edges */
