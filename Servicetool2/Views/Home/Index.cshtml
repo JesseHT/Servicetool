@@ -8,7 +8,7 @@
 
 <div class="container" id="knoppenHome">
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-4" id="algemeenDiv">
             @using (Html.BeginForm("Algemeen", "Home"))
             {
 
@@ -17,7 +17,7 @@
             }
             <p>Algemene vragen over het bedrijf, het bestelproces, warmtepompen en het geluid dat ze maken.</p>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4" id="afsprakenDiv">
             @using (Html.BeginForm("Afspraken", "Home"))
             {
 
@@ -26,7 +26,7 @@
             }
             <p>Alles wat met afspraken te maken heeft; plannen, verzetten, afzeggen, etc.</p>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4" id="financieelDiv">
             @using (Html.BeginForm("Financieel", "Home"))
             {
 
@@ -46,7 +46,7 @@
             }
             <p>Technische problemen, hulp met instellingen en vragen over koeling.</p>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6" id="overigDiv">
             @using (Html.BeginForm("Overig", "Home"))
             {
 
@@ -58,3 +58,5 @@
     </div>
 
 </div>
+
+<script src="indexScript.js"></script>
