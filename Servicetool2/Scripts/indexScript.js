@@ -4,10 +4,6 @@ var db = firebase.firestore();
 
 var vraagRef = db.collection("Vraag");
 var i = 0;
-//var fullLijst = document.createElement('ul');
-//fullLijst.id = "vraagLijst";
-
-//document.getElementById("vragen").appendChild(fullLijst);
 
 vraagRef.where("Categorie", "==", "Algemeen").orderBy("Klikcount", "desc").limit(2)
     .get()
