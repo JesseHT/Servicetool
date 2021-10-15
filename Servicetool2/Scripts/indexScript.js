@@ -432,6 +432,7 @@ vraagRef.where("Categorie", "==", "Overig").orderBy("Klikcount", "desc").limit(2
             btn.setAttribute("data-bs-target", "#collapse" + i);
             btn.setAttribute("aria-expanded", "true");
             btn.setAttribute("aria-controls", "collapse" + i);
+            btn.setAttribute("onclick", "viewCount('" + Categorie + " | " + Vraag + "');");
             btn.innerHTML = Categorie + " | " + Vraag;
 
             h5.appendChild(btn);
@@ -543,8 +544,31 @@ function klikCount(vraagNaam) {
         console.log(elements[i].innerHTML);
         console.log(vraagNaam);
         if (elements[i].innerHTML == vraagNaam) {
-            ref.doc(vraagNaam).update({ Klikcount: increment });
+            ref.doc(vraagNaam).update({ Klikcount: increment }).then(function () {
+                elements[i].innerHTML = "+" + increment;
+            });
+
+           
         }
 
     }
+
+}
+
+function viewCount(vraagNaam) {
+    var ref = db.collection("Vraag");
+    const increment = firebase.firestore.FieldValue.increment(1);
+    console.log(vraagNaam);
+    var elements = document.getElementsByClassName("accordion-button");
+    for (var i = 0; i < elements.length; i++) {
+        console.log(elements[i].innerHTML);
+        console.log(vraagNaam);
+        if (elements[i].innerHTML == vraagNaam) {
+            ref.doc(vraagNaam).update({ Viewcount: increment });
+
+
+        }
+
+    }
+
 }

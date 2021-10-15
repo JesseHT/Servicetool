@@ -16,6 +16,14 @@ body {
     padding-right: 10px;
 }
 
+pre {
+    font-family: Lato;
+    font-size: 16px;
+}
+
+p {
+    font-family: Lato;
+}
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */

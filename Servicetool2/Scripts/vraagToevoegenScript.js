@@ -107,7 +107,8 @@ function vraagToevoegen() {
         Categorie: categorie,
         Trefwoorden: trefwoorden,
         Gerelateerd: gerelateerde,
-        Klikcount: 0
+        Klikcount: 0,
+        Viewcount: 0
     };
 
     db.collection("Vraag").doc(categorie +" | " + vraag).set(docData).then(() => {

@@ -246,7 +246,26 @@ function klikCount(vraagNaam) {
         console.log(vraagNaam);
         if (elements[i].innerHTML == vraagNaam) {
             ref.doc(vraagNaam).update({ Klikcount: increment });
+            
         }
 
     }
+}
+
+function viewCount(vraagNaam) {
+    var ref = db.collection("Vraag");
+    const increment = firebase.firestore.FieldValue.increment(1);
+    console.log(vraagNaam);
+    var elements = document.getElementsByClassName("accordion-button");
+    for (var i = 0; i < elements.length; i++) {
+        console.log(elements[i].innerHTML);
+        console.log(vraagNaam);
+        if (elements[i].innerHTML == vraagNaam) {
+            ref.doc(vraagNaam).update({ Viewcount: increment });
+
+
+        }
+
+    }
+
 }

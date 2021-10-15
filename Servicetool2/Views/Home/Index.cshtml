@@ -8,7 +8,7 @@
 
 <div class="container" id="knoppenHome">
     <div class="row">
-        <div class="col-lg-4" id="algemeenDiv">
+        <div class="col-lg-12" id="algemeenDiv">
             
 
                 <button onclick="loading()" type="submit" class="homeKnop" style="vertical-align:middle"><span>@Html.ActionLink("Algemeen", "Dashboard", "Home", new { id = "Algemeen" }, new {@class = "nav-link", @style = "color:white"})</span></button>
@@ -16,7 +16,9 @@
             
             <p>Algemene vragen over het bedrijf, het bestelproces, warmtepompen en het geluid dat ze maken.</p>
         </div>
-        <div class="col-lg-4" id="afsprakenDiv">
+        </div>
+    <div class="row">
+        <div class="col-lg-12" id="afsprakenDiv">
             @using (Html.BeginForm("Afspraken", "Home"))
             {
 
@@ -25,7 +27,9 @@
             }
             <p>Alles wat met afspraken te maken heeft; plannen, verzetten, afzeggen, etc.</p>
         </div>
-        <div class="col-lg-4" id="financieelDiv">
+        </div>
+    <div class="row">
+        <div class="col-lg-12" id="financieelDiv">
             @using (Html.BeginForm("Financieel", "Home"))
             {
 
@@ -36,7 +40,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             @using (Html.BeginForm("Technisch", "Home"))
             {
 
@@ -45,7 +49,9 @@
             }
             <p>Technische problemen, hulp met instellingen en vragen over koeling.</p>
         </div>
-        <div class="col-lg-6" id="overigDiv">
+        </div>
+    <div class="row">
+        <div class="col-lg-12" id="overigDiv">
             @using (Html.BeginForm("Overig", "Home"))
             {
 
