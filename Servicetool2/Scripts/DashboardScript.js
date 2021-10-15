@@ -21,7 +21,9 @@ vraagRef.orderBy("Klikcount", "desc")
             var kliks = document.createElement('p');
             kliks.innerHTML = Kliks;
             kliks.id = kliks;
-
+            var klikstekst = document.createElement('p');
+            klikstekst.innerHTML = "Heeft deze vraag u geholpen?";
+            kliks.appendChild(klikstekst);
 
             var breakline = document.createElement("BR");
             var bl2 = document.createElement("BR");
@@ -100,12 +102,15 @@ vraagRef.orderBy("Klikcount", "desc")
 
             //aantal kliks
             var klikKnop = document.createElement("button");
-            klikKnop.innerHTML = "Heeft deze vraag geholpen?";
-            klikKnop.className = "btn btn-primary";
-            klikKnop.setAttribute("onclick", "klikCount('"+Categorie + " | " + Vraag + "');")
-            kliks.append(klikKnop);
-            cardbody.append(kliks);
+            var klikKnopTekst = document.createElement("p");
+            klikKnop.innerHTML = "👍";
 
+            klikKnop.className = "btn btn-primary";
+            klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
+            klikKnopTekst.append(klikKnop);
+            kliks.append(klikKnopTekst);
+
+            cardbody.append(kliks);
             //
             card.appendChild(collapse);
 

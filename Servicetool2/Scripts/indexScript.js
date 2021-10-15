@@ -21,6 +21,9 @@ vraagRef.where("Categorie", "==", "Algemeen").orderBy("Klikcount", "desc").limit
             var kliks = document.createElement('p');
             kliks.innerHTML = Kliks;
             kliks.id = kliks;
+            var klikstekst = document.createElement('p');
+            klikstekst.innerHTML = "Heeft deze vraag u geholpen?";
+            kliks.appendChild(klikstekst);
 
 
             var breakline = document.createElement("BR");
@@ -101,7 +104,7 @@ vraagRef.where("Categorie", "==", "Algemeen").orderBy("Klikcount", "desc").limit
             //aantal kliks
             var klikKnop = document.createElement("button");
             var klikKnopTekst = document.createElement("p");
-            klikKnop.innerHTML = "Heeft deze vraag geholpen?";
+            klikKnop.innerHTML = "👍";
 
             klikKnop.className = "btn btn-primary";
             klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
@@ -144,6 +147,9 @@ vraagRef.where("Categorie", "==", "Afspraken").orderBy("Klikcount", "desc").limi
             var kliks = document.createElement('p');
             kliks.innerHTML = Kliks;
             kliks.id = kliks;
+            var klikstekst = document.createElement('p');
+            klikstekst.innerHTML = "Heeft deze vraag u geholpen?";
+            kliks.appendChild(klikstekst);
 
 
             var breakline = document.createElement("BR");
@@ -209,7 +215,7 @@ vraagRef.where("Categorie", "==", "Afspraken").orderBy("Klikcount", "desc").limi
             cardbody.appendChild(bl3);
 
             //gerelateerde vragen
-           /* for (j = 0; j < Gerelateerd.length; j++) {
+            /*for (j = 0; j < Gerelateerd.length; j++) {
                 var gerelateerdeVragenHyperlink = document.createElement("button");
                 gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
                 gerelateerdeVragenHyperlink.className = "btn btn-secondary";
@@ -224,7 +230,7 @@ vraagRef.where("Categorie", "==", "Afspraken").orderBy("Klikcount", "desc").limi
             //aantal kliks
             var klikKnop = document.createElement("button");
             var klikKnopTekst = document.createElement("p");
-            klikKnop.innerHTML = "Heeft deze vraag geholpen?";
+            klikKnop.innerHTML = "👍";
 
             klikKnop.className = "btn btn-primary";
             klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
@@ -267,6 +273,9 @@ vraagRef.where("Categorie", "==", "Financieel").orderBy("Klikcount", "desc").lim
             var kliks = document.createElement('p');
             kliks.innerHTML = Kliks;
             kliks.id = kliks;
+            var klikstekst = document.createElement('p');
+            klikstekst.innerHTML = "Heeft deze vraag u geholpen?";
+            kliks.appendChild(klikstekst);
 
 
             var breakline = document.createElement("BR");
@@ -332,7 +341,7 @@ vraagRef.where("Categorie", "==", "Financieel").orderBy("Klikcount", "desc").lim
             cardbody.appendChild(bl3);
 
             //gerelateerde vragen
-           /* for (j = 0; j < Gerelateerd.length; j++) {
+            /*for (j = 0; j < Gerelateerd.length; j++) {
                 var gerelateerdeVragenHyperlink = document.createElement("button");
                 gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
                 gerelateerdeVragenHyperlink.className = "btn btn-secondary";
@@ -347,7 +356,7 @@ vraagRef.where("Categorie", "==", "Financieel").orderBy("Klikcount", "desc").lim
             //aantal kliks
             var klikKnop = document.createElement("button");
             var klikKnopTekst = document.createElement("p");
-            klikKnop.innerHTML = "Heeft deze vraag geholpen?";
+            klikKnop.innerHTML = "👍";
 
             klikKnop.className = "btn btn-primary";
             klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
@@ -390,6 +399,9 @@ vraagRef.where("Categorie", "==", "Overig").orderBy("Klikcount", "desc").limit(2
             var kliks = document.createElement('p');
             kliks.innerHTML = Kliks;
             kliks.id = kliks;
+            var klikstekst = document.createElement('p');
+            klikstekst.innerHTML = "Heeft deze vraag u geholpen?";
+            kliks.appendChild(klikstekst);
 
 
             var breakline = document.createElement("BR");
@@ -455,7 +467,7 @@ vraagRef.where("Categorie", "==", "Overig").orderBy("Klikcount", "desc").limit(2
             cardbody.appendChild(bl3);
 
             //gerelateerde vragen
-         /*   for (j = 0; j < Gerelateerd.length; j++) {
+            /*for (j = 0; j < Gerelateerd.length; j++) {
                 var gerelateerdeVragenHyperlink = document.createElement("button");
                 gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
                 gerelateerdeVragenHyperlink.className = "btn btn-secondary";
@@ -470,8 +482,8 @@ vraagRef.where("Categorie", "==", "Overig").orderBy("Klikcount", "desc").limit(2
             //aantal kliks
             var klikKnop = document.createElement("button");
             var klikKnopTekst = document.createElement("p");
-            klikKnop.innerHTML = "Heeft deze vraag geholpen?";
-            
+            klikKnop.innerHTML = "👍";
+
             klikKnop.className = "btn btn-primary";
             klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
             klikKnopTekst.append(klikKnop);

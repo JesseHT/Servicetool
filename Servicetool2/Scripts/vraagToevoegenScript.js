@@ -80,6 +80,7 @@ function vraagToevoegen() {
     //console.log("call methode");
     var vraag = document.getElementById('vraag').value;
     var antwoord = document.getElementById('antwoord').value;
+    var antwoordEcht = "<pre>" + antwoord + "</pre>";
     var categorie = document.getElementById('categorie-select').value;
 
     var trefwoorden = [];
@@ -102,7 +103,7 @@ function vraagToevoegen() {
 
     var docData = {
         Vraag: vraag,
-        Antwoord: antwoord,
+        Antwoord: antwoordEcht,
         Categorie: categorie,
         Trefwoorden: trefwoorden,
         Gerelateerd: gerelateerde,
