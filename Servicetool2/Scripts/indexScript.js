@@ -5,7 +5,7 @@ var db = firebase.firestore();
 var vraagRef = db.collection("Vraag");
 var i = 0;
 
-vraagRef.where("Categorie", "==", "Algemeen").orderBy("Klikcount", "desc").limit(2)
+vraagRef.where("Categorie", "==", "Algemeen").orderBy("Klikcount", "desc").limit(3)
     .get()
     .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -54,6 +54,7 @@ vraagRef.where("Categorie", "==", "Algemeen").orderBy("Klikcount", "desc").limit
             btn.setAttribute("data-bs-target", "#collapse" + i);
             btn.setAttribute("aria-expanded", "true");
             btn.setAttribute("aria-controls", "collapse" + i);
+            btn.setAttribute("onclick", "viewCount('" + Categorie + " | " + Vraag + "');");
             btn.innerHTML = Categorie + " | " + Vraag;
 
             h5.appendChild(btn);
@@ -104,7 +105,7 @@ vraagRef.where("Categorie", "==", "Algemeen").orderBy("Klikcount", "desc").limit
             //aantal kliks
             var klikKnop = document.createElement("button");
             var klikKnopTekst = document.createElement("p");
-            klikKnop.innerHTML = "👍";
+            klikKnop.innerHTML = "+1";
 
             klikKnop.className = "btn btn-primary";
             klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
@@ -131,7 +132,7 @@ vraagRef.where("Categorie", "==", "Algemeen").orderBy("Klikcount", "desc").limit
         console.log("Error getting documents: ", error);
     });
 
-vraagRef.where("Categorie", "==", "Afspraken").orderBy("Klikcount", "desc").limit(2)
+vraagRef.where("Categorie", "==", "Afspraken").orderBy("Klikcount", "desc").limit(3)
     .get()
     .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -180,6 +181,7 @@ vraagRef.where("Categorie", "==", "Afspraken").orderBy("Klikcount", "desc").limi
             btn.setAttribute("data-bs-target", "#collapse" + i);
             btn.setAttribute("aria-expanded", "true");
             btn.setAttribute("aria-controls", "collapse" + i);
+            btn.setAttribute("onclick", "viewCount('" + Categorie + " | " + Vraag + "');");
             btn.innerHTML = Categorie + " | " + Vraag;
 
             h5.appendChild(btn);
@@ -257,7 +259,7 @@ vraagRef.where("Categorie", "==", "Afspraken").orderBy("Klikcount", "desc").limi
         console.log("Error getting documents: ", error);
     });
 
-vraagRef.where("Categorie", "==", "Financieel").orderBy("Klikcount", "desc").limit(2)
+vraagRef.where("Categorie", "==", "Financieel").orderBy("Klikcount", "desc").limit(3)
     .get()
     .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -306,6 +308,7 @@ vraagRef.where("Categorie", "==", "Financieel").orderBy("Klikcount", "desc").lim
             btn.setAttribute("data-bs-target", "#collapse" + i);
             btn.setAttribute("aria-expanded", "true");
             btn.setAttribute("aria-controls", "collapse" + i);
+            btn.setAttribute("onclick", "viewCount('" + Categorie + " | " + Vraag + "');");
             btn.innerHTML = Categorie + " | " + Vraag;
 
             h5.appendChild(btn);
@@ -383,7 +386,7 @@ vraagRef.where("Categorie", "==", "Financieel").orderBy("Klikcount", "desc").lim
         console.log("Error getting documents: ", error);
     });
 
-vraagRef.where("Categorie", "==", "Overig").orderBy("Klikcount", "desc").limit(2)
+vraagRef.where("Categorie", "==", "Overig").orderBy("Klikcount", "desc").limit(3)
     .get()
     .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -544,18 +547,16 @@ function klikCount(vraagNaam) {
         console.log(elements[i].innerHTML);
         console.log(vraagNaam);
         if (elements[i].innerHTML == vraagNaam) {
-            ref.doc(vraagNaam).update({ Klikcount: increment }).then(function () {
-                elements[i].innerHTML = "+" + increment;
-            });
-
-           
+            ref.doc(vraagNaam).update({ Klikcount: increment });
+            
         }
 
     }
-
 }
 
+var boolvraagNaam;
 function viewCount(vraagNaam) {
+
     var ref = db.collection("Vraag");
     const increment = firebase.firestore.FieldValue.increment(1);
     console.log(vraagNaam);
@@ -564,11 +565,15 @@ function viewCount(vraagNaam) {
         console.log(elements[i].innerHTML);
         console.log(vraagNaam);
         if (elements[i].innerHTML == vraagNaam) {
-            ref.doc(vraagNaam).update({ Viewcount: increment });
-
+            if (boolvraagNaam) {
+                boolvraagNaam = false;
+            }
+            else {
+                ref.doc(vraagNaam).update({ Viewcount: increment });
+                boolvraagNaam = true;
+            }
 
         }
 
     }
-
 }

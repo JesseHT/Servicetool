@@ -11,14 +11,20 @@ body {
 }
 
 /* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 10px;
-    padding-right: 10px;
-}
+
 
 pre {
     font-family: Lato;
     font-size: 16px;
+    white-space: pre-wrap;
+}
+
+.col-lg-8 {
+    padding-top: 5px;
+}
+
+#row1 {
+    background-color: #DCDCDC;
 }
 
 p {
@@ -123,7 +129,7 @@ select {
     width: 300px;
     transition: all 0.5s;
     cursor: pointer;
-    margin: 5px;
+    margin: 10px;
 }
 
 #zoekbalk {
@@ -170,5 +176,10 @@ select {
 
 #kliks {
     float: right;
+}
+
+.col-lg-5 {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 

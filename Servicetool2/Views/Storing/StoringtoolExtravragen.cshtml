@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "TechnischProbleemKeuze";
+}
+
+<div class="container">
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-1">
+            @Html.ActionLink("Terug", "StoringtoolProbleemkeuze", "Storing", null, new { @class = " btn btn-sm btn-primary" })
+        </div>
+    </div>
+    <br />
+    <div id="rowOverzicht">
+
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            @Html.ActionLink("Volgende", "Index", "Storing", null, new { @class = "btn btn-primary btn-block" })
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+
+<script src="~/Scripts/StoringstoolExtravragenScript.js"></script>

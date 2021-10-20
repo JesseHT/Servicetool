@@ -53,6 +53,7 @@ vraagRef.orderBy("Klikcount", "desc")
             btn.setAttribute("data-bs-target", "#collapse" + i);
             btn.setAttribute("aria-expanded", "true");
             btn.setAttribute("aria-controls", "collapse" + i);
+            btn.setAttribute("onclick", "viewCount('" + Categorie + " | " + Vraag + "');");
             btn.innerHTML = Categorie + " | "+ Vraag;
 
             h5.appendChild(btn);
@@ -103,7 +104,7 @@ vraagRef.orderBy("Klikcount", "desc")
             //aantal kliks
             var klikKnop = document.createElement("button");
             var klikKnopTekst = document.createElement("p");
-            klikKnop.innerHTML = "👍";
+            klikKnop.innerHTML = "+1";
 
             klikKnop.className = "btn btn-primary";
             klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
@@ -253,6 +254,7 @@ function klikCount(vraagNaam) {
 }
 
 function viewCount(vraagNaam) {
+    var boolvraagNaam = false;
     var ref = db.collection("Vraag");
     const increment = firebase.firestore.FieldValue.increment(1);
     console.log(vraagNaam);
@@ -261,8 +263,13 @@ function viewCount(vraagNaam) {
         console.log(elements[i].innerHTML);
         console.log(vraagNaam);
         if (elements[i].innerHTML == vraagNaam) {
-            ref.doc(vraagNaam).update({ Viewcount: increment });
-
+            if (boolvraagNaam) {
+                boolvraagNaam = false;
+            }
+            else {
+                ref.doc(vraagNaam).update({ Viewcount: increment });
+                boolvraagNaam = true;
+            }
 
         }
 

@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Keuzepagina";
+    var variabelen = "";
 }
 @model List<Servicetool2.Models.Product>
 <div class="container">
@@ -13,37 +14,37 @@
         </div>
 
     </div>
+    <form action="/Storing/StoringtoolProbleemKeuze">
 
-    <br />
+        <br />
 
-    <div class="row">
-
-        <div class="col-4">
-            <h3>Welke warmtepomp heeft u</h3>
-            <select class="form-select" aria-label="Default select example" id="technischWarmtepompen">
-                <option selected>Kies een warmtepomp</option>
-                @foreach (var product in Model)
-                {
-                    if (product.Type == "Heattransformers")
+        <div class="row">
+            <div class="col-4">
+                <h3>Welke warmtepomp heeft u</h3>
+                <select class="form-select" aria-label="Default select example" id="technischWarmtepompen" name="technischWarmtepompen">
+                    <option selected>Kies een warmtepomp</option>
+                    @foreach (var product in Model)
                     {
-                        <option id="@product.MerkEnType">@product.MerkEnType</option>
+                        if (product.Type == "Heattransformers")
+                        {
+                            <option id="@product.MerkEnType" value="@product.MerkEnType">@product.MerkEnType</option>
+                        }
                     }
-                }
-            <option id="Techneco Elga 4,9 kW hybride warmtepomp">Techneco Elga 4,9 kW hybride warmtepomp</option>
-            </select>
-        </div>
+                    <option id="Techneco Elga 4,9 kW hybride warmtepomp">Techneco Elga 4,9 kW hybride warmtepomp</option>
+                </select>
+            </div>
 
-        <div class="col-4">
-            <h3>Welke ketel heeft u</h3>
-            <select class="form-select" aria-label="Default select example" id="technischKetels">
-                <option selected>Kies een ketel</option>
-                @foreach (var product in Model)
-                {
-                    if(product.Type == "Ketel")
-                    { 
-                    <option id="@product.MerkEnType">@product.MerkEnType</option>
-                }
-            }
+            <div class="col-4">
+                <h3>Welke ketel heeft u</h3>
+                <select class="form-select" aria-label="Default select example" id="technischKetels" name="technischKetels">
+                    <option selected>Kies een ketel</option>
+                    @foreach (var product in Model)
+                    {
+                        if (product.Type == "Ketel")
+                        {
+                            <option id="@product.MerkEnType" value="@product.MerkEnType">@product.MerkEnType</option>
+                        }
+                    }
                 </select>
                 <br />
                 <label>Anders:</label><br />
@@ -52,18 +53,17 @@
 
             <div class="col-4">
                 <h3>Welke thermostaat heeft u</h3>
-                <select class="form-select" aria-label="Default select example" id="technischThermostaten">
+                <select class="form-select" aria-label="Default select example" id="technischThermostaten" name="technischThermostaat">
                     <option selected>Kies een thermostaat</option>
                     @foreach (var product in Model)
                     {
                         if (product.Type == "Thermostaat")
                         {
-                            <option id="@product.MerkEnType">@product.MerkEnType</option>
+                            <option id="@product.MerkEnType" value="@product.MerkEnType">@product.MerkEnType</option>
                         }
                     }
                 </select>
             </div>
-
         </div>
 
         <br />
@@ -71,12 +71,12 @@
         <div class="row">
             <div class="col-4"></div>
             <div class="col-4">
-                @Html.ActionLink("Volgende", "StoringtoolProbleemKeuze", "Storing", null, new { @class = "btn btn-primary btn-block" })
+                <input type="submit" value="Submit" />
             </div>
             <div class="col-4"></div>
         </div>
-
-    </div>
+    </form>
+</div>
 
     <script src="~/Scripts/technischScript.js"></script>
 

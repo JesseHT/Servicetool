@@ -2,10 +2,12 @@
 @{
     ViewBag.Title = "Dashboard";
 }
-
-<div id="categorieKeuze"><h2 style="text-align:center;">@ViewBag.id</h2></div>
-
 <div class="container-fluid">
+    <div id="categorieKeuze">
+        <h2 style="text-align:center;">
+        @ViewBag.id
+        </h2>
+    </div>
     <div id="algemeenVraagVlak">
         <div id="zoekbalk">
             <input type="text" id="zoekInput" onkeyup="zoekFunctie()" placeholder="Zoeken..">
@@ -13,15 +15,12 @@
         <br>
         <br>
         <div id="vragenAlgemeen">
-            Dit is de plek waar alle vragen komen te staan
+        Dit is de plek waar alle vragen komen te staan
         </div>
         <br>
-        <br />
+        <br>
         <div id="accordion">
-
         </div>
-
-
     </div>
 </div>
 

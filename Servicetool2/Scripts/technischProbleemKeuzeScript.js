@@ -42,6 +42,13 @@ vraagRef.where("Categorie", "==", "Probleem")
     });
 
 
+    let Parameters = new URLSearchParams(window.location.search);
+let infoMeegave = Parameters.get("technischWarmtepompen") +" | "+  Parameters.get("technischKetels") +" | "+ Parameters.get("technischThermostaat");
+console.log(Parameters.get("technischWarmtepompen"));
+    document.getElementById("infoMeegave").innerText = infoMeegave;
+
+
+
 
 
 
