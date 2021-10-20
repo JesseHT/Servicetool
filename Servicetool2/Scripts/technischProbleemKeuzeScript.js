@@ -21,6 +21,7 @@ vraagRef.where("Categorie", "==", "Probleem")
             var Probleem = doc.data().Probleem;
             var input = document.createElement('input');
             input.type = "radio";
+            input.value = Probleem;
             input.className = "btn-check";
             input.name = "btnradio";
             input.id = "btnradio " + Probleem;
@@ -42,8 +43,13 @@ vraagRef.where("Categorie", "==", "Probleem")
     });
 
 
-    let Parameters = new URLSearchParams(window.location.search);
-let infoMeegave = Parameters.get("technischWarmtepompen") +" | "+  Parameters.get("technischKetels") +" | "+ Parameters.get("technischThermostaat");
+let Parameters = new URLSearchParams(window.location.search);
+let warmtePomp = Parameters.get("technischWarmtepompen");
+let ketel = Parameters.get("technischKetels");
+let thermostaat = Parameters.get("technischThermostaat");
+let probleem = Parameters.get("btnradio");
+
+let infoMeegave = warmtePomp + " | " + ketel + " | " + thermostaat + " | " + probleem;
 console.log(Parameters.get("technischWarmtepompen"));
     document.getElementById("infoMeegave").innerText = infoMeegave;
 

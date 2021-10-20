@@ -109,14 +109,11 @@ namespace Servicetool2.Controllers
             return View();
         }
 
-        public ActionResult StoringtoolToevoegen()
+        public ActionResult StoringtoolExtraVragen()
         {
             return View();
         }
 
-        public ActionResult StoringtoolExtravragen()
-        {
-            return View();
-        }
+
     }
 }
