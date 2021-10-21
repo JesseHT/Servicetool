@@ -14,7 +14,7 @@
         </div>
 
     </div>
-    <form action="/Storing/StoringtoolExtraVragen">
+    @*<form action="/Storing/StoringtoolExtraVragen">*@
 
         <br />
 
@@ -54,7 +54,7 @@
             <div class="col-4">
                 <h3>Welke thermostaat heeft u</h3>
                 <select class="form-select" aria-label="Default select example" id="technischThermostaten" name="technischThermostaat">
-                    <option selected>Kies een thermostaat</option>
+                    <option selected value="Geen thermostaat">Kies een thermostaat</option>
                     @foreach (var product in Model)
                     {
                         if (product.Type == "Thermostaat")
@@ -80,11 +80,11 @@
             <div class="row">
                 <div class="col-5"></div>
                 <div class="col-2">
-                    <input class="btn btn-lg" type="submit" value="Submit" />
+                    @Html.ActionLink("Volgende", "StoringtoolExtraVragen", "Storing", null, new { @class = "btn btn-primary btn-block", onclick = "storingSave()" })
                 </div>
                 <div class="col-4"></div>
             </div>
-    </form>
+    @*</form>*@
 </div>
 
     <script src="~/Scripts/technischProbleemKeuzeScript.js"></script>

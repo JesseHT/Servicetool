@@ -43,7 +43,7 @@ vraagRef.where("Categorie", "==", "Probleem")
     });
 
 
-let Parameters = new URLSearchParams(window.location.search);
+/*let Parameters = new URLSearchParams(window.location.search);
 let warmtePomp = Parameters.get("technischWarmtepompen");
 let ketel = Parameters.get("technischKetels");
 let thermostaat = Parameters.get("technischThermostaat");
@@ -51,8 +51,29 @@ let probleem = Parameters.get("btnradio");
 
 let infoMeegave = warmtePomp + " | " + ketel + " | " + thermostaat + " | " + probleem;
 console.log(Parameters.get("technischWarmtepompen"));
-    document.getElementById("infoMeegave").innerText = infoMeegave;
+document.getElementById("infoMeegaveWarmtepomp").innerText = warmtePomp;
+document.getElementById("infoMeegaveKetel").innerText = ketel;
+document.getElementById("infoMeegaveThermostaat").innerText = thermostaat;
+document.getElementById("infoMeegaveProbleem").innerText = probleem;*/
 
+function storingSave() {
+
+    const rbs = document.querySelectorAll('input[name="btnradio"]');
+    let selectedValue;
+    for (const rb of rbs) {
+        if (rb.checked) {
+            selectedValue = rb.value;
+            break;
+        }
+
+    }
+
+    document.cookie = "warmtepomp=" + document.getElementById("technischWarmtepompen").value;
+    document.cookie = "ketel=" + document.getElementById("technischKetels").value;
+    document.cookie = "thermostaat=" + document.getElementById("technischThermostaten").value;
+    document.cookie = "probleem=" + selectedValue;
+
+}
 
 
 
