@@ -41,7 +41,6 @@ vraagRef.where("Categorie", "==", "Probleem")
     .catch((error) => {
         console.log("Error getting documents: ", error);
     });
-console.log(document.getElementById("inputWarmtepomp").value);
 
 //data opslaan in cookies
 function storingSave() {
@@ -65,8 +64,9 @@ function storingSave() {
     } else {
         document.cookie = "warmtepomp=" + document.getElementById("technischWarmtepompen").value;
     }
+
     if (document.getElementById("technischKetels").value == "Kies een ketel") {
-        if (document.getElementById("inputKetel").innerHTML == "") {
+        if (document.getElementById("inputKetel").value == "") {
             document.cookie = "ketel=Geen ketel";
         } else {
             document.cookie = "ketel=" + document.getElementById("inputKetel").value;
@@ -74,8 +74,9 @@ function storingSave() {
     } else {
         document.cookie = "ketel=" + document.getElementById("technischKetels").value;
     }
+
     if (document.getElementById("technischThermostaten").value == "Kies een thermostaat") {
-        if (document.getElementById("inputThermostaat").innerHTML == "") {
+        if (document.getElementById("inputThermostaat").value == "") {
             document.cookie = "thermostaat=Geen thermostaat";
         } else {
             document.cookie = "thermostaat=" + document.getElementById("inputThermostaat").value;
@@ -83,6 +84,7 @@ function storingSave() {
     } else {
         document.cookie = "thermostaat=" + document.getElementById("technischThermostaten").value;
     }
+
     if (selectedValue == null) {
         document.cookie = "probleem=Geen probleem ingevuld"
     } else {

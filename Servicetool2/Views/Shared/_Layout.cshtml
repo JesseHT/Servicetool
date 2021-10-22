@@ -31,14 +31,19 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="~/Content/Logo-icon-blue-png.png" />
     <title>@ViewBag.Title - HeatTransformers Service-tool</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <nav class="navbar fixed-top navbar-expand-xxl navbar-dark bg-primary" id="navbar">
-        <div class="container" id="navbarText">           
-                @Html.ActionLink("HeatTransformers", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        <div class="container" id="navbarText">
+                
+            <a href="@Url.Action("Index", "Home", null)">
+                <img style="width:200px; height:auto; padding-top: 10px;" src="~/Content/Logo-full-white-png.png" />
+            </a>
+            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -69,7 +74,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - HeatTransformers</p>
+            <p style="color: white;">&copy; @DateTime.Now.Year - HeatTransformers</p>
         </footer>
     </div>
 

@@ -265,6 +265,8 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\HeatTransformers-logo-icon-400px-white-on-blue.png" />
     <Content Include="Content\HTLogo.png" />
+    <Content Include="Content\Logo-full-white-png.png" />
+    <Content Include="Content\Logo-icon-blue-png.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

@@ -8,6 +8,7 @@ body {
     padding-bottom: 20px;
     margin: 0;
     height: 100%;
+    background-color: #337ae2;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -25,6 +26,24 @@ pre {
 
 #row1 {
     background-color: #DCDCDC;
+}
+
+#jumboIndex {
+    background-color: #337ae2;
+}
+
+#storingIndexContainer {
+    background-color: #ECECEC;
+    padding: 10px;
+}
+
+#eersteKeuze {
+    background-color: #ECECEC;
+    padding: 10px;
+}
+
+#extraPagina {
+    background-color: #ECECEC;
 }
 
 p {
@@ -46,6 +65,8 @@ textarea {
 
 #navbar {
     background-color: #337ae2 !important;
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
 }
 
 .navbarText {
@@ -76,11 +97,11 @@ textarea {
 
 #vragenAlgemeen{
 
-    color: white;
+    color: black;
 }
 
 #accordion {
-    padding-bottom: 20px;
+    padding-bottom: 0px;
 }
 
 #form1 {
@@ -110,6 +131,7 @@ label {
 
 #knoppenHome {
     text-align: center;
+    background-color: #ECECEC;
 }
 
 select {
@@ -163,6 +185,10 @@ select {
     float: left;
 }
 
+#algemeenVraagVlak {
+    background-color: #ECECEC;
+}
+
 .btn-block {
     display: block;
     width: 100%;
@@ -183,11 +209,17 @@ select {
     margin-bottom: 15px;
 }
 
-#probleeminfo {
-    background-color: aliceblue;
+
+#extraPagina{
+    padding: 10px;
 }
 
-#extraPagina #row1 {
+
+#extraPagina #extraVragen .row {
+    background-color: #ECECEC;
+}
+
+#extraPagina #probleeminfo {
     background-color: white;
 }
 
