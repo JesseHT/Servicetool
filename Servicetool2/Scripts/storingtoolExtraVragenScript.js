@@ -20,6 +20,7 @@ document.getElementById("infoMeegaveKetel").innerText = cookies.ketel;
 document.getElementById("infoMeegaveThermostaat").innerText = cookies.thermostaat;
 document.getElementById("infoMeegaveProbleem").innerText = cookies.probleem;
 
+//extra vragen uit de database ophalen en in rijen van 3 displayen op de webpagina
 var rowvar = 0;
 var divvar = 0;
 var variabele = 0;

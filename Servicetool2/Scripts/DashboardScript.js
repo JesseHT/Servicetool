@@ -5,6 +5,7 @@ var db = firebase.firestore();
 var vraagRef = db.collection("Vraag");
 var i = 0;
 
+//vragen laden uit de db 
 vraagRef.orderBy("Klikcount", "desc")
     .get()
     .then((querySnapshot) => {
@@ -135,7 +136,7 @@ vraagRef.orderBy("Klikcount", "desc")
     });
 
 
-
+//open een vraag als je erop klikt
 function openVraag(vraagNaam) {
     var elements = document.getElementsByClassName("accordion-button");
     for (var i = 0; i < elements.length; i++) {
@@ -155,6 +156,7 @@ function openVraag(vraagNaam) {
     }
 }
 
+//zoek naar vragen op basis van de trefwoorden
 function zoekFunctie() {
     // Declare variables
     var input, filter, ul, li, a, i, txtValue;
@@ -237,6 +239,7 @@ function zoekFunctie() {
     }
 }*/
 
+//bijhouden hoe vaak er op de like knop gedrukt is
 function klikCount(vraagNaam) {
     var ref = db.collection("Vraag");
     const increment = firebase.firestore.FieldValue.increment(1);
@@ -253,6 +256,8 @@ function klikCount(vraagNaam) {
     }
 }
 
+
+//bijhouden hoe vaak de vraag opengeklikt is
 function viewCount(vraagNaam) {
     var boolvraagNaam = false;
     var ref = db.collection("Vraag");

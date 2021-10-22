@@ -22,6 +22,7 @@ db.collection("Storingstool").get().then((querySnapshot) => {
     });
 })
 
+//extra gerelateerd probleem toevoegen
 var i = 0;
 function addRelated() {
     i++;
@@ -54,6 +55,7 @@ function addRelated() {
 
 $("[name = optie]").hide();
 
+//probleem of gerelateerd probleem toevoegen aan de database
 function elementToevoegen() {
     //console.log("call methode");
     var probleemTekst = document.getElementById('probleemTekst').value;

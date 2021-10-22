@@ -42,6 +42,8 @@ vraagRef.where("Categorie", "==", "Probleem")
         console.log("Error getting documents: ", error);
     });
 console.log(document.getElementById("inputWarmtepomp").value);
+
+//data opslaan in cookies
 function storingSave() {
 
     const rbs = document.querySelectorAll('input[name="btnradio"]');

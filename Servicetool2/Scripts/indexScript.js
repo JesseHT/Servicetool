@@ -5,6 +5,7 @@ var db = firebase.firestore();
 var vraagRef = db.collection("Vraag");
 var i = 0;
 
+//2 vragen ophalen per categorie
 vraagRef.where("Categorie", "==", "Algemeen").orderBy("Klikcount", "desc").limit(3)
     .get()
     .then((querySnapshot) => {
