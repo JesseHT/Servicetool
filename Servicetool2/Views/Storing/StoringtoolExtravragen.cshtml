@@ -3,38 +3,40 @@
     ViewBag.Title = "TechnischProbleemKeuze";
 }
 
-<div class="container">
+<div class="container" id="extraPagina">
     <br />
     <br />
-    <div class="row">
-        <div class="col-1">
-            @Html.ActionLink("Terug", "StoringtoolEersteKeuze", "Storing", null, new { @class = " btn btn-sm btn-primary" })
+    <div id="probleeminfo">
+        <div class="row">
+            <div class="col-1">
+                @Html.ActionLink("Terug", "StoringtoolEersteKeuze", "Storing", null, new { @class = " btn btn-sm btn-primary" })
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
+            <h3>Extra informatie over het volgende probleem:</h3>
+        </div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <ul>
+                    <li id="infoMeegaveWarmtepomp"></li>
+                    <li id="infoMeegaveKetel"></li>
+                    <li id="infoMeegaveThermostaat"></li>
+                    <li id="infoMeegaveProbleem"></li>
+                </ul>
+            </div>
+            <div class="col-4"></div>
         </div>
     </div>
     <br />
-    <div class="row">
-        <h3>Extra informatie over het volgende probleem:</h3>
-    </div>
-    <div class="row">
-        <div class="col-4"></div>
-        <div class="col-4">
-            <ul>
-                <li id="infoMeegaveWarmtepomp"></li>
-                <li id="infoMeegaveKetel"></li>
-                <li id="infoMeegaveThermostaat"></li>
-                <li id="infoMeegaveProbleem"></li>
-            </ul>
-        </div>       
-        <div class="col-4"></div>
-    </div>
     <div class="container" id="extraVragen">
         <div class="row" id="row0"></div>
     </div>
-     <br />
     <br />
-    
     <br />
-    
+    <br />
     <br />
     <div class="row">
         <div class="col-4"></div>

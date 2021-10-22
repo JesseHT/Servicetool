@@ -183,3 +183,11 @@ select {
     margin-bottom: 15px;
 }
 
+#probleeminfo {
+    background-color: aliceblue;
+}
+
+#extraPagina #row1 {
+    background-color: white;
+}
+
