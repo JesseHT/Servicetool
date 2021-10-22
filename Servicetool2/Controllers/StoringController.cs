@@ -115,5 +115,10 @@ namespace Servicetool2.Controllers
         }
 
 
+        public ActionResult StoringtoolToevoegen()
+        {
+            return View();
+        }
+
     }
 }

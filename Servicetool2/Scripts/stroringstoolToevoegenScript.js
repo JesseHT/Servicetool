@@ -11,6 +11,47 @@
 var db = firebase.firestore();
 var i = 0;
 
+
+db.collection("Storingstool").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+        var opt = document.createElement('option');
+        var Probleem = doc.data().Probleem;
+        opt.value = Probleem;
+        opt.innerHTML = Probleem;
+        document.getElementById("probleem-select").append(opt);
+    });
+})
+
+var i = 0;
+function addRelated() {
+    i++;
+    var select = document.createElement('select');
+    var lb = document.createElement("BR");
+    var lb2 = document.createElement("BR");
+
+
+    db.collection("Storingstool").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            var opt = document.createElement('option');
+            var Vraag = doc.data().Probleem;
+            select.id = i;
+            select.className = 'form-select';
+            select.name = 'probleem';
+            opt.value = Vraag;
+            opt.innerHTML = Vraag;
+            document.getElementById("gerelateerdSectie").appendChild(select);
+            document.getElementById(i).appendChild(opt);
+        });
+    })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+    document.getElementById("gerelateerdSectie").appendChild(lb);
+    document.getElementById("gerelateerdSectie").appendChild(lb2);
+
+
+}
+
 $("[name = optie]").hide();
 
 function elementToevoegen() {
@@ -31,14 +72,26 @@ function elementToevoegen() {
             console.log("Document successfully written!");
         });
     }
-    else if (categorie == "Bonusveld") {
+    else if (categorie == "Extravraag") {
+        var titel = document.getElementById('extraTitel').value;
+        var soort = document.getElementById('extraSoort').value;
+        var ondertekst = document.getElementById('extraOndertext').value;
+
+        var gerelateerde = [];
+        var gerelateerdeProblemen = document.getElementsByName('probleem');
+
+        for (var i = 0; i < gerelateerdeProblemen.length; i++) {
+            var a = gerelateerdeProblemen[i];
+            gerelateerde.push(a.value);
+        }
         var docData = {
-            Naam: bonusveldTekst,
-            Type: bonusveldType,
-            Categorie: categorie
+            titel: titel,
+            soort: soort,
+            subtext: ondertekst,
+            GerelateerdeProblemen: gerelateerde
         };
 
-        db.collection("Storingstool").doc(categorie + " | " + bonusveldTekst + " | " + bonusveldType).set(docData).then(() => {
+        db.collection("Extravragen").doc(titel).set(docData).then(() => {
             console.log("Document successfully written!");
         });
     }

@@ -547,7 +547,11 @@ function klikCount(vraagNaam) {
         console.log(elements[i].innerHTML);
         console.log(vraagNaam);
         if (elements[i].innerHTML == vraagNaam) {
-            ref.doc(vraagNaam).update({ Klikcount: increment });
+            ref.doc(vraagNaam).update({ Klikcount: increment }).then(function () {
+                window.top.location = window.top.location;
+
+            }
+                );
             
         }
 

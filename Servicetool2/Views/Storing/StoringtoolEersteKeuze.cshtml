@@ -5,11 +5,11 @@
 }
 @model List<Servicetool2.Models.Product>
 <div class="container">
-
+    <br />
     <div class="row">
 
         <div class="col-6">
-            <h2>Hier komt de storingstool</h2>
+            <h1>Basisvragen storingstool</h1>
 
         </div>
 
@@ -32,6 +32,9 @@
                     }
                     <option id="Techneco Elga 4,9 kW hybride warmtepomp">Techneco Elga 4,9 kW hybride warmtepomp</option>
                 </select>
+                <br />
+                <label>Anders:</label><br />
+                <input type="text" class="form-control" id="inputWarmtepomp"/>
             </div>
 
             <div class="col-4">
@@ -48,13 +51,13 @@
                 </select>
                 <br />
                 <label>Anders:</label><br />
-                <input type="text" class="form-control" />
+                <input type="text" class="form-control" id="inputKetel"/>
             </div>
 
             <div class="col-4">
                 <h3>Welke thermostaat heeft u</h3>
                 <select class="form-select" aria-label="Default select example" id="technischThermostaten" name="technischThermostaat">
-                    <option selected value="Geen thermostaat">Kies een thermostaat</option>
+                    <option selected>Kies een thermostaat</option>
                     @foreach (var product in Model)
                     {
                         if (product.Type == "Thermostaat")
@@ -63,6 +66,9 @@
                         }
                     }
                 </select>
+                <br />
+                <label>Anders:</label><br />
+                <input type="text" class="form-control" id="inputThermostaat"/>
             </div>
         </div>
         <br />
