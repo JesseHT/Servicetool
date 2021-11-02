@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "vraagBewerken";
+}
+
+<h2>vraagBewerken</h2>
+
+<div class="container">
+    
+
+    <div class="row" id="formRow">
+        
+        <div id="form">
+            <div class="row">
+                <div class="row-4">
+                    <h3 id="vraagveld"></h3>
+                </div>
+            </div>
+            <div id="form1" class="col-lg-6">
+                
+
+                <div class="form-group">
+                    <label for="vraag">Vraag:</label><br>
+                    <input class="form-control" type="text" id="vraag" name="vraag"><br><br />
+                </div>
+
+                <div class="form-group">
+                    <label for="antwoord">Telefoon antwoord:</label><br>
+                    <textarea class="form-control" rows="3" type="text" id="telAntwoord" name="telAntwoord"></textarea><br><br />
+                </div>
+
+                <div class="form-group">
+                    <label for="antwoord">Mail antwoord:</label><br>
+                    <textarea class="form-control" rows="3" type="text" id="mailAntwoord" name="mailAntwoord"></textarea><br><br />
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="categorie">Categorie:</label><br />
+                    <select class="form-select" name="categorie" id="categorie-select">
+                        <option value="">Kies een categorie</option>
+                        <option value="Algemeen">Algemeen</option>
+                        <option value="Afspraken">Afspraken</option>
+                        <option value="Financieel">Financieel</option>
+                        <option value="Technisch">Technisch</option>
+                        <option value="Overig">Overig</option>
+                    </select> <br /><br />
+                </div>
+
+                <button id="vraagToevoegenKnop" onclick="vraagUpdaten()" class="btn btn-primary">Vraag toevoegen</button>
+
+            </div>
+
+            <div id="form2" class="col-lg-6">
+
+                <div class="form-group">
+
+                    <label for="trefwoord">Trefwoorden:</label><br />
+
+                    <div id="trefwoorden">
+                        
+                    </div>
+                    <br />
+                    <button class="form-control" type="button" onclick="addTrefwoord()">Extra trefwoord</button><br />
+
+                </div>
+
+                <div class="form-group">
+                    <label for="gerelateerd">Gerelateerde vragen</label><br />
+                    <div id="gerelateerdSectie">
+
+
+                    </div>
+
+                    <br />
+                    <button class="form-control" type="button" onclick="addRelated()">Extra gerelateerde vraag</button>
+
+                </div>
+                <br />
+                <div class="form-group">
+
+                    <label for="link">Hyperlinks:</label><br />
+
+                    <div id="links">
+                        <input class="form-control" type="text" id="link" name="link" /> <br /><br />
+                        <input class="form-control" type="text" id="link" name="link" /> <br /><br />
+                    </div>
+
+                    <button class="form-control" type="button" onclick="addLink()">Extra link</button><br />
+
+                </div>
+
+            </div>
+        </div>
+        </div>
+</div>
+
+<script src="~/Scripts/vraagBewerkenScript.js">
+
+</script>
+
+

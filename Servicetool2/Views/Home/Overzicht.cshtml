@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Overzicht";
+}
+
+<div class="container-fluid">
+    <div id="categorieKeuze">
+        <h2 style="text-align:center; color:#ffffff; font-weight: bold; padding: 5px; padding-top: 10px;">
+            @ViewBag.id
+        </h2>
+    </div>
+    <div id="algemeenVraagVlak">
+
+        <div id="zoekbalk">
+
+            <input type="text" id="zoekInput" onkeyup="zoekFunctie()" placeholder="Zoeken..">
+        </div>
+        <br>
+        <br>
+        <div id="vragenAlgemeen">
+            Dit is de plek waar alle vragen komen te staan
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-8">
+                    <div class="btn-group-vertical" role="group" aria-label="Basic radio toggle button group" id="lijstgroep">
+                    </div>
+            </div>
+            <div class="col-4">
+                @Html.ActionLink("Vraag bewerken", "vraagBewerken", "Home", null, new { @class = "btn btn-primary btn-block", onclick = "vraagSave();" })
+            </div>
+            </div>
+    </div>
+</div>
+
+<script src="~/Scripts/OverzichtScript.js">
+
+</script>
+

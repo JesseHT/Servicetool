@@ -17,9 +17,15 @@
             </div>
 
             <div class="form-group">
-                <label for="antwoord">Antwoord:</label><br>
-                <textarea class="form-control" rows="3" type="text" id="antwoord" name="antwoord"></textarea><br><br />
+                <label for="antwoord">Telefoon antwoord:</label><br>
+                <textarea class="form-control" rows="3" type="text" id="telAntwoord" name="telAntwoord"></textarea><br><br />
             </div>
+
+            <div class="form-group">
+                <label for="antwoord">Mail antwoord:</label><br>
+                <textarea class="form-control" rows="3" type="text" id="mailAntwoord" name="mailAntwoord"></textarea><br><br />
+            </div>
+
 
             <div class="form-group">
 
@@ -50,7 +56,7 @@
                 </div>
 
                 <button class="form-control" type="button" onclick="addTrefwoord()">Extra trefwoord</button><br />
-            
+
             </div>
 
             <div class="form-group">
@@ -63,7 +69,20 @@
 
                 <br />
                 <button class="form-control" type="button" onclick="addRelated()">Extra gerelateerde vraag</button>
-            
+
+            </div>
+            <br />
+            <div class="form-group">
+
+                <label for="link">Hyperlinks:</label><br />
+
+                <div id="links">
+                    <input class="form-control" type="text" id="link" name="link" /> <br /><br />
+                    <input class="form-control" type="text" id="link" name="link" /> <br /><br />
+                </div>
+
+                <button class="form-control" type="button" onclick="addLink()">Extra link</button><br />
+
             </div>
 
         </div>

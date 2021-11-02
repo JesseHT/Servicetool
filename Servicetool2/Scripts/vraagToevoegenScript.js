@@ -46,6 +46,25 @@ function addTrefwoord() {
     
 }
 
+function addLink() {
+    var nieuwVeld = document.createElement('input');
+    var lb = document.createElement("BR");
+    var lb2 = document.createElement("BR");
+
+    nieuwVeld.type = 'text';
+    nieuwVeld.id = 'link';
+    nieuwVeld.name = 'link';
+    nieuwVeld.className = 'form-control';
+
+
+    document.getElementById('links').appendChild(nieuwVeld);
+    document.getElementById('links').appendChild(lb);
+    document.getElementById('links').appendChild(lb2);
+
+
+
+}
+
 var i = 0;
 function addRelated() {
     i++;
@@ -79,8 +98,12 @@ function addRelated() {
 function vraagToevoegen() {
     //console.log("call methode");
     var vraag = document.getElementById('vraag').value;
-    var antwoord = document.getElementById('antwoord').value;
-    var antwoordEcht = "<pre>" + antwoord + "</pre>";
+    var telAntwoord = document.getElementById('telAntwoord').value;
+    var mailAntwoord = document.getElementById('mailAntwoord').value;
+    var link = document.getElementById('link').value;
+    var antwoordEchtMail = "<pre>" + telAntwoord + "</pre>";
+    var antwoordEchtTel = "<pre>" + mailAntwoord + "</pre>";
+
     var categorie = document.getElementById('categorie-select').value;
 
     var trefwoorden = [];
@@ -98,14 +121,23 @@ function vraagToevoegen() {
         var a = gerelateerdInputs[i];
         gerelateerde.push(a.value);
     }
+
+    var links = [];
+    var linkInputs = document.getElementsByName('link');
+    for (var i = 0; i < linkInputs.length; i++) {
+        var a = linkInputs[i];
+        links.push(a.value);
+    }
     console.log(gerelateerdInputs.length);
     //const gerelateerdArray = gerelateerde.map((obj) => { return Object.assign({}, obj) });
 
     var docData = {
         Vraag: vraag,
-        Antwoord: antwoordEcht,
+        TelAntwoord: antwoordEchtTel,
+        MailAntwoord: antwoordEchtMail,
         Categorie: categorie,
         Trefwoorden: trefwoorden,
+        Link: links,
         Gerelateerd: gerelateerde,
         Klikcount: 0,
         Viewcount: 0

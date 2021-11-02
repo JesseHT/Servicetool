@@ -25,6 +25,8 @@
 </script>
 <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-storage.js"></script>
+<script>const phase = localStorage.getItem('phase');
+</script>
 
 
 <html>
@@ -41,7 +43,7 @@
         <div class="container" id="navbarText">
                 
             <a href="@Url.Action("Index", "Home", null)">
-                <img style="width:200px; height:auto; padding-top: 10px;" src="~/Content/Logo-full-white-png.png" />
+                <img style="width:200px; height:auto; padding-top: 10px;" src="~/Content/Logo-full-white-png(1).png" />
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,11 +62,12 @@
                             Account
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li> <a>@Html.ActionLink("Inloggen", "Index", "Home", null, new { @class = "dropdown-item"})</a></li>
+                            <li> <a>@Html.ActionLink("Overzicht", "Overzicht", "Home", null, new { @class = "dropdown-item"})</a></li>
                             <li> <a>@Html.ActionLink("Storingstool aanpassen", "StoringtoolToevoegen", "Storing", null, new { @class = "dropdown-item" })</a></li>
                             <li> <a>@Html.ActionLink("Vraag toevoegen", "vraagToevoegen", "Home", null, new { @class = "dropdown-item" })</a></li>
                         </ul>
                     </li>
+                    <li><button class="btn btn-primary" id="stateChange" onclick="changePhase()">Verander vragen</button></li>
                 </ul>
             </div>
         </div>
@@ -82,4 +85,5 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
+
 </html>

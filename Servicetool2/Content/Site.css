@@ -223,3 +223,14 @@ select {
     background-color: white;
 }
 
+.btn-group, .btn-group-vertical {
+    display: block;
+}
+
+input, select, textarea {
+    max-width: 500px;
+}
+
+#form {
+   background-color: #d7d7d7;
+}
