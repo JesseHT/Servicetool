@@ -15,11 +15,10 @@ if (phase == 'telefoon') {
 
                 //data uit de db halen
                 var Vraag = doc.data().Vraag;
-                var Antwoord = doc.data().Antwoord;
+                var Antwoord = doc.data().TelAntwoord;
                 var Kliks = doc.data().Klikcount;
                 var Categorie = doc.data().Categorie;
                 var Trefwoorden = doc.data().Trefwoorden;
-                var Gerelateerd = doc.data().Gerelateerd;
 
                 var kliks = document.createElement('p');
                 kliks.innerHTML = Kliks;
@@ -142,7 +141,7 @@ if (phase == 'telefoon') {
 
                 //data uit de db halen
                 var Vraag = doc.data().Vraag;
-                var Antwoord = doc.data().Antwoord;
+                var Antwoord = doc.data().TelAntwoord;
                 var Kliks = doc.data().Klikcount;
                 var Categorie = doc.data().Categorie;
                 var Trefwoorden = doc.data().Trefwoorden;
@@ -269,7 +268,7 @@ if (phase == 'telefoon') {
 
                 //data uit de db halen
                 var Vraag = doc.data().Vraag;
-                var Antwoord = doc.data().Antwoord;
+                var Antwoord = doc.data().TelAntwoord;
                 var Kliks = doc.data().Klikcount;
                 var Categorie = doc.data().Categorie;
                 var Trefwoorden = doc.data().Trefwoorden;
@@ -396,7 +395,7 @@ if (phase == 'telefoon') {
 
                 //data uit de db halen
                 var Vraag = doc.data().Vraag;
-                var Antwoord = doc.data().Antwoord;
+                var Antwoord = doc.data().TelAntwoord;
                 var Kliks = doc.data().Klikcount;
                 var Categorie = doc.data().Categorie;
                 var Trefwoorden = doc.data().Trefwoorden;
@@ -527,7 +526,7 @@ else {
 
                 //data uit de db halen
                 var Vraag = doc.data().Vraag;
-                var Antwoord = doc.data().Antwoord;
+                var Antwoord = doc.data().MailAntwoord;
                 var Kliks = doc.data().Klikcount;
                 var Categorie = doc.data().Categorie;
                 var Trefwoorden = doc.data().Trefwoorden;
@@ -654,7 +653,7 @@ else {
 
                 //data uit de db halen
                 var Vraag = doc.data().Vraag;
-                var Antwoord = doc.data().Antwoord;
+                var Antwoord = doc.data().MailAntwoord;
                 var Kliks = doc.data().Klikcount;
                 var Categorie = doc.data().Categorie;
                 var Trefwoorden = doc.data().Trefwoorden;
@@ -781,7 +780,7 @@ else {
 
                 //data uit de db halen
                 var Vraag = doc.data().Vraag;
-                var Antwoord = doc.data().Antwoord;
+                var Antwoord = doc.data().MailAntwoord;
                 var Kliks = doc.data().Klikcount;
                 var Categorie = doc.data().Categorie;
                 var Trefwoorden = doc.data().Trefwoorden;
@@ -908,7 +907,7 @@ else {
 
                 //data uit de db halen
                 var Vraag = doc.data().Vraag;
-                var Antwoord = doc.data().Antwoord;
+                var Antwoord = doc.data().MailAntwoord;
                 var Kliks = doc.data().Klikcount;
                 var Categorie = doc.data().Categorie;
                 var Trefwoorden = doc.data().Trefwoorden;

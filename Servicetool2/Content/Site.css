@@ -234,3 +234,7 @@ input, select, textarea {
 #form {
    background-color: #d7d7d7;
 }
+
+.col-6 {
+    overflow: hidden;
+}

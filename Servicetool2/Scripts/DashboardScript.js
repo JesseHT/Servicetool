@@ -35,6 +35,7 @@ if (phase == 'telefoon') {
                 var bl5 = document.createElement("BR");
 
                 var bl6 = document.createElement("BR");
+                var bl7 = document.createElement("BR");
 
                 //lijst en divjes per vraag
                 var card = document.createElement('div');
@@ -72,7 +73,7 @@ if (phase == 'telefoon') {
                 //inhoud van vraag
                 var cardbody = document.createElement('div');
                 cardbody.className = "accordion-body";
-                collapse.appendChild(cardbody);
+                
 
                 //trefwoorden
                 for (k = 0; k < Trefwoorden.length; k++) {
@@ -92,17 +93,28 @@ if (phase == 'telefoon') {
                 cardbody.appendChild(bl3);
 
                 var row2 = document.createElement("div");
-                var col2 = document.createElement("div");
-                var col1 = document.createElement("div");
-
-                row2.className = "row";
                 row2.id = "kaartinfo";
-                col1.className = "col-6";
+                row2.className = "row";
+                
+
+                var col2 = document.createElement("div");
                 col2.className = "col-6";
+                col2.id = "col2";
+                
+
+                var col1 = document.createElement("div");
+                col1.className = "col-6";
+                col1.id = "col1";
+
+                var ul1 = document.createElement("ul");
+
+                row2.appendChild(col1);
+                row2.appendChild(col2);
+                
+                col2.appendChild(ul1);
 
                 cardbody.appendChild(row2);
-                document.getElementById('kaartinfo').appendChild(col1);
-                document.getElementById('kaartinfo').appendChild(col2);
+                
 
 
                 //gerelateerde vragen
@@ -132,13 +144,17 @@ if (phase == 'telefoon') {
 
                 //hyperlinks
                 for (q = 0; q < Links.length; q++) {
+                    var li = document.createElement("li");
                     var hyperlink = document.createElement("a");
                     hyperlink.href = Links[q];
                     hyperlink.innerHTML = Links[q];
+                    
                     hyperlink.appendChild(bl7);
-                    col2.appendChild(hyperlink);
+                    li.appendChild(hyperlink);
+                    col2.appendChild(li);
                 }
                 //
+                collapse.appendChild(cardbody);
                 card.appendChild(collapse);
 
 
@@ -226,7 +242,7 @@ if (phase == 'telefoon') {
                 //inhoud van vraag
                 var cardbody = document.createElement('div');
                 cardbody.className = "accordion-body";
-                collapse.appendChild(cardbody);
+
 
                 //trefwoorden
                 for (k = 0; k < Trefwoorden.length; k++) {
@@ -246,14 +262,30 @@ if (phase == 'telefoon') {
                 cardbody.appendChild(bl3);
 
                 var row2 = document.createElement("div");
+                row2.id = "kaartinfo";
                 row2.className = "row";
-                cardbody.appendChild(row2);
-                var col1 = document.createElement("div");
-                col1.className = "col-6";
+
+
                 var col2 = document.createElement("div");
                 col2.className = "col-6";
-                cardbody.appendChild(col1);
-                cardbody.appendChild(col2);
+                col2.id = "col2";
+
+
+                var col1 = document.createElement("div");
+                col1.className = "col-6";
+                col1.id = "col1";
+
+                var ul1 = document.createElement("ul");
+
+                row2.appendChild(col1);
+                row2.appendChild(col2);
+
+                col2.appendChild(ul1);
+
+                cardbody.appendChild(row2);
+
+
+
                 //gerelateerde vragen
                 for (j = 0; j < Gerelateerd.length; j++) {
                     var gerelateerdeVragenHyperlink = document.createElement("button");
@@ -281,13 +313,17 @@ if (phase == 'telefoon') {
 
                 //hyperlinks
                 for (q = 0; q < Links.length; q++) {
+                    var li = document.createElement("li");
                     var hyperlink = document.createElement("a");
                     hyperlink.href = Links[q];
                     hyperlink.innerHTML = Links[q];
+
                     hyperlink.appendChild(bl7);
-                    col2.appendChild(hyperlink);
+                    li.appendChild(hyperlink);
+                    col2.appendChild(li);
                 }
                 //
+                collapse.appendChild(cardbody);
                 card.appendChild(collapse);
 
 
