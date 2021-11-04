@@ -28,13 +28,10 @@ if (phase == 'telefoon') {
                 kliks.appendChild(klikstekst);
 
 
-                var breakline = document.createElement("BR");
                 var bl2 = document.createElement("BR");
                 var bl3 = document.createElement("BR");
                 var bl4 = document.createElement("BR");
-                var bl5 = document.createElement("BR");
 
-                var bl6 = document.createElement("BR");
 
                 //lijst en divjes per vraag
                 var card = document.createElement('div');
@@ -91,18 +88,6 @@ if (phase == 'telefoon') {
                 cardbody.appendChild(antwoord);
                 cardbody.appendChild(bl3);
 
-                //gerelateerde vragen
-                /*for (j = 0; j < Gerelateerd.length; j++) {
-                    var gerelateerdeVragenHyperlink = document.createElement("button");
-                    gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
-                    gerelateerdeVragenHyperlink.className = "btn btn-secondary";
-                    gerelateerdeVragenHyperlink.innerHTML = Gerelateerd[j];
-                    gerelateerdeVragenHyperlink.setAttribute("onclick", "openVraag('" + Gerelateerd[j] + "');");
-                    cardbody.appendChild(breakline);
-                    cardbody.appendChild(gerelateerdeVragenHyperlink);
-                    cardbody.appendChild(bl5);
-                    cardbody.appendChild(bl6);
-                }*/
 
                 //aantal kliks
                 var klikKnop = document.createElement("button");

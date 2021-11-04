@@ -40,11 +40,14 @@
                 </select> <br /><br />
             </div>
 
+            
+
             <button id="vraagToevoegenKnop" onclick="vraagToevoegen()" class="btn btn-primary">Vraag toevoegen</button>
 
         </div>
 
         <div id="form2" class="col-lg-6">
+
 
             <div class="form-group">
 
@@ -59,6 +62,23 @@
 
             </div>
 
+
+            <br />
+            <div class="form-group">
+
+                <label for="link">Hyperlinks:</label><br />
+
+                <div id="links">
+                    <input class="form-control" placeholder="Vul hier de omschrijving in" type="text" id="linkText" name="linkText" /> <br />
+                    <input class="form-control" placeholder="Vul hier de link in" type="text" id="link" name="link" /> <br /><br />
+
+
+                </div>
+
+                <button class="form-control" type="button" onclick="addLink()">Extra link</button><br />
+
+            </div>
+            <br />
             <div class="form-group">
 
                 <div id="gerelateerdSectie">
@@ -69,19 +89,6 @@
 
                 <br />
                 <button class="form-control" type="button" onclick="addRelated()">Extra gerelateerde vraag</button>
-
-            </div>
-            <br />
-            <div class="form-group">
-
-                <label for="link">Hyperlinks:</label><br />
-
-                <div id="links">
-                    <input class="form-control" type="text" id="link" name="link" /> <br /><br />
-                    <input class="form-control" type="text" id="link" name="link" /> <br /><br />
-                </div>
-
-                <button class="form-control" type="button" onclick="addLink()">Extra link</button><br />
 
             </div>
 

@@ -48,18 +48,28 @@ function addTrefwoord() {
 
 function addLink() {
     var nieuwVeld = document.createElement('input');
+    var nieuwVeld2 = document.createElement('input');
     var lb = document.createElement("BR");
     var lb2 = document.createElement("BR");
+    var lb3 = document.createElement("BR");
 
+    nieuwVeld2.type = 'text';
+    nieuwVeld2.id = 'linkText';
+    nieuwVeld2.name = 'linkText';
+    nieuwVeld2.className = 'form-control';
+    nieuwVeld2.placeholder = 'Vul hier de omschrijving in';
     nieuwVeld.type = 'text';
     nieuwVeld.id = 'link';
     nieuwVeld.name = 'link';
     nieuwVeld.className = 'form-control';
+    nieuwVeld.placeholder = 'Vul hier de link in';
 
 
-    document.getElementById('links').appendChild(nieuwVeld);
+    document.getElementById('links').appendChild(nieuwVeld2);
     document.getElementById('links').appendChild(lb);
+    document.getElementById('links').appendChild(nieuwVeld);
     document.getElementById('links').appendChild(lb2);
+    document.getElementById('links').appendChild(lb3);
 
 
 
@@ -100,7 +110,6 @@ function vraagToevoegen() {
     var vraag = document.getElementById('vraag').value;
     var telAntwoord = document.getElementById('telAntwoord').value;
     var mailAntwoord = document.getElementById('mailAntwoord').value;
-    var link = document.getElementById('link').value;
     var antwoordEchtMail = "<pre>" + telAntwoord + "</pre>";
     var antwoordEchtTel = "<pre>" + mailAntwoord + "</pre>";
 
@@ -128,6 +137,13 @@ function vraagToevoegen() {
         var a = linkInputs[i];
         links.push(a.value);
     }
+
+    var linkTexts = [];
+    var linkTextInputs = document.getElementsByName('linkText');
+    for (var i = 0; i < linkTextInputs.length; i++) {
+        var a = linkTextInputs[i];
+        linkTexts.push(a.value);
+    }
     console.log(gerelateerdInputs.length);
     //const gerelateerdArray = gerelateerde.map((obj) => { return Object.assign({}, obj) });
 
@@ -138,6 +154,7 @@ function vraagToevoegen() {
         Categorie: categorie,
         Trefwoorden: trefwoorden,
         Link: links,
+        Linktexten: linkTexts,
         Gerelateerd: gerelateerde,
         Klikcount: 0,
         Viewcount: 0

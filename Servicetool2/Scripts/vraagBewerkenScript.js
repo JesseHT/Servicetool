@@ -31,6 +31,7 @@ vraagRef.where("Vraag", "==", cookies.vraag)
             var Trefwoorden = doc.data().Trefwoorden;
             var Gerelateerd = doc.data().Gerelateerd;
             var Links = doc.data().Link;
+            var LinkTexten = doc.data().Linktexten;
 
             document.getElementById("vraag").value = Vraag;
             document.getElementById("telAntwoord").value = TelAntwoord;
@@ -59,21 +60,33 @@ vraagRef.where("Vraag", "==", cookies.vraag)
             }
 
             for (e = 0; e < Links.length; e++) {
-                var inputRel = document.createElement("input");
-                inputRel.className = "form-control";
-                inputRel.type = "text";
-                inputRel.id = "link";
-                inputRel.name = "link";
-                inputRel.value = Links[e];
-                document.getElementById("links").appendChild(inputRel);
+                var inputLink = document.createElement("input");
+                var inputLinkText = document.createElement("input");
+                var lb = document.createElement("BR");
+                inputLinkText.className = "form-control";
+                inputLinkText.type = "text";
+                inputLinkText.id = "linkText";
+                inputLinkText.name = "linkText";
+                inputLinkText.value = LinkTexten[e];
+
+                inputLink.className = "form-control";
+                inputLink.type = "text";
+                inputLink.id = "link";
+                inputLink.name = "link";
+                inputLink.value = Links[e];
+                document.getElementById("links").appendChild(inputLinkText);
+                document.getElementById("links").appendChild(inputLink);
+                document.getElementById("links").appendChild(lb);
+                
 
             }
         })
             .catch((error) => {
                 console.log("Error getting documents: ", error);
             });
-});
-        function addTrefwoord() {
+    });
+
+function addTrefwoord() {
             var nieuwVeld = document.createElement('input');
             var lb = document.createElement("BR");
             var lb2 = document.createElement("BR");
@@ -90,7 +103,7 @@ vraagRef.where("Vraag", "==", cookies.vraag)
 
 
 
-        }
+ }
 
 var w = e;
 function addRelated() {
@@ -124,18 +137,28 @@ function addRelated() {
 
 function addLink() {
     var nieuwVeld = document.createElement('input');
+    var nieuwVeld2 = document.createElement('input');
     var lb = document.createElement("BR");
     var lb2 = document.createElement("BR");
+    var lb3 = document.createElement("BR");
 
+    nieuwVeld2.type = 'text';
+    nieuwVeld2.id = 'linkText';
+    nieuwVeld2.name = 'linkText';
+    nieuwVeld2.className = 'form-control';
+    nieuwVeld2.placeholder = 'Vul hier de omschrijving in';
     nieuwVeld.type = 'text';
     nieuwVeld.id = 'link';
     nieuwVeld.name = 'link';
     nieuwVeld.className = 'form-control';
+    nieuwVeld.placeholder = 'Vul hier de link in';
 
 
-    document.getElementById('links').appendChild(nieuwVeld);
+    document.getElementById('links').appendChild(nieuwVeld2);
     document.getElementById('links').appendChild(lb);
+    document.getElementById('links').appendChild(nieuwVeld);
     document.getElementById('links').appendChild(lb2);
+    document.getElementById('links').appendChild(lb3);
 
 
 
@@ -155,6 +178,7 @@ function vraagUpdaten() {
     var trefwoordInputs = document.getElementsByName('trefwoord');
     for (var i = 0; i < trefwoordInputs.length; i++) {
         var a = trefwoordInputs[i];
+        if (a.value!="")
         trefwoorden.push(a.value);
     }
     //const trefwoordArray = trefwoorden.map((obj) => { return Object.assign({}, obj) });
@@ -164,6 +188,7 @@ function vraagUpdaten() {
     var gerelateerdInputs = document.getElementsByName('gerelateerd');
     for (var i = 0; i < gerelateerdInputs.length; i++) {
         var a = gerelateerdInputs[i];
+        if (a.value!="")
         gerelateerde.push(a.value);
     }
 
@@ -171,7 +196,17 @@ function vraagUpdaten() {
     var linkInputs = document.getElementsByName('link');
     for (var i = 0; i < linkInputs.length; i++) {
         var a = linkInputs[i];
+        if (a.value != "")
         links.push(a.value);
+    }
+
+    var linkTexts = [];
+    var linkTextInputs = document.getElementsByName('linkText');
+    for (var i = 0; i < linkTextInputs.length; i++) {
+        var a = linkTextInputs[i];
+        if (a.value != "") {
+            linkTexts.push(a.value);
+        }
     }
     console.log(gerelateerdInputs.length);
     //const gerelateerdArray = gerelateerde.map((obj) => { return Object.assign({}, obj) });
@@ -183,10 +218,17 @@ function vraagUpdaten() {
         Categorie: categorie,
         Trefwoorden: trefwoorden,
         Link: links,
+        Linktexten: linkTexts,
         Gerelateerd: gerelateerde,
         Klikcount: 0,
         Viewcount: 0
     };
+
+    db.collection("Vraag").doc(categorie + " | " + vraag).update({ Link: firebase.firestore.FieldValue.delete() });
+    db.collection("Vraag").doc(categorie + " | " + vraag).update({ LinkTexten: firebase.firestore.FieldValue.delete() });
+    db.collection("Vraag").doc(categorie + " | " + vraag).update({ Trefwoorden: firebase.firestore.FieldValue.delete() });
+    db.collection("Vraag").doc(categorie + " | " + vraag).update({ Gerelateerd: firebase.firestore.FieldValue.delete() });
+
 
     db.collection("Vraag").doc(categorie + " | " + vraag).set(docData).then(() => {
         console.log("Document successfully written!");
