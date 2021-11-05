@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "ExtraVraagBewerken";
+}
+
+<h2>Extra vraag bewerken</h2>
+
+<div class="container">
+
+
+    <div class="row" id="formRow">
+
+        <div id="form">
+            <div class="row">
+                <div class="row-4">
+                    <h3 id="Extravraagveld"></h3>
+                </div>
+            </div>
+            <div id="form1" class="col-lg-6">
+
+
+                <div class="form-group">
+                    <label for="titel">Titel:</label><br>
+                    <input class="form-control" type="text" id="titel" name="titel"><br><br />
+                </div>
+
+                <div class="form-group">
+                    <label for="subtext">Subtext:</label><br>
+                    <input class="form-control" type="text" id="subtext" name="subtext"><br><br />
+                </div>
+
+                <div class="form-group">
+
+                    <label for="gerelateerdProb">Gerelateerde:</label><br />
+
+                    <div id="gerelateerdProb">
+
+                    </div>
+                    <br />
+                    <button class="form-control" type="button" onclick="addRelProb()">Extra Probleem</button><br />
+
+                </div>
+
+                <button id="vraagToevoegenKnop" onclick="vraagUpdaten()" class="btn btn-primary">Vraag updaten</button>
+
+            </div>            
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/ExtraVraagBewerkenScript.js">
+
+</script>
+
+

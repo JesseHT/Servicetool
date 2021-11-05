@@ -120,5 +120,10 @@ namespace Servicetool2.Controllers
             return View();
         }
 
+        public ActionResult vraagBewerken()
+        {
+            return View();
+        }
+
     }
 }

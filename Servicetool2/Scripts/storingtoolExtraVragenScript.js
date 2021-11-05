@@ -24,7 +24,7 @@ document.getElementById("infoMeegaveProbleem").innerText = cookies.probleem;
 var rowvar = 0;
 var divvar = 0;
 var variabele = 0;
-db.collection("Extravragen")
+db.collection("Extravragen").where("GerelateerdeProblemen", "array-contains", cookies.probleem)
     .get()
     .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {

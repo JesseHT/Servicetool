@@ -59,7 +59,6 @@ function vraagSave() {
             selectedValue = rb.value;
             break;
         }
-
     }
 
 
@@ -71,37 +70,7 @@ function vraagSave() {
 
 }
 
-//zoek naar vragen op basis van de trefwoorden
-/*function zoekFunctie() {
-    // Declare variables
-    var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById('zoekInput');
-    filter = input.value.toUpperCase();
-    ul = document.getElementsByClassName("accordion-header");
 
-    // Loop through all list items, and hide those who don't match the search query
-    for (l = 0; l < ul.length; l++) {
-        li = document.querySelectorAll('[id^="heading"]');
-
-        var trefwoorden = document.querySelectorAll('[class^="trefwoordID' + li[l].children[0].children[0].innerHTML + '"]');
-
-        for (i = 0; i < trefwoorden.length; i++) {
-            a = trefwoorden[i].innerHTML;
-            console.log(a);
-            txtValue = a;
-            var ul1 = $(ul[l]).parents()[0];
-
-            console.log(txtValue.toUpperCase().indexOf(filter));
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-
-                ul1.style.display = "";
-                break;
-            } else {
-                ul1.style.display = "none";
-            }
-        }
-    }
-}*/
 
 
 

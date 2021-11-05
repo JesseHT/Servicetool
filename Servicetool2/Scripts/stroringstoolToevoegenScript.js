@@ -10,6 +10,7 @@
 
 var db = firebase.firestore();
 var i = 0;
+var vraagRef = db.collection("Extravragen");
 
 
 db.collection("Storingstool").get().then((querySnapshot) => {
@@ -21,6 +22,35 @@ db.collection("Storingstool").get().then((querySnapshot) => {
         document.getElementById("probleem-select").append(opt);
     });
 })
+
+vraagRef
+    .get()
+    .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            var Probleem = doc.data().titel;
+            var input = document.createElement('input');
+            input.type = "radio";
+            input.value = Probleem;
+            input.className = "btn-check";
+            input.name = "btnradio";
+            input.id = "btnradio " + Probleem;
+            input.autocomplete = "off";
+            input.checked;
+
+            var label = document.createElement('label');
+            label.className = "btn btn-outline-primary";
+            label.htmlFor = "btnradio " + Probleem;
+            label.innerHTML = Probleem;
+
+            document.getElementById("probleemLijst").append(input);
+            document.getElementById("probleemLijst").append(label);
+            i++;
+        });
+    })
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
+
 
 //extra gerelateerd probleem toevoegen
 var i = 0;
@@ -101,7 +131,26 @@ function elementToevoegen() {
     
 }
 
+function vraagSave() {
 
+    const rbs = document.querySelectorAll('input[name="btnradio"]');
+    let selectedValue;
+    for (const rb of rbs) {
+        if (rb.checked) {
+            selectedValue = rb.value;
+            break;
+        }
+
+    }
+
+
+    if (selectedValue == null) {
+        document.cookie = "ExtraVraag=Geen vraag ingevuld"
+    } else {
+        document.cookie = "ExtraVraag=" + selectedValue;
+    }
+
+}
 
 $('#categorie-select').change(function () {
     var value = this.value;

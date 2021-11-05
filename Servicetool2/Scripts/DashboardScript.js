@@ -190,6 +190,7 @@ if (phase == 'telefoon') {
                 var Trefwoorden = doc.data().Trefwoorden;
                 var Gerelateerd = doc.data().Gerelateerd;
                 var Links = doc.data().Link;
+                var LinkTexts = doc.data().Linktexten;
 
                 var kliks = document.createElement('p');
                 kliks.innerHTML = Kliks;
@@ -317,7 +318,7 @@ if (phase == 'telefoon') {
                     var li = document.createElement("li");
                     var hyperlink = document.createElement("a");
                     hyperlink.href = Links[q];
-                    hyperlink.innerHTML = Links[q];
+                    hyperlink.innerHTML = LinkTexts[q];
 
                     hyperlink.appendChild(bl7);
                     li.appendChild(hyperlink);

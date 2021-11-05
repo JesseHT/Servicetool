@@ -11,14 +11,13 @@ var db = firebase.firestore();
 var vraagRef = db.collection("Vraag");
 
 
-var e;
+var e = 0;
 //cookies indelen in een variabele met een waarde en in de lijst boven aan de pagina zetten
 var cookies = document.cookie
     .split(';')
     .map(cookie => cookie.split('='))
     .reduce((accumulator, [key, value]) => ({ ...accumulator, [key.trim()]: decodeURIComponent(value) }), {});
 document.getElementById("vraagveld").innerText = cookies.vraag;
-
 
 vraagRef.where("Vraag", "==", cookies.vraag)
     .get()
@@ -85,6 +84,7 @@ vraagRef.where("Vraag", "==", cookies.vraag)
                 console.log("Error getting documents: ", error);
             });
     });
+
 
 function addTrefwoord() {
             var nieuwVeld = document.createElement('input');
