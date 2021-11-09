@@ -1,22 +1,8 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using ZCRMSDK.CRM.Library.Api.Response;
-using ZCRMSDK.CRM.Library.Common;
-using ZCRMSDK.CRM.Library.CRMException;
 using ZCRMSDK.CRM.Library.CRUD;
-using ZCRMSDK.CRM.Library.Setup.RestClient;
-using ZCRMSDK.CRM.Library.Setup.Users;
-using ZCRMSDK.OAuth.Client;
-using ZCRMSDK.OAuth.Contract;
-using Google.Cloud.Firestore;
-using Microsoft.Ajax.Utilities;
 
 namespace Servicetool2.Controllers
 {
@@ -48,30 +34,6 @@ namespace Servicetool2.Controllers
 
         public ActionResult Index()
         {
-            /*string path = Server.MapPath("~/ZohoTokenfile");
-            string filePath = Server.MapPath("~/ZohoTokenfile") + "\\" + "Zohotokenfile.txt";
-
-            config["oauth_tokens_file_path"] = filePath;
-            Debug.WriteLine("configureer nu maar");
-            ZCRMRestClient.Initialize(config);
-            ZohoOAuthClient client = ZohoOAuthClient.GetInstance();
-            string refreshToken = "1000.7a1cb8e41921248cfa17a1e453ca63c7.d47b3a532efbef58fc48e1f982f13c1e";
-            string userMailId = "interesse@heattransformers.com";
-            ZCRMRestClient.SetCurrentUser(userMailId);
-
-
-            *//*                System.IO.StreamWriter file = new System.IO.StreamWriter(filePath);
-            */
-            /*            System.Threading.Thread.Sleep(5000);
-            *//*
-            ZohoOAuthTokens tokens = client.GenerateAccessTokenFromRefreshToken(refreshToken, userMailId);
-            *//*
-                        file.WriteLine("Lijn 1");
-                        file.WriteLine("Lijn 2");*//*
-
-            Debug.WriteLine("dit is de acces code: " + tokens.AccessToken);
-            zohotoken = tokens.AccessToken;
-            Debug.WriteLine("De mail: " + ZCRMRestClient.GetCurrentUserEmail());*/
             return View();
         }
 
@@ -123,7 +85,7 @@ namespace Servicetool2.Controllers
             BulkAPIResponse<ZCRMRecord> response = moduleIns.SearchByCriteria("(Partner:equals:Ketel)");
             List<ZCRMRecord> records = response.BulkData;
             return records;
-            
+
         }
 
         public ActionResult Overig()

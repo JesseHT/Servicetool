@@ -165,7 +165,6 @@ function addLink() {
 }
 
 function vraagUpdaten() {
-    //console.log("call methode");
     var vraag = document.getElementById('vraag').value;
     var telAntwoord = document.getElementById('telAntwoord').value;
     var mailAntwoord = document.getElementById('mailAntwoord').value;
@@ -181,8 +180,6 @@ function vraagUpdaten() {
         if (a.value!="")
         trefwoorden.push(a.value);
     }
-    //const trefwoordArray = trefwoorden.map((obj) => { return Object.assign({}, obj) });
-
 
     var gerelateerde = [];
     var gerelateerdInputs = document.getElementsByName('gerelateerd');
@@ -208,8 +205,7 @@ function vraagUpdaten() {
             linkTexts.push(a.value);
         }
     }
-    console.log(gerelateerdInputs.length);
-    //const gerelateerdArray = gerelateerde.map((obj) => { return Object.assign({}, obj) });
+/*    console.log(gerelateerdInputs.length);*/
 
     var docData = {
         Vraag: vraag,

@@ -60,15 +60,7 @@ namespace Servicetool2.Controllers
             string userMailId = "interesse@heattransformers.com";
             ZCRMRestClient.SetCurrentUser(userMailId);
 
-
-            /*                System.IO.StreamWriter file = new System.IO.StreamWriter(filePath);
-            */
-            /*            System.Threading.Thread.Sleep(5000);
-            */
             ZohoOAuthTokens tokens = client.GenerateAccessTokenFromRefreshToken(refreshToken, userMailId);
-            /*
-                        file.WriteLine("Lijn 1");
-                        file.WriteLine("Lijn 2");*/
 
             Debug.WriteLine("dit is de acces code: " + tokens.AccessToken);
             zohotoken = tokens.AccessToken;

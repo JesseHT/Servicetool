@@ -14,7 +14,10 @@ var db = firebase.firestore();
 var cookies = document.cookie
     .split(';')
     .map(cookie => cookie.split('='))
-    .reduce((accumulator, [key, value]) => ({ ...accumulator, [key.trim()]: decodeURIComponent(value) }), {});
+    .reduce((accumulator, [key, value]) => ({
+        ...accumulator,
+        [key.trim()]: decodeURIComponent(value)
+    }), {});
 document.getElementById("infoMeegaveWarmtepomp").innerText = cookies.warmtepomp;
 document.getElementById("infoMeegaveKetel").innerText = cookies.ketel;
 document.getElementById("infoMeegaveThermostaat").innerText = cookies.thermostaat;
@@ -28,9 +31,9 @@ db.collection("Extravragen").where("GerelateerdeProblemen", "array-contains", co
     .get()
     .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            
-            
-            
+
+
+
             var vraagNaam = doc.data().titel;
             var vraagSoort = doc.data().soort;
             var vraagSubtext = doc.data().subtext;
@@ -44,7 +47,7 @@ db.collection("Extravragen").where("GerelateerdeProblemen", "array-contains", co
                 row.id = "row" + rowvar;
                 document.getElementById("extraVragen").appendChild(br);
                 document.getElementById("extraVragen").appendChild(row);
-                
+
                 variabele = 0;
             }
             console.log(variabele);
@@ -61,6 +64,7 @@ db.collection("Extravragen").where("GerelateerdeProblemen", "array-contains", co
 
             var vraagInput = document.createElement('input');
             vraagInput.type = vraagSoort;
+            vraagInput.id = vraagNaam;
 
             div.appendChild(vraagTitel);
             div.appendChild(br);

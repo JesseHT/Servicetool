@@ -43,7 +43,7 @@
         <div class="container" id="navbarText">
                 
             <a href="@Url.Action("Index", "Home", null)">
-                <img style="width:200px; height:auto; padding-top: 10px;" src="~/Content/Logo-full-white-png(1).png" />
+                <img style="width:200px; height:auto; padding-top: 13px;" src="~/Content/Logo-full-white-png(1).png" />
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,7 +67,7 @@
                             <li> <a>@Html.ActionLink("Vraag toevoegen", "vraagToevoegen", "Home", null, new { @class = "dropdown-item" })</a></li>
                         </ul>
                     </li>
-                    <li><button class="btn btn-primary" id="stateChange" onclick="changePhase()">Verander vragen</button></li>
+                    <li style="padding-top: 0px;"><label style="font-size: 20px; font-family: Montserrat; font-weight: bold; padding-left: 23px;">Mailview</label><br /><button class="btn btn-primary" id="stateChange" onclick="changePhase()">Verander view</button></li>
                 </ul>
             </div>
         </div>

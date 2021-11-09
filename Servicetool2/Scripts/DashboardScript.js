@@ -6,7 +6,9 @@ var vraagRef = db.collection("Vraag");
 var i = 0;
 console.log(phase);
 //vragen laden uit de db 
-if (phase == 'telefoon') {
+function vulVragen() {
+    if (phase == 'telefoon') {
+        document.getElementById("accordion").value = "";
     vraagRef.orderBy("Klikcount", "desc")
         .get()
         .then((querySnapshot) => {
@@ -147,6 +149,7 @@ if (phase == 'telefoon') {
                 for (q = 0; q < Links.length; q++) {
                     var li = document.createElement("li");
                     var hyperlink = document.createElement("a");
+                    hyperlink.target = "_blank";
                     hyperlink.href = Links[q];
                     hyperlink.innerHTML = LinkTexts[q];
                     
@@ -164,7 +167,7 @@ if (phase == 'telefoon') {
                 document.getElementById("accordion").appendChild(card);
 
                 if (document.getElementById("categorieKeuze").innerText == Categorie) {
-                    console.log("goed");
+                    /*console.log("goed");*/
                 } else {
                     card.style.display = "none";
                 }
@@ -176,7 +179,9 @@ if (phase == 'telefoon') {
         .catch((error) => {
             console.log("Error getting documents: ", error);
         });
-} else {
+    } else {
+        document.getElementById("accordion").value = "";
+
     vraagRef.orderBy("Klikcount", "desc")
         .get()
         .then((querySnapshot) => {
@@ -317,6 +322,7 @@ if (phase == 'telefoon') {
                 for (q = 0; q < Links.length; q++) {
                     var li = document.createElement("li");
                     var hyperlink = document.createElement("a");
+                    hyperlink.target = "_blank";
                     hyperlink.href = Links[q];
                     hyperlink.innerHTML = LinkTexts[q];
 
@@ -348,6 +354,16 @@ if (phase == 'telefoon') {
         });
 }
 
+}
+
+
+vulVragen();
+if (phase == "mail") {
+    document.getElementById("stateChange").innerHTML = "telefoonView >>";
+}
+else {
+    document.getElementById("stateChange").innerHTML = "mailView >>";
+}
 //open een vraag als je erop klikt
 function openVraag(vraagNaam) {
     var elements = document.getElementsByClassName("accordion-button");
@@ -400,57 +416,6 @@ function zoekFunctie() {
     }
 }
 
-/*function sortFunctie() {
-    var list, i, switching, b, shouldSwitch, dir, switchcount = 0;
-    list = document.getElementById("vraagLijst");
-    switching = true;
-    // Set the sorting direction to ascending:
-    dir = "asc";
-    // Make a loop that will continue until no switching has been done:
-    while (switching) {
-        // Start by saying: no switching is done:
-        switching = false;
-        b = list.getElementsByTagName("li");
-        // Loop through all list-items:
-        for (i = 0; i < (b.length - 1); i++) {
-            // Start by saying there should be no switching:
-            shouldSwitch = false;
-             Check if the next item should switch place with the current item,
-            based on the sorting direction (asc or desc): 
-            if (dir == "asc") {
-                if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
-                     If next item is alphabetically lower than current item,
-                    mark as a switch and break the loop: 
-                    shouldSwitch = true;
-                    break;
-                }
-            } else if (dir == "desc") {
-                if (b[i].innerHTML.toLowerCase() < b[i + 1].innerHTML.toLowerCase()) {
-                     If next item is alphabetically higher than current item,
-                    mark as a switch and break the loop: 
-                    shouldSwitch = true;
-                    break;
-                }
-            }
-        }
-        if (shouldSwitch) {
-             If a switch has been marked, make the switch
-            and mark that a switch has been done: 
-            b[i].parentNode.insertBefore(b[i + 1], b[i]);
-            switching = true;
-            // Each time a switch is done, increase switchcount by 1:
-            switchcount++;
-        } else {
-             If no switching has been done AND the direction is "asc",
-            set the direction to "desc" and run the while loop again. 
-            if (switchcount == 0 && dir == "asc") {
-                dir = "desc";
-                switching = true;
-            }
-        }
-    }
-}*/
-
 //bijhouden hoe vaak er op de like knop gedrukt is
 function klikCount(vraagNaam) {
     var ref = db.collection("Vraag");
@@ -474,7 +439,6 @@ function viewCount(vraagNaam) {
     var boolvraagNaam = false;
     var ref = db.collection("Vraag");
     const increment = firebase.firestore.FieldValue.increment(1);
-    console.log(vraagNaam);
     var elements = document.getElementsByClassName("accordion-button");
     for (var i = 0; i < elements.length; i++) {
         console.log(elements[i].innerHTML);
@@ -497,11 +461,14 @@ function viewCount(vraagNaam) {
 function changePhase() {
     if (phase == "telefoon") {
         localStorage.setItem('phase', 'mail');
-        console.log(phase);
+/*        document.getElementById("stateChange").innerHTML = "mailView >>";
+*/        console.log(phase);
         location.reload();
     }
     else {
         localStorage.setItem('phase', 'telefoon');
+/*        document.getElementById("stateChange").innerHTML = "telefoonView >>";
+*/
         console.log(phase);
         location.reload();
     }

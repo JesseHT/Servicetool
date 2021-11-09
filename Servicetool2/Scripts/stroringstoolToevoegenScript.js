@@ -143,7 +143,6 @@ function vraagSave() {
 
     }
 
-
     if (selectedValue == null) {
         document.cookie = "ExtraVraag=Geen vraag ingevuld"
     } else {

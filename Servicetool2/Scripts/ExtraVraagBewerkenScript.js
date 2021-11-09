@@ -18,7 +18,7 @@ var cookies = document.cookie
     .map(cookie => cookie.split('='))
     .reduce((accumulator, [key, value]) => ({ ...accumulator, [key.trim()]: decodeURIComponent(value) }), {});
 
-document.getElementById("Extravraagveld").value = cookies.vraag;
+document.getElementById("Extravraagveld").value = cookies.ExtraVraag;
 
 
 db.collection("Extravragen").where("titel", "==", cookies.ExtraVraag)
