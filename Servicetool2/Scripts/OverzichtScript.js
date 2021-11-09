@@ -4,7 +4,6 @@ var db = firebase.firestore();
 
 var vraagRef = db.collection("Vraag");
 var i = 0;
-console.log(phase);
 //vragen laden uit de db 
 
     vraagRef.orderBy("Klikcount", "desc")
@@ -22,7 +21,7 @@ console.log(phase);
 
                 var input = document.createElement('input');
                 input.type = "radio";
-                input.value = Vraag;
+                input.value = Categorie +" | "+Vraag;
                 input.className = "btn-check";
                 input.name = "btnradio";
                 input.id = "btnradio " + Vraag;
@@ -48,7 +47,23 @@ console.log(phase);
             console.log("Error getting documents: ", error);
         });
 
-
+function verwijderVraag() {
+    console.log("Binnen");
+    const rbs = document.querySelectorAll('input[name^="btnradio"]');
+    let selectedValue;
+    for (const rb of rbs) {
+        if (rb.checked) {
+            selectedValue = rb.value;
+            vraagRef.doc(selectedValue).delete().then(() => {
+                console.log("Document is verwijderd!");
+                location.reload();
+            }).catch((error) => {
+                console.error("Error removing document: ", error);
+            });
+            break;
+        }
+    }
+}
 
 function vraagSave() {
 
@@ -61,11 +76,18 @@ function vraagSave() {
         }
     }
 
+    var waarde = selectedValue.replace("| ", "");
+    waarde = waarde.replace("Algemeen ", "");
+    waarde = waarde.replace("Afspraken ", "");
+    waarde = waarde.replace("Financieel ", "");
+    waarde = waarde.replace("Overig ", "");
 
+    console.log(waarde);
+    console.log(waarde);
     if (selectedValue == null) {
         document.cookie = "vraag=Geen probleem ingevuld"
     } else {
-        document.cookie = "vraag=" + selectedValue;
+        document.cookie = "vraag=" + waarde;
     }
 
 }

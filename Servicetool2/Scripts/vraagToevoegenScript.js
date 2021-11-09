@@ -160,8 +160,10 @@ function vraagToevoegen() {
         Viewcount: 0
     };
 
-    db.collection("Vraag").doc(categorie +" | " + vraag).set(docData).then(() => {
+    db.collection("Vraag").doc(categorie + " | " + vraag).set(docData).then(() => {
         console.log("Document successfully written!");
+        location.reload;
+
     });
 
 }

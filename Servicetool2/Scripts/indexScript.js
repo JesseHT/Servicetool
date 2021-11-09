@@ -210,7 +210,7 @@ if (phase == 'telefoon') {
 				//aantal kliks
 				var klikKnop = document.createElement("button");
 				var klikKnopTekst = document.createElement("p");
-				klikKnop.innerHTML = "👍";
+				klikKnop.innerHTML = "+1";
 
 				klikKnop.className = "btn btn-primary";
 				klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
@@ -332,7 +332,7 @@ if (phase == 'telefoon') {
 				//aantal kliks
 				var klikKnop = document.createElement("button");
 				var klikKnopTekst = document.createElement("p");
-				klikKnop.innerHTML = "👍";
+				klikKnop.innerHTML = "+1";
 
 				klikKnop.className = "btn btn-primary";
 				klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
@@ -454,7 +454,7 @@ if (phase == 'telefoon') {
 				//aantal kliks
 				var klikKnop = document.createElement("button");
 				var klikKnopTekst = document.createElement("p");
-				klikKnop.innerHTML = "👍";
+				klikKnop.innerHTML = "+1";
 
 				klikKnop.className = "btn btn-primary";
 				klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
@@ -700,7 +700,7 @@ if (phase == 'telefoon') {
 				//aantal kliks
 				var klikKnop = document.createElement("button");
 				var klikKnopTekst = document.createElement("p");
-				klikKnop.innerHTML = "👍";
+				klikKnop.innerHTML = "+1";
 
 				klikKnop.className = "btn btn-primary";
 				klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
@@ -822,7 +822,7 @@ if (phase == 'telefoon') {
 				//aantal kliks
 				var klikKnop = document.createElement("button");
 				var klikKnopTekst = document.createElement("p");
-				klikKnop.innerHTML = "👍";
+				klikKnop.innerHTML = "+1";
 
 				klikKnop.className = "btn btn-primary";
 				klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
@@ -944,7 +944,7 @@ if (phase == 'telefoon') {
 				//aantal kliks
 				var klikKnop = document.createElement("button");
 				var klikKnopTekst = document.createElement("p");
-				klikKnop.innerHTML = "👍";
+				klikKnop.innerHTML = "+1";
 
 				klikKnop.className = "btn btn-primary";
 				klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")

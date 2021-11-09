@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 
 class Vraag
@@ -27,4 +27,4 @@ class Vraag
     public List<string> bijlageLink { get; set; }
     public int klikCount { get; set; }
     
-}
+}*/

@@ -62,9 +62,9 @@
                             Account
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li> <a>@Html.ActionLink("Overzicht", "Overzicht", "Home", null, new { @class = "dropdown-item"})</a></li>
+                            <li> <a>@Html.ActionLink("Vragenoverzicht", "Overzicht", "Home", null, new { @class = "dropdown-item"})</a></li>
                             <li> <a>@Html.ActionLink("Storingstool aanpassen", "StoringtoolToevoegen", "Storing", null, new { @class = "dropdown-item" })</a></li>
-                            <li> <a>@Html.ActionLink("Vraag toevoegen", "vraagToevoegen", "Home", null, new { @class = "dropdown-item" })</a></li>
+                            @*<li> <a>@Html.ActionLink("Vraag toevoegen", "VraagToevoegen", "Home", null, new { @class = "dropdown-item" })</a></li>*@
                         </ul>
                     </li>
                     <li style="padding-top: 0px;"><label style="font-size: 20px; font-family: Montserrat; font-weight: bold; padding-left: 23px;">Mailview</label><br /><button class="btn btn-primary" id="stateChange" onclick="changePhase()">Verander view</button></li>
@@ -80,10 +80,8 @@
             <p style="color: white;">&copy; @DateTime.Now.Year - HeatTransformers</p>
         </footer>
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
-
 </html>

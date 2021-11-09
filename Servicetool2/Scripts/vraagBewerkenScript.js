@@ -228,6 +228,7 @@ function vraagUpdaten() {
 
     db.collection("Vraag").doc(categorie + " | " + vraag).set(docData).then(() => {
         console.log("Document successfully written!");
+        location.reload;
     });
 
 }

@@ -49,7 +49,7 @@ namespace Servicetool2.Controllers
 
         public ActionResult Index()
         {
-            string path = Server.MapPath("~/ZohoTokenfile");
+            /*string path = Server.MapPath("~/ZohoTokenfile");*/
             string filePath = Server.MapPath("~/ZohoTokenfile") + "\\" + "Zohotokenfile.txt";
 
             config["oauth_tokens_file_path"] = filePath;
@@ -71,7 +71,7 @@ namespace Servicetool2.Controllers
 
         public ActionResult StoringtoolEersteKeuze()
         {
-            object test = getRecords();
+            object test = GetRecords();
             Debug.WriteLine(test.GetType());
 
             List<ZCRMRecord> records = (List<ZCRMRecord>)test;
@@ -86,7 +86,7 @@ namespace Servicetool2.Controllers
             return View(producten);
         }
 
-        public object getRecords()
+        public object GetRecords()
         {
             ZCRMModule moduleIns = ZCRMModule.GetInstance("Products"); // api naam
             Debug.WriteLine(zohotoken);
@@ -112,7 +112,7 @@ namespace Servicetool2.Controllers
             return View();
         }
 
-        public ActionResult vraagBewerken()
+        public ActionResult VraagBewerken()
         {
             return View();
         }

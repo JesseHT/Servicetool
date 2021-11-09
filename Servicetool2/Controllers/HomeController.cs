@@ -44,7 +44,7 @@ namespace Servicetool2.Controllers
             return View();
         }
 
-        public ActionResult vraagToevoegen()
+        public ActionResult VraagToevoegen()
         {
             ViewBag.Message = "Je algemene vragenpagina.";
 
@@ -79,7 +79,7 @@ namespace Servicetool2.Controllers
             return View();
         }
 
-        public object getRecords()
+        public object GetRecords()
         {
             ZCRMModule moduleIns = ZCRMModule.GetInstance("Producten"); // api naam
             BulkAPIResponse<ZCRMRecord> response = moduleIns.SearchByCriteria("(Partner:equals:Ketel)");
@@ -100,7 +100,7 @@ namespace Servicetool2.Controllers
             return View();
         }
 
-        public ActionResult vraagBewerken()
+        public ActionResult VraagBewerken()
         {
             return View();
         }

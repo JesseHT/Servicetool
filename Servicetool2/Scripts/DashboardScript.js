@@ -355,15 +355,18 @@ function vulVragen() {
 }
 
 }
-
+function veranderTekst() {
+    if (phase == "mail") {
+        document.getElementById("stateChange").innerHTML = "telefoonView >>";
+    }
+    else {
+        document.getElementById("stateChange").innerHTML = "mailView >>";
+    }
+}
 
 vulVragen();
-if (phase == "mail") {
-    document.getElementById("stateChange").innerHTML = "telefoonView >>";
-}
-else {
-    document.getElementById("stateChange").innerHTML = "mailView >>";
-}
+veranderTekst();
+
 //open een vraag als je erop klikt
 function openVraag(vraagNaam) {
     var elements = document.getElementsByClassName("accordion-button");
@@ -461,8 +464,7 @@ function viewCount(vraagNaam) {
 function changePhase() {
     if (phase == "telefoon") {
         localStorage.setItem('phase', 'mail');
-/*        document.getElementById("stateChange").innerHTML = "mailView >>";
-*/        console.log(phase);
+        console.log(phase);
         location.reload();
     }
     else {
