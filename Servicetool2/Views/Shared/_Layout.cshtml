@@ -25,7 +25,7 @@
 </script>
 <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-storage.js"></script>
-<script>const phase = localStorage.getItem('phase');
+<script>var phase = true;
 </script>
 
 
@@ -67,7 +67,7 @@
                             @*<li> <a>@Html.ActionLink("Vraag toevoegen", "VraagToevoegen", "Home", null, new { @class = "dropdown-item" })</a></li>*@
                         </ul>
                     </li>
-                    <li style="padding-top: 0px;"><label style="font-size: 20px; font-family: Montserrat; font-weight: bold; padding-left: 23px;">Mailview</label><br /><button class="btn btn-primary" id="stateChange" onclick="changePhase()">Verander view</button></li>
+                    <li style="padding-top: 0px;"><label id="viewTekst" style="font-size: 20px; font-family: Montserrat; font-weight: bold;"></label><br /><button class="btn btn-light" id="stateChange" onclick="changePhase()">Verander view</button></li>
                 </ul>
             </div>
         </div>

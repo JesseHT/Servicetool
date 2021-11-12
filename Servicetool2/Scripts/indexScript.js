@@ -4,975 +4,989 @@ var db = firebase.firestore();
 var vraagRef = db.collection("Vraag");
 var i = 0;
 
-console.log(phase);
-if (phase == 'telefoon') {
+function vulVragen() {
+	if (phase) {
+		document.getElementById("algemeenDiv").innerHTML = "";
+		document.getElementById("afsprakenDiv").innerHTML = "";
+		document.getElementById("overigDiv").innerHTML = "";
 
-	vraagRef.where("Categorie", "==", "Algemeen").orderBy("Klikcount", "desc").limit(3)
-		.get()
-		.then((querySnapshot) => {
-			querySnapshot.forEach((doc) => {
+		document.getElementById("financieelDiv").innerHTML = "";
+		document.getElementById("stateChange").innerHTML = "mailView >>";
+		document.getElementById("viewTekst").innerHTML = "Telefoonview";
 
-				//data uit de db halen
-				var Vraag = doc.data().Vraag;
-				var Antwoord = doc.data().TelAntwoord;
-				var Kliks = doc.data().Klikcount;
-				var Categorie = doc.data().Categorie;
-				var Trefwoorden = doc.data().Trefwoorden;
 
-				var kliks = document.createElement('p');
-				kliks.innerHTML = Kliks;
-				kliks.id = kliks;
-				var klikstekst = document.createElement('p');
-				klikstekst.innerHTML = "Heeft deze vraag u geholpen?";
-				kliks.appendChild(klikstekst);
+		vraagRef.where("Categorie", "==", "Algemeen").orderBy("Klikcount", "desc").limit(3)
+			.get()
+			.then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
 
-				var bl2 = document.createElement("BR");
-				var bl3 = document.createElement("BR");
-				var bl4 = document.createElement("BR");
+					//data uit de db halen
+					var Vraag = doc.data().Vraag;
+					var Antwoord = doc.data().TelAntwoord;
+					var Kliks = doc.data().Klikcount;
+					var Categorie = doc.data().Categorie;
+					var Trefwoorden = doc.data().Trefwoorden;
 
-				//lijst en divjes per vraag
-				var card = document.createElement('div');
-				card.className = "accordion-item";
-				card.id = Vraag;
+					var kliks = document.createElement('p');
+					kliks.innerHTML = Kliks;
+					kliks.id = kliks;
+					var klikstekst = document.createElement('p');
+					klikstekst.innerHTML = "Heeft deze vraag u geholpen?";
+					kliks.appendChild(klikstekst);
 
-				var cardHeader = document.createElement('div');
-				cardHeader.className = "accordion-header";
-				cardHeader.id = "heading" + i;
+					var bl2 = document.createElement("BR");
+					var bl3 = document.createElement("BR");
+					var bl4 = document.createElement("BR");
 
-				var h5 = document.createElement('h5');
-				h5.className = "mb-0";
+					//lijst en divjes per vraag
+					var card = document.createElement('div');
+					card.className = "accordion-item";
+					card.id = Vraag;
 
-				var btn = document.createElement("button");
-				btn.className = "accordion-button";
-				btn.type = "button";
-				btn.id = Vraag;
-				btn.setAttribute("data-bs-toggle", "collapse");
-				btn.setAttribute("data-bs-target", "#collapse" + i);
-				btn.setAttribute("aria-expanded", "true");
-				btn.setAttribute("aria-controls", "collapse" + i);
-				btn.setAttribute("onclick", "viewCount('" + Categorie + " | " + Vraag + "');");
-				btn.innerHTML = Categorie + " | " + Vraag;
+					var cardHeader = document.createElement('div');
+					cardHeader.className = "accordion-header";
+					cardHeader.id = "heading" + i;
 
-				h5.appendChild(btn);
-				cardHeader.appendChild(h5);
-				card.appendChild(cardHeader);
+					var h5 = document.createElement('h5');
+					h5.className = "mb-0";
 
-				//voor het collapsen
-				var collapse = document.createElement('div');
-				collapse.id = "collapse" + i;
-				collapse.className = "accordion-collapse collapse";
-				collapse.setAttribute("aria-labelledby", "heading" + i);
+					var btn = document.createElement("button");
+					btn.className = "accordion-button";
+					btn.type = "button";
+					btn.id = Vraag;
+					btn.setAttribute("data-bs-toggle", "collapse");
+					btn.setAttribute("data-bs-target", "#collapse" + i);
+					btn.setAttribute("aria-expanded", "true");
+					btn.setAttribute("aria-controls", "collapse" + i);
+					btn.setAttribute("onclick", "viewCount('" + Categorie + " | " + Vraag + "');");
+					btn.innerHTML = Categorie + " | " + Vraag;
 
-				//inhoud van vraag
-				var cardbody = document.createElement('div');
-				cardbody.className = "accordion-body";
-				collapse.appendChild(cardbody);
+					h5.appendChild(btn);
+					cardHeader.appendChild(h5);
+					card.appendChild(cardHeader);
 
-				//trefwoorden
-				for (k = 0; k < Trefwoorden.length; k++) {
-					var trefwoorden = document.createElement('label');
-					trefwoorden.innerHTML = Trefwoorden[k] + "&nbsp;";
-					trefwoorden.className = 'trefwoordID' + Vraag;
-					cardbody.appendChild(trefwoorden);
-					cardbody.appendChild(bl2);
-				}
+					//voor het collapsen
+					var collapse = document.createElement('div');
+					collapse.id = "collapse" + i;
+					collapse.className = "accordion-collapse collapse";
+					collapse.setAttribute("aria-labelledby", "heading" + i);
 
-				cardbody.appendChild(bl4);
+					//inhoud van vraag
+					var cardbody = document.createElement('div');
+					cardbody.className = "accordion-body";
+					collapse.appendChild(cardbody);
 
-				//antwoord
-				var antwoord = document.createElement('p');
-				antwoord.innerHTML = Antwoord;
-				cardbody.appendChild(antwoord);
-				cardbody.appendChild(bl3);
+					//trefwoorden
+					for (k = 0; k < Trefwoorden.length; k++) {
+						var trefwoorden = document.createElement('label');
+						trefwoorden.innerHTML = Trefwoorden[k] + "&nbsp;";
+						trefwoorden.className = 'trefwoordID' + Vraag;
+						cardbody.appendChild(trefwoorden);
+						cardbody.appendChild(bl2);
+					}
 
-				//aantal kliks
-				var klikKnop = document.createElement("button");
-				var klikKnopTekst = document.createElement("p");
-				klikKnop.innerHTML = "+1";
+					cardbody.appendChild(bl4);
 
-				klikKnop.className = "btn btn-primary";
-				klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
-				klikKnopTekst.append(klikKnop);
-				kliks.append(klikKnopTekst);
+					//antwoord
+					var antwoord = document.createElement('p');
+					antwoord.innerHTML = Antwoord;
+					cardbody.appendChild(antwoord);
+					cardbody.appendChild(bl3);
 
-				cardbody.append(kliks);
+					//aantal kliks
+					var klikKnop = document.createElement("button");
+					var klikKnopTekst = document.createElement("p");
+					klikKnop.innerHTML = "+1";
 
-				//
-				card.appendChild(collapse);
+					klikKnop.className = "btn btn-primary";
+					klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
+					klikKnopTekst.append(klikKnop);
+					kliks.append(klikKnopTekst);
 
-				//lijst in div zetten
-				document.getElementById("algemeenDiv").appendChild(card);
+					cardbody.append(kliks);
 
-				i++;
+					//
+					card.appendChild(collapse);
 
+					//lijst in div zetten
+					document.getElementById("algemeenDiv").appendChild(card);
+
+					i++;
+
+				});
+			})
+			.catch((error) => {
+				console.log("Error getting documents: ", error);
 			});
-		})
-		.catch((error) => {
-			console.log("Error getting documents: ", error);
-		});
 
-	vraagRef.where("Categorie", "==", "Afspraken").orderBy("Klikcount", "desc").limit(3)
-		.get()
-		.then((querySnapshot) => {
-			querySnapshot.forEach((doc) => {
+		vraagRef.where("Categorie", "==", "Afspraken").orderBy("Klikcount", "desc").limit(3)
+			.get()
+			.then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
 
-				//data uit de db halen
-				var Vraag = doc.data().Vraag;
-				var Antwoord = doc.data().TelAntwoord;
-				var Kliks = doc.data().Klikcount;
-				var Categorie = doc.data().Categorie;
-				var Trefwoorden = doc.data().Trefwoorden;
-				var Gerelateerd = doc.data().Gerelateerd;
+					//data uit de db halen
+					var Vraag = doc.data().Vraag;
+					var Antwoord = doc.data().TelAntwoord;
+					var Kliks = doc.data().Klikcount;
+					var Categorie = doc.data().Categorie;
+					var Trefwoorden = doc.data().Trefwoorden;
+					var Gerelateerd = doc.data().Gerelateerd;
 
-				var kliks = document.createElement('p');
-				kliks.innerHTML = Kliks;
-				kliks.id = kliks;
-				var klikstekst = document.createElement('p');
-				klikstekst.innerHTML = "Heeft deze vraag u geholpen?";
-				kliks.appendChild(klikstekst);
+					var kliks = document.createElement('p');
+					kliks.innerHTML = Kliks;
+					kliks.id = kliks;
+					var klikstekst = document.createElement('p');
+					klikstekst.innerHTML = "Heeft deze vraag u geholpen?";
+					kliks.appendChild(klikstekst);
 
-				var breakline = document.createElement("BR");
-				var bl2 = document.createElement("BR");
-				var bl3 = document.createElement("BR");
-				var bl4 = document.createElement("BR");
-				var bl5 = document.createElement("BR");
+					var breakline = document.createElement("BR");
+					var bl2 = document.createElement("BR");
+					var bl3 = document.createElement("BR");
+					var bl4 = document.createElement("BR");
+					var bl5 = document.createElement("BR");
 
-				var bl6 = document.createElement("BR");
+					var bl6 = document.createElement("BR");
 
-				//lijst en divjes per vraag
-				var card = document.createElement('div');
-				card.className = "accordion-item";
-				card.id = Vraag;
+					//lijst en divjes per vraag
+					var card = document.createElement('div');
+					card.className = "accordion-item";
+					card.id = Vraag;
 
-				var cardHeader = document.createElement('div');
-				cardHeader.className = "accordion-header";
-				cardHeader.id = "heading" + i;
+					var cardHeader = document.createElement('div');
+					cardHeader.className = "accordion-header";
+					cardHeader.id = "heading" + i;
 
-				var h5 = document.createElement('h5');
-				h5.className = "mb-0";
+					var h5 = document.createElement('h5');
+					h5.className = "mb-0";
 
-				var btn = document.createElement("button");
-				btn.className = "accordion-button";
-				btn.type = "button";
-				btn.id = Vraag;
-				btn.setAttribute("data-bs-toggle", "collapse");
-				btn.setAttribute("data-bs-target", "#collapse" + i);
-				btn.setAttribute("aria-expanded", "true");
-				btn.setAttribute("aria-controls", "collapse" + i);
-				btn.setAttribute("onclick", "viewCount('" + Categorie + " | " + Vraag + "');");
-				btn.innerHTML = Categorie + " | " + Vraag;
+					var btn = document.createElement("button");
+					btn.className = "accordion-button";
+					btn.type = "button";
+					btn.id = Vraag;
+					btn.setAttribute("data-bs-toggle", "collapse");
+					btn.setAttribute("data-bs-target", "#collapse" + i);
+					btn.setAttribute("aria-expanded", "true");
+					btn.setAttribute("aria-controls", "collapse" + i);
+					btn.setAttribute("onclick", "viewCount('" + Categorie + " | " + Vraag + "');");
+					btn.innerHTML = Categorie + " | " + Vraag;
 
-				h5.appendChild(btn);
-				cardHeader.appendChild(h5);
-				card.appendChild(cardHeader);
+					h5.appendChild(btn);
+					cardHeader.appendChild(h5);
+					card.appendChild(cardHeader);
 
-				//voor het collapsen
-				var collapse = document.createElement('div');
-				collapse.id = "collapse" + i;
-				collapse.className = "accordion-collapse collapse";
-				collapse.setAttribute("aria-labelledby", "heading" + i);
+					//voor het collapsen
+					var collapse = document.createElement('div');
+					collapse.id = "collapse" + i;
+					collapse.className = "accordion-collapse collapse";
+					collapse.setAttribute("aria-labelledby", "heading" + i);
 
-				//inhoud van vraag
-				var cardbody = document.createElement('div');
-				cardbody.className = "accordion-body";
-				collapse.appendChild(cardbody);
+					//inhoud van vraag
+					var cardbody = document.createElement('div');
+					cardbody.className = "accordion-body";
+					collapse.appendChild(cardbody);
 
-				//trefwoorden
-				for (k = 0; k < Trefwoorden.length; k++) {
-					var trefwoorden = document.createElement('label');
-					trefwoorden.innerHTML = Trefwoorden[k] + "&nbsp;";
-					trefwoorden.className = 'trefwoordID' + Vraag;
-					cardbody.appendChild(trefwoorden);
-					cardbody.appendChild(bl2);
-				}
+					//trefwoorden
+					for (k = 0; k < Trefwoorden.length; k++) {
+						var trefwoorden = document.createElement('label');
+						trefwoorden.innerHTML = Trefwoorden[k] + "&nbsp;";
+						trefwoorden.className = 'trefwoordID' + Vraag;
+						cardbody.appendChild(trefwoorden);
+						cardbody.appendChild(bl2);
+					}
 
-				cardbody.appendChild(bl4);
+					cardbody.appendChild(bl4);
 
-				//antwoord
-				var antwoord = document.createElement('p');
-				antwoord.innerHTML = Antwoord;
-				cardbody.appendChild(antwoord);
-				cardbody.appendChild(bl3);
+					//antwoord
+					var antwoord = document.createElement('p');
+					antwoord.innerHTML = Antwoord;
+					cardbody.appendChild(antwoord);
+					cardbody.appendChild(bl3);
 
-				//gerelateerde vragen
-				/*for (j = 0; j < Gerelateerd.length; j++) {
-					var gerelateerdeVragenHyperlink = document.createElement("button");
-					gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
-					gerelateerdeVragenHyperlink.className = "btn btn-secondary";
-					gerelateerdeVragenHyperlink.innerHTML = Gerelateerd[j];
-					gerelateerdeVragenHyperlink.setAttribute("onclick", "openVraag('" + Gerelateerd[j] + "');");
-					cardbody.appendChild(breakline);
-					cardbody.appendChild(gerelateerdeVragenHyperlink);
-					cardbody.appendChild(bl5);
-					cardbody.appendChild(bl6);
-				}*/
+					//gerelateerde vragen
+					/*for (j = 0; j < Gerelateerd.length; j++) {
+						var gerelateerdeVragenHyperlink = document.createElement("button");
+						gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
+						gerelateerdeVragenHyperlink.className = "btn btn-secondary";
+						gerelateerdeVragenHyperlink.innerHTML = Gerelateerd[j];
+						gerelateerdeVragenHyperlink.setAttribute("onclick", "openVraag('" + Gerelateerd[j] + "');");
+						cardbody.appendChild(breakline);
+						cardbody.appendChild(gerelateerdeVragenHyperlink);
+						cardbody.appendChild(bl5);
+						cardbody.appendChild(bl6);
+					}*/
 
-				//aantal kliks
-				var klikKnop = document.createElement("button");
-				var klikKnopTekst = document.createElement("p");
-				klikKnop.innerHTML = "+1";
+					//aantal kliks
+					var klikKnop = document.createElement("button");
+					var klikKnopTekst = document.createElement("p");
+					klikKnop.innerHTML = "+1";
 
-				klikKnop.className = "btn btn-primary";
-				klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
-				klikKnopTekst.append(klikKnop);
-				kliks.append(klikKnopTekst);
+					klikKnop.className = "btn btn-primary";
+					klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
+					klikKnopTekst.append(klikKnop);
+					kliks.append(klikKnopTekst);
 
-				cardbody.append(kliks);
+					cardbody.append(kliks);
 
-				//
-				card.appendChild(collapse);
+					//
+					card.appendChild(collapse);
 
-				//lijst in div zetten
-				document.getElementById("afsprakenDiv").appendChild(card);
+					//lijst in div zetten
+					document.getElementById("afsprakenDiv").appendChild(card);
 
-				i++;
+					i++;
 
+				});
+			})
+			.catch((error) => {
+				console.log("Error getting documents: ", error);
 			});
-		})
-		.catch((error) => {
-			console.log("Error getting documents: ", error);
-		});
 
-	vraagRef.where("Categorie", "==", "Financieel").orderBy("Klikcount", "desc").limit(3)
-		.get()
-		.then((querySnapshot) => {
-			querySnapshot.forEach((doc) => {
+		vraagRef.where("Categorie", "==", "Financieel").orderBy("Klikcount", "desc").limit(3)
+			.get()
+			.then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
 
-				//data uit de db halen
-				var Vraag = doc.data().Vraag;
-				var Antwoord = doc.data().TelAntwoord;
-				var Kliks = doc.data().Klikcount;
-				var Categorie = doc.data().Categorie;
-				var Trefwoorden = doc.data().Trefwoorden;
-				var Gerelateerd = doc.data().Gerelateerd;
+					//data uit de db halen
+					var Vraag = doc.data().Vraag;
+					var Antwoord = doc.data().TelAntwoord;
+					var Kliks = doc.data().Klikcount;
+					var Categorie = doc.data().Categorie;
+					var Trefwoorden = doc.data().Trefwoorden;
+					var Gerelateerd = doc.data().Gerelateerd;
 
-				var kliks = document.createElement('p');
-				kliks.innerHTML = Kliks;
-				kliks.id = kliks;
-				var klikstekst = document.createElement('p');
-				klikstekst.innerHTML = "Heeft deze vraag u geholpen?";
-				kliks.appendChild(klikstekst);
+					var kliks = document.createElement('p');
+					kliks.innerHTML = Kliks;
+					kliks.id = kliks;
+					var klikstekst = document.createElement('p');
+					klikstekst.innerHTML = "Heeft deze vraag u geholpen?";
+					kliks.appendChild(klikstekst);
 
-				var breakline = document.createElement("BR");
-				var bl2 = document.createElement("BR");
-				var bl3 = document.createElement("BR");
-				var bl4 = document.createElement("BR");
-				var bl5 = document.createElement("BR");
+					var breakline = document.createElement("BR");
+					var bl2 = document.createElement("BR");
+					var bl3 = document.createElement("BR");
+					var bl4 = document.createElement("BR");
+					var bl5 = document.createElement("BR");
 
-				var bl6 = document.createElement("BR");
+					var bl6 = document.createElement("BR");
 
-				//lijst en divjes per vraag
-				var card = document.createElement('div');
-				card.className = "accordion-item";
-				card.id = Vraag;
+					//lijst en divjes per vraag
+					var card = document.createElement('div');
+					card.className = "accordion-item";
+					card.id = Vraag;
 
-				var cardHeader = document.createElement('div');
-				cardHeader.className = "accordion-header";
-				cardHeader.id = "heading" + i;
+					var cardHeader = document.createElement('div');
+					cardHeader.className = "accordion-header";
+					cardHeader.id = "heading" + i;
 
-				var h5 = document.createElement('h5');
-				h5.className = "mb-0";
+					var h5 = document.createElement('h5');
+					h5.className = "mb-0";
 
-				var btn = document.createElement("button");
-				btn.className = "accordion-button";
-				btn.type = "button";
-				btn.id = Vraag;
-				btn.setAttribute("data-bs-toggle", "collapse");
-				btn.setAttribute("data-bs-target", "#collapse" + i);
-				btn.setAttribute("aria-expanded", "true");
-				btn.setAttribute("aria-controls", "collapse" + i);
-				btn.setAttribute("onclick", "viewCount('" + Categorie + " | " + Vraag + "');");
-				btn.innerHTML = Categorie + " | " + Vraag;
+					var btn = document.createElement("button");
+					btn.className = "accordion-button";
+					btn.type = "button";
+					btn.id = Vraag;
+					btn.setAttribute("data-bs-toggle", "collapse");
+					btn.setAttribute("data-bs-target", "#collapse" + i);
+					btn.setAttribute("aria-expanded", "true");
+					btn.setAttribute("aria-controls", "collapse" + i);
+					btn.setAttribute("onclick", "viewCount('" + Categorie + " | " + Vraag + "');");
+					btn.innerHTML = Categorie + " | " + Vraag;
 
-				h5.appendChild(btn);
-				cardHeader.appendChild(h5);
-				card.appendChild(cardHeader);
+					h5.appendChild(btn);
+					cardHeader.appendChild(h5);
+					card.appendChild(cardHeader);
 
-				//voor het collapsen
-				var collapse = document.createElement('div');
-				collapse.id = "collapse" + i;
-				collapse.className = "accordion-collapse collapse";
-				collapse.setAttribute("aria-labelledby", "heading" + i);
+					//voor het collapsen
+					var collapse = document.createElement('div');
+					collapse.id = "collapse" + i;
+					collapse.className = "accordion-collapse collapse";
+					collapse.setAttribute("aria-labelledby", "heading" + i);
 
-				//inhoud van vraag
-				var cardbody = document.createElement('div');
-				cardbody.className = "accordion-body";
-				collapse.appendChild(cardbody);
+					//inhoud van vraag
+					var cardbody = document.createElement('div');
+					cardbody.className = "accordion-body";
+					collapse.appendChild(cardbody);
 
-				//trefwoorden
-				for (k = 0; k < Trefwoorden.length; k++) {
-					var trefwoorden = document.createElement('label');
-					trefwoorden.innerHTML = Trefwoorden[k] + "&nbsp;";
-					trefwoorden.className = 'trefwoordID' + Vraag;
-					cardbody.appendChild(trefwoorden);
-					cardbody.appendChild(bl2);
-				}
+					//trefwoorden
+					for (k = 0; k < Trefwoorden.length; k++) {
+						var trefwoorden = document.createElement('label');
+						trefwoorden.innerHTML = Trefwoorden[k] + "&nbsp;";
+						trefwoorden.className = 'trefwoordID' + Vraag;
+						cardbody.appendChild(trefwoorden);
+						cardbody.appendChild(bl2);
+					}
 
-				cardbody.appendChild(bl4);
+					cardbody.appendChild(bl4);
 
-				//antwoord
-				var antwoord = document.createElement('p');
-				antwoord.innerHTML = Antwoord;
-				cardbody.appendChild(antwoord);
-				cardbody.appendChild(bl3);
+					//antwoord
+					var antwoord = document.createElement('p');
+					antwoord.innerHTML = Antwoord;
+					cardbody.appendChild(antwoord);
+					cardbody.appendChild(bl3);
 
-				//gerelateerde vragen
-				/*for (j = 0; j < Gerelateerd.length; j++) {
-					var gerelateerdeVragenHyperlink = document.createElement("button");
-					gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
-					gerelateerdeVragenHyperlink.className = "btn btn-secondary";
-					gerelateerdeVragenHyperlink.innerHTML = Gerelateerd[j];
-					gerelateerdeVragenHyperlink.setAttribute("onclick", "openVraag('" + Gerelateerd[j] + "');");
-					cardbody.appendChild(breakline);
-					cardbody.appendChild(gerelateerdeVragenHyperlink);
-					cardbody.appendChild(bl5);
-					cardbody.appendChild(bl6);
-				}*/
+					//gerelateerde vragen
+					/*for (j = 0; j < Gerelateerd.length; j++) {
+						var gerelateerdeVragenHyperlink = document.createElement("button");
+						gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
+						gerelateerdeVragenHyperlink.className = "btn btn-secondary";
+						gerelateerdeVragenHyperlink.innerHTML = Gerelateerd[j];
+						gerelateerdeVragenHyperlink.setAttribute("onclick", "openVraag('" + Gerelateerd[j] + "');");
+						cardbody.appendChild(breakline);
+						cardbody.appendChild(gerelateerdeVragenHyperlink);
+						cardbody.appendChild(bl5);
+						cardbody.appendChild(bl6);
+					}*/
 
-				//aantal kliks
-				var klikKnop = document.createElement("button");
-				var klikKnopTekst = document.createElement("p");
-				klikKnop.innerHTML = "+1";
+					//aantal kliks
+					var klikKnop = document.createElement("button");
+					var klikKnopTekst = document.createElement("p");
+					klikKnop.innerHTML = "+1";
 
-				klikKnop.className = "btn btn-primary";
-				klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
-				klikKnopTekst.append(klikKnop);
-				kliks.append(klikKnopTekst);
+					klikKnop.className = "btn btn-primary";
+					klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
+					klikKnopTekst.append(klikKnop);
+					kliks.append(klikKnopTekst);
 
-				cardbody.append(kliks);
+					cardbody.append(kliks);
 
-				//
-				card.appendChild(collapse);
+					//
+					card.appendChild(collapse);
 
-				//lijst in div zetten
-				document.getElementById("financieelDiv").appendChild(card);
+					//lijst in div zetten
+					document.getElementById("financieelDiv").appendChild(card);
 
-				i++;
+					i++;
 
+				});
+			})
+			.catch((error) => {
+				console.log("Error getting documents: ", error);
 			});
-		})
-		.catch((error) => {
-			console.log("Error getting documents: ", error);
-		});
 
-	vraagRef.where("Categorie", "==", "Overig").orderBy("Klikcount", "desc").limit(3)
-		.get()
-		.then((querySnapshot) => {
-			querySnapshot.forEach((doc) => {
+		vraagRef.where("Categorie", "==", "Overig").orderBy("Klikcount", "desc").limit(3)
+			.get()
+			.then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
 
-				//data uit de db halen
-				var Vraag = doc.data().Vraag;
-				var Antwoord = doc.data().TelAntwoord;
-				var Kliks = doc.data().Klikcount;
-				var Categorie = doc.data().Categorie;
-				var Trefwoorden = doc.data().Trefwoorden;
-				var Gerelateerd = doc.data().Gerelateerd;
+					//data uit de db halen
+					var Vraag = doc.data().Vraag;
+					var Antwoord = doc.data().TelAntwoord;
+					var Kliks = doc.data().Klikcount;
+					var Categorie = doc.data().Categorie;
+					var Trefwoorden = doc.data().Trefwoorden;
+					var Gerelateerd = doc.data().Gerelateerd;
 
-				var kliks = document.createElement('p');
-				kliks.innerHTML = Kliks;
-				kliks.id = kliks;
-				var klikstekst = document.createElement('p');
-				klikstekst.innerHTML = "Heeft deze vraag u geholpen?";
-				kliks.appendChild(klikstekst);
+					var kliks = document.createElement('p');
+					kliks.innerHTML = Kliks;
+					kliks.id = kliks;
+					var klikstekst = document.createElement('p');
+					klikstekst.innerHTML = "Heeft deze vraag u geholpen?";
+					kliks.appendChild(klikstekst);
 
-				var breakline = document.createElement("BR");
-				var bl2 = document.createElement("BR");
-				var bl3 = document.createElement("BR");
-				var bl4 = document.createElement("BR");
-				var bl5 = document.createElement("BR");
+					var breakline = document.createElement("BR");
+					var bl2 = document.createElement("BR");
+					var bl3 = document.createElement("BR");
+					var bl4 = document.createElement("BR");
+					var bl5 = document.createElement("BR");
 
-				var bl6 = document.createElement("BR");
+					var bl6 = document.createElement("BR");
 
-				//lijst en divjes per vraag
-				var card = document.createElement('div');
-				card.className = "accordion-item";
-				card.id = Vraag;
+					//lijst en divjes per vraag
+					var card = document.createElement('div');
+					card.className = "accordion-item";
+					card.id = Vraag;
 
-				var cardHeader = document.createElement('div');
-				cardHeader.className = "accordion-header";
-				cardHeader.id = "heading" + i;
+					var cardHeader = document.createElement('div');
+					cardHeader.className = "accordion-header";
+					cardHeader.id = "heading" + i;
 
-				var h5 = document.createElement('h5');
-				h5.className = "mb-0";
+					var h5 = document.createElement('h5');
+					h5.className = "mb-0";
 
-				var btn = document.createElement("button");
-				btn.className = "accordion-button";
-				btn.type = "button";
-				btn.id = Vraag;
-				btn.setAttribute("data-bs-toggle", "collapse");
-				btn.setAttribute("data-bs-target", "#collapse" + i);
-				btn.setAttribute("aria-expanded", "true");
-				btn.setAttribute("aria-controls", "collapse" + i);
-				btn.setAttribute("onclick", "viewCount('" + Categorie + " | " + Vraag + "');");
-				btn.innerHTML = Categorie + " | " + Vraag;
+					var btn = document.createElement("button");
+					btn.className = "accordion-button";
+					btn.type = "button";
+					btn.id = Vraag;
+					btn.setAttribute("data-bs-toggle", "collapse");
+					btn.setAttribute("data-bs-target", "#collapse" + i);
+					btn.setAttribute("aria-expanded", "true");
+					btn.setAttribute("aria-controls", "collapse" + i);
+					btn.setAttribute("onclick", "viewCount('" + Categorie + " | " + Vraag + "');");
+					btn.innerHTML = Categorie + " | " + Vraag;
 
-				h5.appendChild(btn);
-				cardHeader.appendChild(h5);
-				card.appendChild(cardHeader);
+					h5.appendChild(btn);
+					cardHeader.appendChild(h5);
+					card.appendChild(cardHeader);
 
-				//voor het collapsen
-				var collapse = document.createElement('div');
-				collapse.id = "collapse" + i;
-				collapse.className = "accordion-collapse collapse";
-				collapse.setAttribute("aria-labelledby", "heading" + i);
+					//voor het collapsen
+					var collapse = document.createElement('div');
+					collapse.id = "collapse" + i;
+					collapse.className = "accordion-collapse collapse";
+					collapse.setAttribute("aria-labelledby", "heading" + i);
 
-				//inhoud van vraag
-				var cardbody = document.createElement('div');
-				cardbody.className = "accordion-body";
-				collapse.appendChild(cardbody);
+					//inhoud van vraag
+					var cardbody = document.createElement('div');
+					cardbody.className = "accordion-body";
+					collapse.appendChild(cardbody);
 
-				//trefwoorden
-				for (k = 0; k < Trefwoorden.length; k++) {
-					var trefwoorden = document.createElement('label');
-					trefwoorden.innerHTML = Trefwoorden[k] + "&nbsp;";
-					trefwoorden.className = 'trefwoordID' + Vraag;
-					cardbody.appendChild(trefwoorden);
-					cardbody.appendChild(bl2);
-				}
+					//trefwoorden
+					for (k = 0; k < Trefwoorden.length; k++) {
+						var trefwoorden = document.createElement('label');
+						trefwoorden.innerHTML = Trefwoorden[k] + "&nbsp;";
+						trefwoorden.className = 'trefwoordID' + Vraag;
+						cardbody.appendChild(trefwoorden);
+						cardbody.appendChild(bl2);
+					}
 
-				cardbody.appendChild(bl4);
+					cardbody.appendChild(bl4);
 
-				//antwoord
-				var antwoord = document.createElement('p');
-				antwoord.innerHTML = Antwoord;
-				cardbody.appendChild(antwoord);
-				cardbody.appendChild(bl3);
+					//antwoord
+					var antwoord = document.createElement('p');
+					antwoord.innerHTML = Antwoord;
+					cardbody.appendChild(antwoord);
+					cardbody.appendChild(bl3);
 
-				//gerelateerde vragen
-				/*for (j = 0; j < Gerelateerd.length; j++) {
-					var gerelateerdeVragenHyperlink = document.createElement("button");
-					gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
-					gerelateerdeVragenHyperlink.className = "btn btn-secondary";
-					gerelateerdeVragenHyperlink.innerHTML = Gerelateerd[j];
-					gerelateerdeVragenHyperlink.setAttribute("onclick", "openVraag('" + Gerelateerd[j] + "');");
-					cardbody.appendChild(breakline);
-					cardbody.appendChild(gerelateerdeVragenHyperlink);
-					cardbody.appendChild(bl5);
-					cardbody.appendChild(bl6);
-				}*/
+					//gerelateerde vragen
+					/*for (j = 0; j < Gerelateerd.length; j++) {
+						var gerelateerdeVragenHyperlink = document.createElement("button");
+						gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
+						gerelateerdeVragenHyperlink.className = "btn btn-secondary";
+						gerelateerdeVragenHyperlink.innerHTML = Gerelateerd[j];
+						gerelateerdeVragenHyperlink.setAttribute("onclick", "openVraag('" + Gerelateerd[j] + "');");
+						cardbody.appendChild(breakline);
+						cardbody.appendChild(gerelateerdeVragenHyperlink);
+						cardbody.appendChild(bl5);
+						cardbody.appendChild(bl6);
+					}*/
 
-				//aantal kliks
-				var klikKnop = document.createElement("button");
-				var klikKnopTekst = document.createElement("p");
-				klikKnop.innerHTML = "+1";
+					//aantal kliks
+					var klikKnop = document.createElement("button");
+					var klikKnopTekst = document.createElement("p");
+					klikKnop.innerHTML = "+1";
 
-				klikKnop.className = "btn btn-primary";
-				klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
-				klikKnopTekst.append(klikKnop);
-				kliks.append(klikKnopTekst);
+					klikKnop.className = "btn btn-primary";
+					klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
+					klikKnopTekst.append(klikKnop);
+					kliks.append(klikKnopTekst);
 
-				cardbody.append(kliks);
+					cardbody.append(kliks);
 
-				//
-				card.appendChild(collapse);
+					//
+					card.appendChild(collapse);
 
-				//lijst in div zetten
-				document.getElementById("overigDiv").appendChild(card);
+					//lijst in div zetten
+					document.getElementById("overigDiv").appendChild(card);
 
-				i++;
+					i++;
 
+				});
+			})
+			.catch((error) => {
+				console.log("Error getting documents: ", error);
 			});
-		})
-		.catch((error) => {
-			console.log("Error getting documents: ", error);
-		});
 
-} else {
+	} else {
+		document.getElementById("algemeenDiv").innerHTML = "";
+		document.getElementById("afsprakenDiv").innerHTML = "";
+		document.getElementById("overigDiv").innerHTML = "";
 
-	vraagRef.where("Categorie", "==", "Algemeen").orderBy("Klikcount", "desc").limit(3)
-		.get()
-		.then((querySnapshot) => {
-			querySnapshot.forEach((doc) => {
+		document.getElementById("financieelDiv").innerHTML = "";
+		document.getElementById("stateChange").innerHTML = "telefoonView >>";
+		document.getElementById("viewTekst").innerHTML = "Mailview";
 
-				//data uit de db halen
-				var Vraag = doc.data().Vraag;
-				var Antwoord = doc.data().MailAntwoord;
-				var Kliks = doc.data().Klikcount;
-				var Categorie = doc.data().Categorie;
-				var Trefwoorden = doc.data().Trefwoorden;
-				var Gerelateerd = doc.data().Gerelateerd;
+		vraagRef.where("Categorie", "==", "Algemeen").orderBy("Klikcount", "desc").limit(3)
+			.get()
+			.then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
 
-				var kliks = document.createElement('p');
-				kliks.innerHTML = Kliks;
-				kliks.id = kliks;
-				var klikstekst = document.createElement('p');
-				klikstekst.innerHTML = "Heeft deze vraag u geholpen?";
-				kliks.appendChild(klikstekst);
+					//data uit de db halen
+					var Vraag = doc.data().Vraag;
+					var Antwoord = doc.data().MailAntwoord;
+					var Kliks = doc.data().Klikcount;
+					var Categorie = doc.data().Categorie;
+					var Trefwoorden = doc.data().Trefwoorden;
+					var Gerelateerd = doc.data().Gerelateerd;
 
-				var breakline = document.createElement("BR");
-				var bl2 = document.createElement("BR");
-				var bl3 = document.createElement("BR");
-				var bl4 = document.createElement("BR");
-				var bl5 = document.createElement("BR");
+					var kliks = document.createElement('p');
+					kliks.innerHTML = Kliks;
+					kliks.id = kliks;
+					var klikstekst = document.createElement('p');
+					klikstekst.innerHTML = "Heeft deze vraag u geholpen?";
+					kliks.appendChild(klikstekst);
 
-				var bl6 = document.createElement("BR");
+					var breakline = document.createElement("BR");
+					var bl2 = document.createElement("BR");
+					var bl3 = document.createElement("BR");
+					var bl4 = document.createElement("BR");
+					var bl5 = document.createElement("BR");
 
-				//lijst en divjes per vraag
-				var card = document.createElement('div');
-				card.className = "accordion-item";
-				card.id = Vraag;
+					var bl6 = document.createElement("BR");
 
-				var cardHeader = document.createElement('div');
-				cardHeader.className = "accordion-header";
-				cardHeader.id = "heading" + i;
+					//lijst en divjes per vraag
+					var card = document.createElement('div');
+					card.className = "accordion-item";
+					card.id = Vraag;
 
-				var h5 = document.createElement('h5');
-				h5.className = "mb-0";
+					var cardHeader = document.createElement('div');
+					cardHeader.className = "accordion-header";
+					cardHeader.id = "heading" + i;
 
-				var btn = document.createElement("button");
-				btn.className = "accordion-button";
-				btn.type = "button";
-				btn.id = Vraag;
-				btn.setAttribute("data-bs-toggle", "collapse");
-				btn.setAttribute("data-bs-target", "#collapse" + i);
-				btn.setAttribute("aria-expanded", "true");
-				btn.setAttribute("aria-controls", "collapse" + i);
-				btn.setAttribute("onclick", "viewCount('" + Categorie + " | " + Vraag + "');");
-				btn.innerHTML = Categorie + " | " + Vraag;
+					var h5 = document.createElement('h5');
+					h5.className = "mb-0";
 
-				h5.appendChild(btn);
-				cardHeader.appendChild(h5);
-				card.appendChild(cardHeader);
+					var btn = document.createElement("button");
+					btn.className = "accordion-button";
+					btn.type = "button";
+					btn.id = Vraag;
+					btn.setAttribute("data-bs-toggle", "collapse");
+					btn.setAttribute("data-bs-target", "#collapse" + i);
+					btn.setAttribute("aria-expanded", "true");
+					btn.setAttribute("aria-controls", "collapse" + i);
+					btn.setAttribute("onclick", "viewCount('" + Categorie + " | " + Vraag + "');");
+					btn.innerHTML = Categorie + " | " + Vraag;
 
-				//voor het collapsen
-				var collapse = document.createElement('div');
-				collapse.id = "collapse" + i;
-				collapse.className = "accordion-collapse collapse";
-				collapse.setAttribute("aria-labelledby", "heading" + i);
+					h5.appendChild(btn);
+					cardHeader.appendChild(h5);
+					card.appendChild(cardHeader);
 
-				//inhoud van vraag
-				var cardbody = document.createElement('div');
-				cardbody.className = "accordion-body";
-				collapse.appendChild(cardbody);
+					//voor het collapsen
+					var collapse = document.createElement('div');
+					collapse.id = "collapse" + i;
+					collapse.className = "accordion-collapse collapse";
+					collapse.setAttribute("aria-labelledby", "heading" + i);
 
-				//trefwoorden
-				for (k = 0; k < Trefwoorden.length; k++) {
-					var trefwoorden = document.createElement('label');
-					trefwoorden.innerHTML = Trefwoorden[k] + "&nbsp;";
-					trefwoorden.className = 'trefwoordID' + Vraag;
-					cardbody.appendChild(trefwoorden);
-					cardbody.appendChild(bl2);
-				}
+					//inhoud van vraag
+					var cardbody = document.createElement('div');
+					cardbody.className = "accordion-body";
+					collapse.appendChild(cardbody);
 
-				cardbody.appendChild(bl4);
+					//trefwoorden
+					for (k = 0; k < Trefwoorden.length; k++) {
+						var trefwoorden = document.createElement('label');
+						trefwoorden.innerHTML = Trefwoorden[k] + "&nbsp;";
+						trefwoorden.className = 'trefwoordID' + Vraag;
+						cardbody.appendChild(trefwoorden);
+						cardbody.appendChild(bl2);
+					}
 
-				//antwoord
-				var antwoord = document.createElement('p');
-				antwoord.innerHTML = Antwoord;
-				cardbody.appendChild(antwoord);
-				cardbody.appendChild(bl3);
+					cardbody.appendChild(bl4);
 
-				//gerelateerde vragen
-				/*for (j = 0; j < Gerelateerd.length; j++) {
-					var gerelateerdeVragenHyperlink = document.createElement("button");
-					gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
-					gerelateerdeVragenHyperlink.className = "btn btn-secondary";
-					gerelateerdeVragenHyperlink.innerHTML = Gerelateerd[j];
-					gerelateerdeVragenHyperlink.setAttribute("onclick", "openVraag('" + Gerelateerd[j] + "');");
-					cardbody.appendChild(breakline);
-					cardbody.appendChild(gerelateerdeVragenHyperlink);
-					cardbody.appendChild(bl5);
-					cardbody.appendChild(bl6);
-				}*/
+					//antwoord
+					var antwoord = document.createElement('p');
+					antwoord.innerHTML = Antwoord;
+					cardbody.appendChild(antwoord);
+					cardbody.appendChild(bl3);
 
-				//aantal kliks
-				var klikKnop = document.createElement("button");
-				var klikKnopTekst = document.createElement("p");
-				klikKnop.innerHTML = "+1";
+					//gerelateerde vragen
+					/*for (j = 0; j < Gerelateerd.length; j++) {
+						var gerelateerdeVragenHyperlink = document.createElement("button");
+						gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
+						gerelateerdeVragenHyperlink.className = "btn btn-secondary";
+						gerelateerdeVragenHyperlink.innerHTML = Gerelateerd[j];
+						gerelateerdeVragenHyperlink.setAttribute("onclick", "openVraag('" + Gerelateerd[j] + "');");
+						cardbody.appendChild(breakline);
+						cardbody.appendChild(gerelateerdeVragenHyperlink);
+						cardbody.appendChild(bl5);
+						cardbody.appendChild(bl6);
+					}*/
 
-				klikKnop.className = "btn btn-primary";
-				klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
-				klikKnopTekst.append(klikKnop);
-				kliks.append(klikKnopTekst);
+					//aantal kliks
+					var klikKnop = document.createElement("button");
+					var klikKnopTekst = document.createElement("p");
+					klikKnop.innerHTML = "+1";
 
-				cardbody.append(kliks);
+					klikKnop.className = "btn btn-primary";
+					klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
+					klikKnopTekst.append(klikKnop);
+					kliks.append(klikKnopTekst);
 
-				//
-				card.appendChild(collapse);
+					cardbody.append(kliks);
 
-				//lijst in div zetten
-				document.getElementById("algemeenDiv").appendChild(card);
+					//
+					card.appendChild(collapse);
 
-				i++;
+					//lijst in div zetten
+					document.getElementById("algemeenDiv").appendChild(card);
 
+					i++;
+
+				});
+			})
+			.catch((error) => {
+				console.log("Error getting documents: ", error);
 			});
-		})
-		.catch((error) => {
-			console.log("Error getting documents: ", error);
-		});
 
-	vraagRef.where("Categorie", "==", "Afspraken").orderBy("Klikcount", "desc").limit(3)
-		.get()
-		.then((querySnapshot) => {
-			querySnapshot.forEach((doc) => {
+		vraagRef.where("Categorie", "==", "Afspraken").orderBy("Klikcount", "desc").limit(3)
+			.get()
+			.then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
 
-				//data uit de db halen
-				var Vraag = doc.data().Vraag;
-				var Antwoord = doc.data().MailAntwoord;
-				var Kliks = doc.data().Klikcount;
-				var Categorie = doc.data().Categorie;
-				var Trefwoorden = doc.data().Trefwoorden;
-				var Gerelateerd = doc.data().Gerelateerd;
+					//data uit de db halen
+					var Vraag = doc.data().Vraag;
+					var Antwoord = doc.data().MailAntwoord;
+					var Kliks = doc.data().Klikcount;
+					var Categorie = doc.data().Categorie;
+					var Trefwoorden = doc.data().Trefwoorden;
+					var Gerelateerd = doc.data().Gerelateerd;
 
-				var kliks = document.createElement('p');
-				kliks.innerHTML = Kliks;
-				kliks.id = kliks;
-				var klikstekst = document.createElement('p');
-				klikstekst.innerHTML = "Heeft deze vraag u geholpen?";
-				kliks.appendChild(klikstekst);
+					var kliks = document.createElement('p');
+					kliks.innerHTML = Kliks;
+					kliks.id = kliks;
+					var klikstekst = document.createElement('p');
+					klikstekst.innerHTML = "Heeft deze vraag u geholpen?";
+					kliks.appendChild(klikstekst);
 
-				var breakline = document.createElement("BR");
-				var bl2 = document.createElement("BR");
-				var bl3 = document.createElement("BR");
-				var bl4 = document.createElement("BR");
-				var bl5 = document.createElement("BR");
+					var breakline = document.createElement("BR");
+					var bl2 = document.createElement("BR");
+					var bl3 = document.createElement("BR");
+					var bl4 = document.createElement("BR");
+					var bl5 = document.createElement("BR");
 
-				var bl6 = document.createElement("BR");
+					var bl6 = document.createElement("BR");
 
-				//lijst en divjes per vraag
-				var card = document.createElement('div');
-				card.className = "accordion-item";
-				card.id = Vraag;
+					//lijst en divjes per vraag
+					var card = document.createElement('div');
+					card.className = "accordion-item";
+					card.id = Vraag;
 
-				var cardHeader = document.createElement('div');
-				cardHeader.className = "accordion-header";
-				cardHeader.id = "heading" + i;
+					var cardHeader = document.createElement('div');
+					cardHeader.className = "accordion-header";
+					cardHeader.id = "heading" + i;
 
-				var h5 = document.createElement('h5');
-				h5.className = "mb-0";
+					var h5 = document.createElement('h5');
+					h5.className = "mb-0";
 
-				var btn = document.createElement("button");
-				btn.className = "accordion-button";
-				btn.type = "button";
-				btn.id = Vraag;
-				btn.setAttribute("data-bs-toggle", "collapse");
-				btn.setAttribute("data-bs-target", "#collapse" + i);
-				btn.setAttribute("aria-expanded", "true");
-				btn.setAttribute("aria-controls", "collapse" + i);
-				btn.setAttribute("onclick", "viewCount('" + Categorie + " | " + Vraag + "');");
-				btn.innerHTML = Categorie + " | " + Vraag;
+					var btn = document.createElement("button");
+					btn.className = "accordion-button";
+					btn.type = "button";
+					btn.id = Vraag;
+					btn.setAttribute("data-bs-toggle", "collapse");
+					btn.setAttribute("data-bs-target", "#collapse" + i);
+					btn.setAttribute("aria-expanded", "true");
+					btn.setAttribute("aria-controls", "collapse" + i);
+					btn.setAttribute("onclick", "viewCount('" + Categorie + " | " + Vraag + "');");
+					btn.innerHTML = Categorie + " | " + Vraag;
 
-				h5.appendChild(btn);
-				cardHeader.appendChild(h5);
-				card.appendChild(cardHeader);
+					h5.appendChild(btn);
+					cardHeader.appendChild(h5);
+					card.appendChild(cardHeader);
 
-				//voor het collapsen
-				var collapse = document.createElement('div');
-				collapse.id = "collapse" + i;
-				collapse.className = "accordion-collapse collapse";
-				collapse.setAttribute("aria-labelledby", "heading" + i);
+					//voor het collapsen
+					var collapse = document.createElement('div');
+					collapse.id = "collapse" + i;
+					collapse.className = "accordion-collapse collapse";
+					collapse.setAttribute("aria-labelledby", "heading" + i);
 
-				//inhoud van vraag
-				var cardbody = document.createElement('div');
-				cardbody.className = "accordion-body";
-				collapse.appendChild(cardbody);
+					//inhoud van vraag
+					var cardbody = document.createElement('div');
+					cardbody.className = "accordion-body";
+					collapse.appendChild(cardbody);
 
-				//trefwoorden
-				for (k = 0; k < Trefwoorden.length; k++) {
-					var trefwoorden = document.createElement('label');
-					trefwoorden.innerHTML = Trefwoorden[k] + "&nbsp;";
-					trefwoorden.className = 'trefwoordID' + Vraag;
-					cardbody.appendChild(trefwoorden);
-					cardbody.appendChild(bl2);
-				}
+					//trefwoorden
+					for (k = 0; k < Trefwoorden.length; k++) {
+						var trefwoorden = document.createElement('label');
+						trefwoorden.innerHTML = Trefwoorden[k] + "&nbsp;";
+						trefwoorden.className = 'trefwoordID' + Vraag;
+						cardbody.appendChild(trefwoorden);
+						cardbody.appendChild(bl2);
+					}
 
-				cardbody.appendChild(bl4);
+					cardbody.appendChild(bl4);
 
-				//antwoord
-				var antwoord = document.createElement('p');
-				antwoord.innerHTML = Antwoord;
-				cardbody.appendChild(antwoord);
-				cardbody.appendChild(bl3);
+					//antwoord
+					var antwoord = document.createElement('p');
+					antwoord.innerHTML = Antwoord;
+					cardbody.appendChild(antwoord);
+					cardbody.appendChild(bl3);
 
-				//gerelateerde vragen
-				/*for (j = 0; j < Gerelateerd.length; j++) {
-					var gerelateerdeVragenHyperlink = document.createElement("button");
-					gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
-					gerelateerdeVragenHyperlink.className = "btn btn-secondary";
-					gerelateerdeVragenHyperlink.innerHTML = Gerelateerd[j];
-					gerelateerdeVragenHyperlink.setAttribute("onclick", "openVraag('" + Gerelateerd[j] + "');");
-					cardbody.appendChild(breakline);
-					cardbody.appendChild(gerelateerdeVragenHyperlink);
-					cardbody.appendChild(bl5);
-					cardbody.appendChild(bl6);
-				}*/
+					//gerelateerde vragen
+					/*for (j = 0; j < Gerelateerd.length; j++) {
+						var gerelateerdeVragenHyperlink = document.createElement("button");
+						gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
+						gerelateerdeVragenHyperlink.className = "btn btn-secondary";
+						gerelateerdeVragenHyperlink.innerHTML = Gerelateerd[j];
+						gerelateerdeVragenHyperlink.setAttribute("onclick", "openVraag('" + Gerelateerd[j] + "');");
+						cardbody.appendChild(breakline);
+						cardbody.appendChild(gerelateerdeVragenHyperlink);
+						cardbody.appendChild(bl5);
+						cardbody.appendChild(bl6);
+					}*/
 
-				//aantal kliks
-				var klikKnop = document.createElement("button");
-				var klikKnopTekst = document.createElement("p");
-				klikKnop.innerHTML = "+1";
+					//aantal kliks
+					var klikKnop = document.createElement("button");
+					var klikKnopTekst = document.createElement("p");
+					klikKnop.innerHTML = "+1";
 
-				klikKnop.className = "btn btn-primary";
-				klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
-				klikKnopTekst.append(klikKnop);
-				kliks.append(klikKnopTekst);
+					klikKnop.className = "btn btn-primary";
+					klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
+					klikKnopTekst.append(klikKnop);
+					kliks.append(klikKnopTekst);
 
-				cardbody.append(kliks);
+					cardbody.append(kliks);
 
-				//
-				card.appendChild(collapse);
+					//
+					card.appendChild(collapse);
 
-				//lijst in div zetten
-				document.getElementById("afsprakenDiv").appendChild(card);
+					//lijst in div zetten
+					document.getElementById("afsprakenDiv").appendChild(card);
 
-				i++;
+					i++;
 
+				});
+			})
+			.catch((error) => {
+				console.log("Error getting documents: ", error);
 			});
-		})
-		.catch((error) => {
-			console.log("Error getting documents: ", error);
-		});
 
-	vraagRef.where("Categorie", "==", "Financieel").orderBy("Klikcount", "desc").limit(3)
-		.get()
-		.then((querySnapshot) => {
-			querySnapshot.forEach((doc) => {
+		vraagRef.where("Categorie", "==", "Financieel").orderBy("Klikcount", "desc").limit(3)
+			.get()
+			.then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
 
-				//data uit de db halen
-				var Vraag = doc.data().Vraag;
-				var Antwoord = doc.data().MailAntwoord;
-				var Kliks = doc.data().Klikcount;
-				var Categorie = doc.data().Categorie;
-				var Trefwoorden = doc.data().Trefwoorden;
-				var Gerelateerd = doc.data().Gerelateerd;
+					//data uit de db halen
+					var Vraag = doc.data().Vraag;
+					var Antwoord = doc.data().MailAntwoord;
+					var Kliks = doc.data().Klikcount;
+					var Categorie = doc.data().Categorie;
+					var Trefwoorden = doc.data().Trefwoorden;
+					var Gerelateerd = doc.data().Gerelateerd;
 
-				var kliks = document.createElement('p');
-				kliks.innerHTML = Kliks;
-				kliks.id = kliks;
-				var klikstekst = document.createElement('p');
-				klikstekst.innerHTML = "Heeft deze vraag u geholpen?";
-				kliks.appendChild(klikstekst);
+					var kliks = document.createElement('p');
+					kliks.innerHTML = Kliks;
+					kliks.id = kliks;
+					var klikstekst = document.createElement('p');
+					klikstekst.innerHTML = "Heeft deze vraag u geholpen?";
+					kliks.appendChild(klikstekst);
 
-				var breakline = document.createElement("BR");
-				var bl2 = document.createElement("BR");
-				var bl3 = document.createElement("BR");
-				var bl4 = document.createElement("BR");
-				var bl5 = document.createElement("BR");
+					var breakline = document.createElement("BR");
+					var bl2 = document.createElement("BR");
+					var bl3 = document.createElement("BR");
+					var bl4 = document.createElement("BR");
+					var bl5 = document.createElement("BR");
 
-				var bl6 = document.createElement("BR");
+					var bl6 = document.createElement("BR");
 
-				//lijst en divjes per vraag
-				var card = document.createElement('div');
-				card.className = "accordion-item";
-				card.id = Vraag;
+					//lijst en divjes per vraag
+					var card = document.createElement('div');
+					card.className = "accordion-item";
+					card.id = Vraag;
 
-				var cardHeader = document.createElement('div');
-				cardHeader.className = "accordion-header";
-				cardHeader.id = "heading" + i;
+					var cardHeader = document.createElement('div');
+					cardHeader.className = "accordion-header";
+					cardHeader.id = "heading" + i;
 
-				var h5 = document.createElement('h5');
-				h5.className = "mb-0";
+					var h5 = document.createElement('h5');
+					h5.className = "mb-0";
 
-				var btn = document.createElement("button");
-				btn.className = "accordion-button";
-				btn.type = "button";
-				btn.id = Vraag;
-				btn.setAttribute("data-bs-toggle", "collapse");
-				btn.setAttribute("data-bs-target", "#collapse" + i);
-				btn.setAttribute("aria-expanded", "true");
-				btn.setAttribute("aria-controls", "collapse" + i);
-				btn.setAttribute("onclick", "viewCount('" + Categorie + " | " + Vraag + "');");
-				btn.innerHTML = Categorie + " | " + Vraag;
+					var btn = document.createElement("button");
+					btn.className = "accordion-button";
+					btn.type = "button";
+					btn.id = Vraag;
+					btn.setAttribute("data-bs-toggle", "collapse");
+					btn.setAttribute("data-bs-target", "#collapse" + i);
+					btn.setAttribute("aria-expanded", "true");
+					btn.setAttribute("aria-controls", "collapse" + i);
+					btn.setAttribute("onclick", "viewCount('" + Categorie + " | " + Vraag + "');");
+					btn.innerHTML = Categorie + " | " + Vraag;
 
-				h5.appendChild(btn);
-				cardHeader.appendChild(h5);
-				card.appendChild(cardHeader);
+					h5.appendChild(btn);
+					cardHeader.appendChild(h5);
+					card.appendChild(cardHeader);
 
-				//voor het collapsen
-				var collapse = document.createElement('div');
-				collapse.id = "collapse" + i;
-				collapse.className = "accordion-collapse collapse";
-				collapse.setAttribute("aria-labelledby", "heading" + i);
+					//voor het collapsen
+					var collapse = document.createElement('div');
+					collapse.id = "collapse" + i;
+					collapse.className = "accordion-collapse collapse";
+					collapse.setAttribute("aria-labelledby", "heading" + i);
 
-				//inhoud van vraag
-				var cardbody = document.createElement('div');
-				cardbody.className = "accordion-body";
-				collapse.appendChild(cardbody);
+					//inhoud van vraag
+					var cardbody = document.createElement('div');
+					cardbody.className = "accordion-body";
+					collapse.appendChild(cardbody);
 
-				//trefwoorden
-				for (k = 0; k < Trefwoorden.length; k++) {
-					var trefwoorden = document.createElement('label');
-					trefwoorden.innerHTML = Trefwoorden[k] + "&nbsp;";
-					trefwoorden.className = 'trefwoordID' + Vraag;
-					cardbody.appendChild(trefwoorden);
-					cardbody.appendChild(bl2);
-				}
+					//trefwoorden
+					for (k = 0; k < Trefwoorden.length; k++) {
+						var trefwoorden = document.createElement('label');
+						trefwoorden.innerHTML = Trefwoorden[k] + "&nbsp;";
+						trefwoorden.className = 'trefwoordID' + Vraag;
+						cardbody.appendChild(trefwoorden);
+						cardbody.appendChild(bl2);
+					}
 
-				cardbody.appendChild(bl4);
+					cardbody.appendChild(bl4);
 
-				//antwoord
-				var antwoord = document.createElement('p');
-				antwoord.innerHTML = Antwoord;
-				cardbody.appendChild(antwoord);
-				cardbody.appendChild(bl3);
+					//antwoord
+					var antwoord = document.createElement('p');
+					antwoord.innerHTML = Antwoord;
+					cardbody.appendChild(antwoord);
+					cardbody.appendChild(bl3);
 
-				//gerelateerde vragen
-				/*for (j = 0; j < Gerelateerd.length; j++) {
-					var gerelateerdeVragenHyperlink = document.createElement("button");
-					gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
-					gerelateerdeVragenHyperlink.className = "btn btn-secondary";
-					gerelateerdeVragenHyperlink.innerHTML = Gerelateerd[j];
-					gerelateerdeVragenHyperlink.setAttribute("onclick", "openVraag('" + Gerelateerd[j] + "');");
-					cardbody.appendChild(breakline);
-					cardbody.appendChild(gerelateerdeVragenHyperlink);
-					cardbody.appendChild(bl5);
-					cardbody.appendChild(bl6);
-				}*/
+					//gerelateerde vragen
+					/*for (j = 0; j < Gerelateerd.length; j++) {
+						var gerelateerdeVragenHyperlink = document.createElement("button");
+						gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
+						gerelateerdeVragenHyperlink.className = "btn btn-secondary";
+						gerelateerdeVragenHyperlink.innerHTML = Gerelateerd[j];
+						gerelateerdeVragenHyperlink.setAttribute("onclick", "openVraag('" + Gerelateerd[j] + "');");
+						cardbody.appendChild(breakline);
+						cardbody.appendChild(gerelateerdeVragenHyperlink);
+						cardbody.appendChild(bl5);
+						cardbody.appendChild(bl6);
+					}*/
 
-				//aantal kliks
-				var klikKnop = document.createElement("button");
-				var klikKnopTekst = document.createElement("p");
-				klikKnop.innerHTML = "+1";
+					//aantal kliks
+					var klikKnop = document.createElement("button");
+					var klikKnopTekst = document.createElement("p");
+					klikKnop.innerHTML = "+1";
 
-				klikKnop.className = "btn btn-primary";
-				klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
-				klikKnopTekst.append(klikKnop);
-				kliks.append(klikKnopTekst);
+					klikKnop.className = "btn btn-primary";
+					klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
+					klikKnopTekst.append(klikKnop);
+					kliks.append(klikKnopTekst);
 
-				cardbody.append(kliks);
+					cardbody.append(kliks);
 
-				//
-				card.appendChild(collapse);
+					//
+					card.appendChild(collapse);
 
-				//lijst in div zetten
-				document.getElementById("financieelDiv").appendChild(card);
+					//lijst in div zetten
+					document.getElementById("financieelDiv").appendChild(card);
 
-				i++;
+					i++;
 
+				});
+			})
+			.catch((error) => {
+				console.log("Error getting documents: ", error);
 			});
-		})
-		.catch((error) => {
-			console.log("Error getting documents: ", error);
-		});
 
-	vraagRef.where("Categorie", "==", "Overig").orderBy("Klikcount", "desc").limit(3)
-		.get()
-		.then((querySnapshot) => {
-			querySnapshot.forEach((doc) => {
+		vraagRef.where("Categorie", "==", "Overig").orderBy("Klikcount", "desc").limit(3)
+			.get()
+			.then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
 
-				//data uit de db halen
-				var Vraag = doc.data().Vraag;
-				var Antwoord = doc.data().MailAntwoord;
-				var Kliks = doc.data().Klikcount;
-				var Categorie = doc.data().Categorie;
-				var Trefwoorden = doc.data().Trefwoorden;
-				var Gerelateerd = doc.data().Gerelateerd;
+					//data uit de db halen
+					var Vraag = doc.data().Vraag;
+					var Antwoord = doc.data().MailAntwoord;
+					var Kliks = doc.data().Klikcount;
+					var Categorie = doc.data().Categorie;
+					var Trefwoorden = doc.data().Trefwoorden;
+					var Gerelateerd = doc.data().Gerelateerd;
 
-				var kliks = document.createElement('p');
-				kliks.innerHTML = Kliks;
-				kliks.id = kliks;
-				var klikstekst = document.createElement('p');
-				klikstekst.innerHTML = "Heeft deze vraag u geholpen?";
-				kliks.appendChild(klikstekst);
+					var kliks = document.createElement('p');
+					kliks.innerHTML = Kliks;
+					kliks.id = kliks;
+					var klikstekst = document.createElement('p');
+					klikstekst.innerHTML = "Heeft deze vraag u geholpen?";
+					kliks.appendChild(klikstekst);
 
-				var breakline = document.createElement("BR");
-				var bl2 = document.createElement("BR");
-				var bl3 = document.createElement("BR");
-				var bl4 = document.createElement("BR");
-				var bl5 = document.createElement("BR");
+					var breakline = document.createElement("BR");
+					var bl2 = document.createElement("BR");
+					var bl3 = document.createElement("BR");
+					var bl4 = document.createElement("BR");
+					var bl5 = document.createElement("BR");
 
-				var bl6 = document.createElement("BR");
+					var bl6 = document.createElement("BR");
 
-				//lijst en divjes per vraag
-				var card = document.createElement('div');
-				card.className = "accordion-item";
-				card.id = Vraag;
+					//lijst en divjes per vraag
+					var card = document.createElement('div');
+					card.className = "accordion-item";
+					card.id = Vraag;
 
-				var cardHeader = document.createElement('div');
-				cardHeader.className = "accordion-header";
-				cardHeader.id = "heading" + i;
+					var cardHeader = document.createElement('div');
+					cardHeader.className = "accordion-header";
+					cardHeader.id = "heading" + i;
 
-				var h5 = document.createElement('h5');
-				h5.className = "mb-0";
+					var h5 = document.createElement('h5');
+					h5.className = "mb-0";
 
-				var btn = document.createElement("button");
-				btn.className = "accordion-button";
-				btn.type = "button";
-				btn.id = Vraag;
-				btn.setAttribute("data-bs-toggle", "collapse");
-				btn.setAttribute("data-bs-target", "#collapse" + i);
-				btn.setAttribute("aria-expanded", "true");
-				btn.setAttribute("aria-controls", "collapse" + i);
-				btn.setAttribute("onclick", "viewCount('" + Categorie + " | " + Vraag + "');");
-				btn.innerHTML = Categorie + " | " + Vraag;
+					var btn = document.createElement("button");
+					btn.className = "accordion-button";
+					btn.type = "button";
+					btn.id = Vraag;
+					btn.setAttribute("data-bs-toggle", "collapse");
+					btn.setAttribute("data-bs-target", "#collapse" + i);
+					btn.setAttribute("aria-expanded", "true");
+					btn.setAttribute("aria-controls", "collapse" + i);
+					btn.setAttribute("onclick", "viewCount('" + Categorie + " | " + Vraag + "');");
+					btn.innerHTML = Categorie + " | " + Vraag;
 
-				h5.appendChild(btn);
-				cardHeader.appendChild(h5);
-				card.appendChild(cardHeader);
+					h5.appendChild(btn);
+					cardHeader.appendChild(h5);
+					card.appendChild(cardHeader);
 
-				//voor het collapsen
-				var collapse = document.createElement('div');
-				collapse.id = "collapse" + i;
-				collapse.className = "accordion-collapse collapse";
-				collapse.setAttribute("aria-labelledby", "heading" + i);
+					//voor het collapsen
+					var collapse = document.createElement('div');
+					collapse.id = "collapse" + i;
+					collapse.className = "accordion-collapse collapse";
+					collapse.setAttribute("aria-labelledby", "heading" + i);
 
-				//inhoud van vraag
-				var cardbody = document.createElement('div');
-				cardbody.className = "accordion-body";
-				collapse.appendChild(cardbody);
+					//inhoud van vraag
+					var cardbody = document.createElement('div');
+					cardbody.className = "accordion-body";
+					collapse.appendChild(cardbody);
 
-				//trefwoorden
-				for (k = 0; k < Trefwoorden.length; k++) {
-					var trefwoorden = document.createElement('label');
-					trefwoorden.innerHTML = Trefwoorden[k] + "&nbsp;";
-					trefwoorden.className = 'trefwoordID' + Vraag;
-					cardbody.appendChild(trefwoorden);
-					cardbody.appendChild(bl2);
-				}
+					//trefwoorden
+					for (k = 0; k < Trefwoorden.length; k++) {
+						var trefwoorden = document.createElement('label');
+						trefwoorden.innerHTML = Trefwoorden[k] + "&nbsp;";
+						trefwoorden.className = 'trefwoordID' + Vraag;
+						cardbody.appendChild(trefwoorden);
+						cardbody.appendChild(bl2);
+					}
 
-				cardbody.appendChild(bl4);
+					cardbody.appendChild(bl4);
 
-				//antwoord
-				var antwoord = document.createElement('p');
-				antwoord.innerHTML = Antwoord;
-				cardbody.appendChild(antwoord);
-				cardbody.appendChild(bl3);
+					//antwoord
+					var antwoord = document.createElement('p');
+					antwoord.innerHTML = Antwoord;
+					cardbody.appendChild(antwoord);
+					cardbody.appendChild(bl3);
 
-				//gerelateerde vragen
-				/*for (j = 0; j < Gerelateerd.length; j++) {
-					var gerelateerdeVragenHyperlink = document.createElement("button");
-					gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
-					gerelateerdeVragenHyperlink.className = "btn btn-secondary";
-					gerelateerdeVragenHyperlink.innerHTML = Gerelateerd[j];
-					gerelateerdeVragenHyperlink.setAttribute("onclick", "openVraag('" + Gerelateerd[j] + "');");
-					cardbody.appendChild(breakline);
-					cardbody.appendChild(gerelateerdeVragenHyperlink);
-					cardbody.appendChild(bl5);
-					cardbody.appendChild(bl6);
-				}*/
+					//gerelateerde vragen
+					/*for (j = 0; j < Gerelateerd.length; j++) {
+						var gerelateerdeVragenHyperlink = document.createElement("button");
+						gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
+						gerelateerdeVragenHyperlink.className = "btn btn-secondary";
+						gerelateerdeVragenHyperlink.innerHTML = Gerelateerd[j];
+						gerelateerdeVragenHyperlink.setAttribute("onclick", "openVraag('" + Gerelateerd[j] + "');");
+						cardbody.appendChild(breakline);
+						cardbody.appendChild(gerelateerdeVragenHyperlink);
+						cardbody.appendChild(bl5);
+						cardbody.appendChild(bl6);
+					}*/
 
-				//aantal kliks
-				var klikKnop = document.createElement("button");
-				var klikKnopTekst = document.createElement("p");
-				klikKnop.innerHTML = "+1";
+					//aantal kliks
+					var klikKnop = document.createElement("button");
+					var klikKnopTekst = document.createElement("p");
+					klikKnop.innerHTML = "+1";
 
-				klikKnop.className = "btn btn-primary";
-				klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
-				klikKnopTekst.append(klikKnop);
-				kliks.append(klikKnopTekst);
+					klikKnop.className = "btn btn-primary";
+					klikKnop.setAttribute("onclick", "klikCount('" + Categorie + " | " + Vraag + "');")
+					klikKnopTekst.append(klikKnop);
+					kliks.append(klikKnopTekst);
 
-				cardbody.append(kliks);
+					cardbody.append(kliks);
 
-				//
-				card.appendChild(collapse);
+					//
+					card.appendChild(collapse);
 
-				//lijst in div zetten
-				document.getElementById("overigDiv").appendChild(card);
+					//lijst in div zetten
+					document.getElementById("overigDiv").appendChild(card);
 
-				i++;
+					i++;
 
+				});
+			})
+			.catch((error) => {
+				console.log("Error getting documents: ", error);
 			});
-		})
-		.catch((error) => {
-			console.log("Error getting documents: ", error);
-		});
+	}
 }
 
-if (phase == "telefoon") {
-	document.getElementById("stateChange").innerHTML = "mailView >>";
-} else {
-	document.getElementById("stateChange").innerHTML = "telefoonView >>";
-}
+vulVragen();
+
+
 
 function openVraag(vraagNaam) {
 	var elements = document.getElementsByClassName("accordion-button");
@@ -1041,17 +1055,15 @@ function viewCount(vraagNaam) {
 }
 
 function changePhase() {
-	if (phase == "telefoon") {
-		localStorage.setItem('phase', 'mail');
+	if (phase) {
+		phase = false;
 		console.log(phase);
-
-		location.reload();
-	} else {
-
-		localStorage.setItem('phase', 'telefoon');
+		vulVragen();
+	}
+	else {
+		phase = true;
 		console.log(phase);
-
-		location.reload();
+		vulVragen();
 	}
 }
 console.log(phase);

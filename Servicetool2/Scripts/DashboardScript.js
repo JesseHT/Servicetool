@@ -7,8 +7,12 @@ var i = 0;
 console.log(phase);
 //vragen laden uit de db 
 function vulVragen() {
-    if (phase == 'telefoon') {
-        document.getElementById("accordion").value = "";
+    if (phase) {
+
+        document.getElementById("accordion").innerHTML = "";
+        document.getElementById("stateChange").innerHTML = "MailView >>";
+        document.getElementById("viewTekst").innerHTML = "Telefoonview";
+
     vraagRef.orderBy("Klikcount", "desc")
         .get()
         .then((querySnapshot) => {
@@ -92,6 +96,7 @@ function vulVragen() {
                 //antwoord
                 var antwoord = document.createElement('p');
                 antwoord.innerHTML = Antwoord;
+                antwoord.id = "antwoord"+ Vraag;
                 cardbody.appendChild(antwoord);
                 cardbody.appendChild(bl3);
 
@@ -180,7 +185,9 @@ function vulVragen() {
             console.log("Error getting documents: ", error);
         });
     } else {
-        document.getElementById("accordion").value = "";
+        document.getElementById("accordion").innerHTML = "";
+        document.getElementById("stateChange").innerHTML = "TelefoonView >>";
+        document.getElementById("viewTekst").innerHTML = "Mailview";
 
     vraagRef.orderBy("Klikcount", "desc")
         .get()
@@ -355,17 +362,9 @@ function vulVragen() {
 }
 
 }
-function veranderTekst() {
-    if (phase == "mail") {
-        document.getElementById("stateChange").innerHTML = "telefoonView >>";
-    }
-    else {
-        document.getElementById("stateChange").innerHTML = "mailView >>";
-    }
-}
+
 
 vulVragen();
-veranderTekst();
 
 //open een vraag als je erop klikt
 function openVraag(vraagNaam) {
@@ -398,22 +397,25 @@ function zoekFunctie() {
     // Loop through all list items, and hide those who don't match the search query
     for (l = 0; l < ul.length; l++) {
         li = document.querySelectorAll('[id^="heading"]');
-
+        li2 = document.querySelectorAll('[id^="antwoord"]');
+        console.log(li2[l].children[0].innerHTML);
         var trefwoorden = document.querySelectorAll('[class^="trefwoordID' + li[l].children[0].children[0].innerHTML + '"]');
-
+        var antwoord = li2[l].children[0].innerHTML;
         for (i = 0; i < trefwoorden.length; i++) {
             a = trefwoorden[i].innerHTML;
-            console.log(a);
             txtValue = a;
             var ul1 = $(ul[l]).parents()[0];
 
-            console.log(txtValue.toUpperCase().indexOf(filter));
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
 
                 ul1.style.display = "";
                 break;
             } else {
-                ul1.style.display = "none";
+                if (antwoord.toUpperCase().indexOf(filter) > -1) {
+                    ul1.style.display = "";
+                } else {
+                    ul1.style.display = "none";
+                }
             }
         }
     }
@@ -462,16 +464,15 @@ function viewCount(vraagNaam) {
 }
 
 function changePhase() {
-    if (phase == "telefoon") {
-        localStorage.setItem('phase', 'mail');
-        console.log(phase);
-        location.reload();
+    if (phase) {
+        phase = false;
+        vulVragen();
     }
     else {
-        localStorage.setItem('phase', 'telefoon');
+        phase = true;
 /*        document.getElementById("stateChange").innerHTML = "telefoonView >>";
 */
         console.log(phase);
-        location.reload();
+        vulVragen();
     }
 }
