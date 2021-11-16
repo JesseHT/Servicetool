@@ -9,7 +9,7 @@
 }
 
 var db = firebase.firestore();
-
+var myString = "22";
 //cookies indelen in een variabele met een waarde en in de lijst boven aan de pagina zetten
 var cookies = document.cookie
     .split(';')
@@ -27,54 +27,95 @@ document.getElementById("infoMeegaveProbleem").innerText = cookies.probleem;
 var rowvar = 0;
 var divvar = 0;
 var variabele = 0;
-db.collection("Extravragen").where("GerelateerdeProblemen", "array-contains", cookies.probleem)
-    .get()
-    .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
+
+function vragenOphalen() {
+    db.collection("Extravragen").where("GerelateerdeProblemen", "array-contains", cookies.probleem)
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
 
 
 
-            var vraagNaam = doc.data().titel;
-            var vraagSoort = doc.data().soort;
-            var vraagSubtext = doc.data().subtext;
-            var br = document.createElement('br');
+                var vraagNaam = doc.data().titel;
+                var vraagSoort = doc.data().soort;
+                var vraagSubtext = doc.data().subtext;
+                var vraagInputText = doc.data().subAntwoord;
+                var volgorde = doc.data().volgorde;
 
-            if (variabele == 3) {
+                var goedevraag = vraagNaam.replaceAll(" ", "");
+
                 var br = document.createElement('br');
-                rowvar++;
-                var row = document.createElement('div');
-                row.className = "row";
-                row.id = "row" + rowvar;
-                document.getElementById("extraVragen").appendChild(br);
-                document.getElementById("extraVragen").appendChild(row);
 
-                variabele = 0;
+                if (variabele == 3) {
+                    var br = document.createElement('br');
+                    rowvar++;
+                    var row = document.createElement('div');
+                    row.className = "row";
+                    row.id = "row" + rowvar;
+                    document.getElementById("extraVragen").appendChild(br);
+                    document.getElementById("extraVragen").appendChild(row);
+
+                    variabele = 0;
+                }
+                console.log(variabele);
+                var div = document.createElement('div');
+                div.id = "div" + divvar;
+                div.className = "col-4";
+
+                if (vraagSubtext != null) {
+                    var vraagSubtextp = document.createElement('p');
+                    vraagSubtextp.innerHTML = vraagSubtext;
+                }
+
+                if (vraagInputText != null) {
+                    var VraagInputText = document.createElement('p');
+                    VraagInputText.innerHTML = vraagInputText;
+                    VraagInputText.id = volgorde;
+                    VraagInputText.setAttribute("hidden", "true");
+                }
+                var vraagTitel = document.createElement('label');
+                vraagTitel.innerHTML = vraagNaam;
+
+                var vraagInput = document.createElement('input');
+                vraagInput.type = 'text';
+                vraagInput.id = goedevraag;
+
+
+                div.appendChild(vraagTitel);
+                div.appendChild(br);
+                div.appendChild(vraagInput);
+                if (vraagSubtext != null) {
+                    div.appendChild(vraagSubtextp);
+                }
+                if (vraagInputText != null) {
+                    div.appendChild(VraagInputText);
+                }
+                document.getElementById("row" + rowvar).appendChild(div);
+                variabele++;
+                divvar++;
+            })
+        });
+    console.log("huh");
+}
+
+vragenOphalen();
+
+
+
+setTimeout(function WatisdehuidigetemperatuurVraag() {
+    if (document.getElementById('Watisdehuidigetemperatuur?') != null) {
+        console.log("binnen");
+        document.getElementById('Watisdehuidigetemperatuur?').onkeyup = (function () {
+            console.log("test");
+            var value = $(this).val();
+            if (value.match(myString)) {
+                console.log("goed");
+                document.getElementById('2').removeAttribute("hidden");
+
+            } else {
+                document.getElementById('2').setAttribute("hidden", "true");
             }
-            console.log(variabele);
-            var div = document.createElement('div');
-            div.id = "div" + divvar;
-            div.className = "col-4";
+        });
+    }
+}, 1500);
 
-            if (vraagSubtext != null) {
-                var vraagSubtextp = document.createElement('p');
-                vraagSubtextp.innerHTML = vraagSubtext;
-            }
-            var vraagTitel = document.createElement('label');
-            vraagTitel.innerHTML = vraagNaam;
-
-            var vraagInput = document.createElement('input');
-            vraagInput.type = vraagSoort;
-            vraagInput.id = vraagNaam;
-
-            div.appendChild(vraagTitel);
-            div.appendChild(br);
-            div.appendChild(vraagInput);
-            if (vraagSubtext != null) {
-                div.appendChild(vraagSubtextp);
-            }
-
-            document.getElementById("row" + rowvar).appendChild(div);
-            variabele++;
-            divvar++;
-        })
-    });
