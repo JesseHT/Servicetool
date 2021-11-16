@@ -93,29 +93,27 @@ function vragenOphalen() {
                 document.getElementById("row" + rowvar).appendChild(div);
                 variabele++;
                 divvar++;
+                console.log("laad");
             })
+            console.log("huh");
+
+            if (document.getElementById('Watisdehuidigetemperatuur?') != null) {
+                console.log("binnen");
+                document.getElementById('Watisdehuidigetemperatuur?').onkeyup = (function () {
+                    console.log("test");
+                    var value = $(this).val();
+                    if (value.match(myString)) {
+                        console.log("goed");
+                        document.getElementById('2').removeAttribute("hidden");
+
+                    } else {
+                        document.getElementById('2').setAttribute("hidden", "true");
+                    }
+                });
+            }
         });
-    console.log("huh");
 }
 
 vragenOphalen();
 
-
-
-setTimeout(function WatisdehuidigetemperatuurVraag() {
-    if (document.getElementById('Watisdehuidigetemperatuur?') != null) {
-        console.log("binnen");
-        document.getElementById('Watisdehuidigetemperatuur?').onkeyup = (function () {
-            console.log("test");
-            var value = $(this).val();
-            if (value.match(myString)) {
-                console.log("goed");
-                document.getElementById('2').removeAttribute("hidden");
-
-            } else {
-                document.getElementById('2').setAttribute("hidden", "true");
-            }
-        });
-    }
-}, 1500);
 
