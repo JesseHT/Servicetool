@@ -4,15 +4,17 @@
 }
 
 body {
-    padding-top: 100px;
+    padding-top: 85px;
     padding-bottom: 20px;
     margin: 0;
     height: 100%;
-    background-color: #337ae2;
 }
 
 /* Set padding to keep content from hitting the edges */
 
+#bovenRij {
+    background-color: #dbe6f0;
+}
 
 pre {
     font-family: Lato;
@@ -20,17 +22,15 @@ pre {
     white-space: pre-wrap;
 }
 
+
 .col-lg-8 {
     padding-top: 5px;
 }
 
-#row1 {
-    background-color: #DCDCDC;
+.row {
+    margin-bottom: 10px;
 }
 
-#jumboIndex {
-    background-color: #337ae2;
-}
 
 #storingIndexContainer {
     background-color: #ECECEC;
@@ -67,6 +67,7 @@ textarea {
     background-color: #337ae2 !important;
     border-bottom-width: 3px;
     border-bottom-style: solid;
+    padding-left: 13%;
 }
 
 .navbarText {
@@ -91,9 +92,17 @@ textarea {
         color: #0f3647;
     }
 
-.container-fluid{
-    background-color: #337ae2;
 
+
+.container {
+    max-width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.container-fluid {
+    padding-right: 0px;
+    padding-left: 0px;
 }
 
 #vragenAlgemeen{
@@ -105,13 +114,15 @@ textarea {
     padding-bottom: 0px;
 }
 
-#form1 {
-    background-color: #d7d7d7;
+.accordion-item {
+    box-shadow: 0px 0px 5px 1px #C2DBED;
+    margin: 15px;
 }
 
-#form2 {
-    background-color: #d7d7d7;
+.accordion-button:not(.collapsed){
+    background-color: white;
 }
+
 
 .navbar-dark .navbar-nav .nav-link {
     color: rgb(0 0 0 / 50%);
@@ -132,7 +143,7 @@ label {
 
 #knoppenHome {
     text-align: center;
-    background-color: #ECECEC;
+    background-color: #FFFFFF;
 }
 
 select {
@@ -188,7 +199,13 @@ select {
 }
 
 #algemeenVraagVlak {
-    background-color: #ECECEC;
+    background-color: #ffffff;
+    padding-bottom: 10px;
+}
+
+#vraagveld {
+    margin-left: 15px;
+    font-weight: bold;
 }
 
 .btn-block {
@@ -216,6 +233,13 @@ select {
     padding: 10px;
 }
 
+#row1 {
+    border-bottom: 1px solid;
+}
+
+#row2 {
+    border-bottom: 1px solid;
+}
 
 #extraPagina #extraVragen .row {
     background-color: #ECECEC;
@@ -234,7 +258,7 @@ input, select, textarea {
 }
 
 #form {
-   background-color: #d7d7d7;
+   background-color: #ffffff;
 }
 
 .col-6 {

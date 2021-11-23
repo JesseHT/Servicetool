@@ -6,8 +6,46 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+
 
 <script>
+    var url = window.location.href;
+    console.log("is de url" + url)
+    if (!url.includes("Login")) {
+        console.log("Logging in...");
+        var Logged_in_user = localStorage.getItem("Logged_in_user");
+        var Logged_in = localStorage.getItem("Logged_in");
+        var Logged_in_userid = localStorage.getItem("Logged_in_userid");
+        var Logged_in_emailVerified = localStorage.getItem("Logged_in_emailVerified");
+        //check domain
+        if (Logged_in != null && Logged_in_user != null && Logged_in_userid != null) {
+            var domain = Logged_in_user.includes("heattransformers.com")
+            if (domain == true && Logged_in == "#527467" && Logged_in_userid != null && Logged_in_emailVerified == "true") {
+                console.log("logged in succesfully")
+            }
+            else {
+                console.log("not a valid user, redirecting...")
+                window.location.href = "/Login/Login?url=" + url;
+            }
+        }
+        else {
+            console.log("niet ingelogd")
+            window.location.href = "/Login/Login?url=" + url;
+        }
+    }
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var uid = localStorage.getItem("Logged_in_userid")
+    var mail = localStorage.getItem("Logged_in_user")
+    var ver = localStorage.getItem("Logged_in_emailVerified")
+    if (ver == "true") {
+        ver = true
+    }
+    else {
+        ver = false
+    }
+
     // Your web app's Firebase configuration
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     var firebaseConfig = {
@@ -17,17 +55,92 @@
         storageBucket: "servicetool-81486.appspot.com",
         messagingSenderId: "224850955648",
         appId: "1:224850955648:web:56925cbf41c4d0c48d0565",
-        measurementId: "G-QM51LB6RPJ"
+        measurementId: "G-QM51LB6RPJ",
+        auth: {
+            "uid": uid,
+            "token": {
+                "sub": uid,
+                "aud": "servicetool",
+                "email": mail,
+                "email_verified": ver,
+                "firebase": {
+                    "sign_in_provider": "password"
+                }
+            }
+        }
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
-</script>
 
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            // User is signed in, see docs for a list of available properties
+            // https://firebase.google.com/docs/reference/js/firebase.User
+            var uid = user.uid;
+            var useruidTest = user.uid
+            console.log("You are succesfully connected to the database")
+                document.getElementById("loggedIn").innerHTML += "    &nbsp;&nbsp;  <img src='/Content/Database-Accept-icon.png' style='height:25px' /> "
+            // ...
+        } else {
+            // User is signed out
+            // ...
+            var useruidTest = "Nee"
+            document.getElementById("loggedIn").innerHTML += "  &nbsp;&nbsp; <img src='/Content/images__2_-removebg-preview.png' style='height:25px' /> "
+            console.log("You are not connected to the database")
+        }
+    });
+
+    function toLogOut() {
+        var url = window.location.href;
+        try {
+            firebase.auth().signOut().then(() => {
+                console.log("logged out succesful")
+                localStorage.removeItem("Logged_in")
+                localStorage.removeItem("Logged_in_emailVerified")
+                localStorage.removeItem("Logged_in_user")
+                localStorage.removeItem("Logged_in_userid")
+                localStorage.removeItem("Logged_in_Useruser")
+                window.location.href = "/Login/Login?url=" + url;
+                // Sign-out successful.
+            }).catch((error) => {
+                alert("error logging out: " + error)
+                // An error happened.
+            });
+        }
+        catch {
+            console.log("logout gaat mis")
+            firebase.initializeApp({
+                apiKey: 'AIzaSyBlEyAJb6dTHnN8kDbdBhGslrunIaX0z2Q',
+                authDomain: 'servicetool-81486.firebaseapp.com',
+                projectId: 'servicetool- 81486',
+                auth: {
+                    "uid": uid,
+                    "token": {
+                        "sub": uid,
+                        "aud": "servicetool",
+                        "email": mail,
+                        "email_verified": ver,
+                        "firebase": {
+                            "sign_in_provider": "password"
+                        }
+                    }
+                }
+            });
+            toLogOut();
+        }
+    }
+
+</script>
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-storage.js"></script>
-<script>var phase = true;
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+
+<script>
+    var phase = true;
 </script>
+
 
 
 <html>
@@ -41,44 +154,65 @@
 </head>
 <body>
     <nav class="navbar fixed-top navbar-expand-xxl navbar-dark bg-primary" id="navbar">
-        <div class="container" id="navbarText">
-                
-            <a href="@Url.Action("Index", "Home", null)">
-                <img style="width:200px; height:auto; padding-top: 13px;" src="~/Content/Logo-full-white-png(1).png" />
-            </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse" id="navbarTogglerDemo02">
-                <ul class="nav navbar-nav mr-auto">
-                    <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Algemeen", "Dashboard", "Home", new { id = "Algemeen" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Afspraken", "Dashboard", "Home", new { id = "Afspraken" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Financieel", "Dashboard", "Home", new { id = "Financieel" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Technisch", "Index", "Storing", null, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Overig", "Dashboard", "Home", new { id = "Overig" }, new { @class = "nav-link" })</li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Account
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li> <a>@Html.ActionLink("Vragenoverzicht", "Overzicht", "Home", null, new { @class = "dropdown-item"})</a></li>
-                            <li> <a>@Html.ActionLink("Storingstool aanpassen", "StoringtoolToevoegen", "Storing", null, new { @class = "dropdown-item" })</a></li>
-                            @*<li> <a>@Html.ActionLink("Vraag toevoegen", "VraagToevoegen", "Home", null, new { @class = "dropdown-item" })</a></li>*@
-                        </ul>
-                    </li>
-                    <li style="padding-top: 0px;"><label id="viewTekst" style="font-size: 20px; font-family: Montserrat; font-weight: bold;"></label><br /><button class="btn btn-light" id="stateChange" onclick="changePhase()">Verander view</button></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+        
+            <div class="container" id="navbarText">
 
+                <a href="@Url.Action("Index", "Home", null)">
+                    <img style="width:200px; height:auto; padding-top: 13px;" src="~/Content/Logo-full-white-png(1).png" />
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse" id="navbarTogglerDemo02">
+                    <ul class="nav navbar-nav mr-auto">
+                        <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Categorieën
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li>@Html.ActionLink("Algemeen", "Dashboard", "Home", new { id = "Algemeen" }, new { @class = "dropdown-item" })</li>
+                                <li>@Html.ActionLink("Afspraken", "Dashboard", "Home", new { id = "Afspraken" }, new { @class = "dropdown-item" })</li>
+                                <li>@Html.ActionLink("Financieel", "Dashboard", "Home", new { id = "Financieel" }, new { @class = "dropdown-item" })</li>
+                                <li>@Html.ActionLink("Technisch", "Index", "Storing", null, new { @class = "dropdown-item" })</li>
+                                <li>@Html.ActionLink("Overig", "Dashboard", "Home", new { id = "Overig" }, new { @class = "dropdown-item" })</li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Account
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li> <a>@Html.ActionLink("Vragenoverzicht", "Overzicht", "Home", null, new { @class = "dropdown-item" })</a></li>
+                                <li> <a>@Html.ActionLink("Storingstool aanpassen", "StoringtoolToevoegen", "Storing", null, new { @class = "dropdown-item" })</a></li>
+                                @*<li> <a>@Html.ActionLink("Vraag toevoegen", "VraagToevoegen", "Home", null, new { @class = "dropdown-item" })</a></li>*@
+                            </ul>
+                        </li>
+
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" id="loggedIn" @*background-color: #337ae2; text-align:right; color: white; height: 100%; padding-top: 15px; padding-bottom: 15px"*@>
+                                Je bent niet ingelogd momenteel
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#" onclick="toLogOut()">Uitloggen</a></li>
+                            </ul>
+                        </li>
+
+                        <li style="padding-top: 0px;"><label id="viewTekst" style="font-size: 20px; font-family: Montserrat; font-weight: bold;"></label><br /><button class="btn btn-light" id="stateChange" onclick="changePhase()">Verander view</button></li>
+
+                    </ul>
+                </div>
+            </div>
+            
+    </nav>
+    
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p style="color: white;">&copy; @DateTime.Now.Year - HeatTransformers</p>
+            <p style="color: black;">&copy; @DateTime.Now.Year - HeatTransformers</p>
         </footer>
     </div>
     @Scripts.Render("~/bundles/jquery")
@@ -86,3 +220,30 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+<script>
+
+@*    var usermail = localStorage.getItem("Logged_in_user");
+*@
+    var Logged_in_user = localStorage.getItem("Logged_in_user");
+    var Logged_in = localStorage.getItem("Logged_in");
+    var Logged_in_userid = localStorage.getItem("Logged_in_userid");
+    var Logged_in_emailVerified = localStorage.getItem("Logged_in_emailVerified");
+    //check domain
+    if (Logged_in != null && Logged_in_user != null && Logged_in_userid != null) {
+        var domain = Logged_in_user.includes("heattransformers.com")
+        if (domain == true && Logged_in == "#527467" && Logged_in_userid != null && Logged_in_emailVerified == "true") {
+            var user = Logged_in_user.split("@@heattransformers.com")[0];
+            var userName = user.charAt(0).toUpperCase() + user.slice(1);
+            document.getElementById("loggedIn").innerHTML = "Welkom " + userName + "!";
+
+        }
+        else {
+            console.log("go");
+
+
+        }
+    }
+
+
+
+</script>

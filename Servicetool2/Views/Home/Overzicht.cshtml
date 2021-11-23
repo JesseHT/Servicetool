@@ -4,22 +4,15 @@
 }
 
 <div class="container-fluid">
+    <div id="bovenRij">
     <div id="categorieKeuze">
-        <h2 style="text-align:center; color:#ffffff; font-weight: bold; padding: 5px; padding-top: 10px;">
-            @ViewBag.id
+        <h2 style="text-align:center; color:black; font-weight: bold; padding: 15px; padding-top: 20px;">
+            Vragen overzicht
         </h2>
     </div>
+        </div>
     <div id="algemeenVraagVlak">
-
-        <div id="zoekbalk">
-
-            <input type="text" id="zoekInput" onkeyup="zoekFunctie()" placeholder="Zoeken..">
-        </div>
-        <br>
-        <br>
-        <div id="vragenAlgemeen">
-            Dit is de plek waar alle vragen komen te staan
-        </div>
+        
         <br>
         <br>
         <div class="row">
@@ -33,7 +26,7 @@
                 <div class="row">
                     @Html.ActionLink("Vraag bewerken", "vraagBewerken", "Home", null, new { @class = "btn btn-primary btn-block", onclick = "vraagSave();", @style = "margin: 10px; width: 45%; margin-left: 22px;" })
 
-                    <button class="btn btn-danger" style="margin: 10px; float: right; width: 40%;" onclick="verwijderVraag();">Vraag verwijderen</button>
+                    <button class="btn btn-danger" style="margin: 10px; float: right; width: 40%; margin-left: 33px;" onclick="verwijderVraag();">Vraag verwijderen</button>
                 </div>
             </div>
         </div>

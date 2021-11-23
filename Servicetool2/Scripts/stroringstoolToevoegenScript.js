@@ -2,7 +2,7 @@
     firebase.initializeApp({
         apiKey: 'AIzaSyBlEyAJb6dTHnN8kDbdBhGslrunIaX0z2Q',
         authDomain: 'servicetool-81486.firebaseapp.com',
-        projectId: 'servicetool- 81486'
+        projectId: 'servicetool-81486'
     });
 } else {
     firebase.app(); // if already initialized, use that one
@@ -87,10 +87,8 @@ $("[name = optie]").hide();
 
 //probleem of gerelateerd probleem toevoegen aan de database
 function elementToevoegen() {
-    //console.log("call methode");
     var probleemTekst = document.getElementById('probleemTekst').value;
-    //var bonusveldTekst = document.getElementById('bonusveldTekst').value;
-    //var bonusveldType = document.getElementById('bonusveldType').value;
+
 
     var categorie = document.getElementById('categorie-select').value;
 

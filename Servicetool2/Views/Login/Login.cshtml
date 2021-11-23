@@ -1,0 +1,58 @@
+﻿<link rel="stylesheet" href="~/Content/Form.css">
+
+<script src="~/Scripts/Login.js?5"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+
+<!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+
+@{
+    ViewBag.Title = "Login";
+}
+<body onload="onload()">
+    <div id="login" style="text-align:center">
+        <h2>Login</h2>
+        <br />
+        <input type="text" value="@ViewBag.redirectURL" id="url" hidden style="display:none" />
+        <label for="user" style="text-align:center">Je HeatTransformers mailadres:</label>
+        <br>
+        <input type="text" id="user" name="user">
+        <br>
+        <br>
+        <label for="ww" style="text-align:center">Je wachtwoord:</label>
+        <br>
+        <input type="password" id="ww" name="ww">
+        <br />
+        <p id="error" style="color:red; display:none"></p>
+        <p id="gelukt" style="color:green; display:none"></p>
+
+        <button type="button" onclick="signInWithEmailPassword()" class="schouwknop" style="width:400px">Login</button>
+        <button type="button" onclick="newAccount()" class="schouwknop" style="width:400px">Ik heb nog geen account</button>
+    </div>
+
+    <div id="create" style="display:none; text-align:center">
+        <h2>Maak een nieuw account</h2>
+        <br>
+
+        <input type="text" value="@ViewBag.redirectURL" id="url" hidden style="display:none" />
+        <label style="text-align:center" for="user1">Je HeatTransformers mailadres. Je krijgt hier een verificatiemail op:</label>
+        <br>
+        <input type="text" id="user1" name="user1">
+        <br>
+        <br>
+        <label for="ww1" style="text-align:center">Je wachtwoord. Deze moet minstens 6 tekens zijn</label>
+        <br>
+        <input type="password" id="ww1" name="ww1">
+        <br />
+        <p id="error2" style="color:red; display:none"></p>
+
+        <button type="button" onclick="createWithEmailPassword()" class="schouwknop">Maak account aan</button>
+        <button type="button" onclick="loginAgain()" class="schouwknop">Ik heb al een account</button>
+
+
+    </div>
+</body>

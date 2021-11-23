@@ -3,95 +3,102 @@
     ViewBag.Title = "vraagToevoegen";
 }
 
-<h2>Vraag toevoegen</h2>
 
 <div class="container">
-    
-    <div class="row" id="formRow">
-        
-        <div id="form1" class="col-lg-6">
-
-            <div class="form-group">
-                <label for="vraag">Vraag:</label><br>
-                <input class="form-control" type="text" id="vraag" name="vraag"><br><br />
-            </div>
-
-            <div class="form-group">
-                <label for="antwoord">Telefoon antwoord:</label><br>
-                <textarea class="form-control" rows="3" type="text" id="telAntwoord" name="telAntwoord"></textarea><br><br />
-            </div>
-
-            <div class="form-group">
-                <label for="antwoord">Mail antwoord:</label><br>
-                <textarea class="form-control" rows="3" type="text" id="mailAntwoord" name="mailAntwoord"></textarea><br><br />
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="categorie">Categorie:</label><br />
-                <select class="form-select" name="categorie" id="categorie-select">
-                    <option value="">Kies een categorie</option>
-                    <option value="Algemeen">Algemeen</option>
-                    <option value="Afspraken">Afspraken</option>
-                    <option value="Financieel">Financieel</option>
-                    <option value="Technisch">Technisch</option>
-                    <option value="Overig">Overig</option>
-                </select> <br /><br />
-            </div>
-
-            
-
-            <button id="vraagToevoegenKnop" onclick="vraagToevoegen()" class="btn btn-primary">Vraag toevoegen</button>
-
+    <div id="bovenRij">
+    <div id="categorieKeuze">
+        <h2 style="text-align:center; color:black; font-weight: bold; padding: 15px; padding-top: 20px;">
+            Vraag toevoegen
+        </h2>
+    </div>
         </div>
+    <div id="form">
+        <div class="row" id="formRow">
 
-        <div id="form2" class="col-lg-6">
+            <div id="form1" class="col-lg-6">
 
-
-            <div class="form-group">
-
-                <label for="trefwoord">Trefwoorden:</label><br />
-
-                <div id="trefwoorden">
-                    <input class="form-control" type="text" id="trefwoord" name="trefwoord" /> <br /><br />
-                    <input class="form-control" type="text" id="trefwoord" name="trefwoord" /> <br /><br />
+                <div class="form-group">
+                    <label for="vraag">Vraag:</label><br>
+                    <input class="form-control" type="text" id="vraag" name="vraag"><br><br />
                 </div>
 
-                <button class="form-control" type="button" onclick="addTrefwoord()">Extra trefwoord</button><br />
+                <div class="form-group">
+                    <label for="antwoord">Telefoon antwoord:</label><br>
+                    <textarea class="form-control" rows="3" type="text" id="telAntwoord" name="telAntwoord"></textarea><br><br />
+                </div>
+
+                <div class="form-group">
+                    <label for="antwoord">Mail antwoord:</label><br>
+                    <textarea class="form-control" rows="3" type="text" id="mailAntwoord" name="mailAntwoord"></textarea><br><br />
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="categorie">Categorie:</label><br />
+                    <select class="form-select" name="categorie" id="categorie-select">
+                        <option value="">Kies een categorie</option>
+                        <option value="Algemeen">Algemeen</option>
+                        <option value="Afspraken">Afspraken</option>
+                        <option value="Financieel">Financieel</option>
+                        <option value="Technisch">Technisch</option>
+                        <option value="Overig">Overig</option>
+                    </select> <br /><br />
+                </div>
+
+
+
+                <button id="vraagToevoegenKnop" onclick="vraagToevoegen()" class="btn btn-primary">Vraag toevoegen</button>
 
             </div>
 
+            <div id="form2" class="col-lg-6">
 
-            <br />
-            <div class="form-group">
 
-                <label for="link">Hyperlinks:</label><br />
+                <div class="form-group">
 
-                <div id="links">
-                    <input class="form-control" placeholder="Vul hier de omschrijving in" type="text" id="linkText" name="linkText" /> <br />
-                    <input class="form-control" placeholder="Vul hier de link in" type="text" id="link" name="link" /> <br /><br />
+                    <label for="trefwoord">Trefwoorden:</label><br />
 
+                    <div id="trefwoorden">
+                        <input class="form-control" type="text" id="trefwoord" name="trefwoord" /> <br /><br />
+                        <input class="form-control" type="text" id="trefwoord" name="trefwoord" /> <br /><br />
+                    </div>
+
+                    <button class="form-control" type="button" onclick="addTrefwoord()">Extra trefwoord</button><br />
 
                 </div>
 
-                <button class="form-control" type="button" onclick="addLink()">Extra link</button><br />
-
-            </div>
-            <br />
-            <div class="form-group">
-
-                <div id="gerelateerdSectie">
-                    <label for="gerelateerd">Gerelateerde vragen</label><br />
-                    <select class="form-select" name="gerelateerd" id="gerelateerd-select">
-                    </select>
-                </div>
 
                 <br />
-                <button class="form-control" type="button" onclick="addRelated()">Extra gerelateerde vraag</button>
+                <div class="form-group">
+
+                    <label for="link">Hyperlinks:</label><br />
+
+                    <div id="links">
+                        <input class="form-control" placeholder="Vul hier de omschrijving in" type="text" id="linkText" name="linkText" /> <br />
+                        <input class="form-control" placeholder="Vul hier de link in" type="text" id="link" name="link" /> <br /><br />
+
+
+                    </div>
+
+                    <button class="form-control" type="button" onclick="addLink()">Extra link</button><br />
+
+                </div>
+                <br />
+                <div class="form-group">
+
+                    <div id="gerelateerdSectie">
+                        <label for="gerelateerd">Gerelateerde vragen</label><br />
+                        <select class="form-select" name="gerelateerd" id="gerelateerd-select">
+                        </select>
+                    </div>
+
+                    <br />
+                    <button class="form-control" type="button" onclick="addRelated()">Extra gerelateerde vraag</button>
+
+                </div>
 
             </div>
-
         </div>
     </div>
 </div>

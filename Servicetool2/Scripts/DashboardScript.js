@@ -1,4 +1,12 @@
-﻿firebase.app();
+﻿if (!firebase.apps.length) {
+    firebase.initializeApp({
+        apiKey: 'AIzaSyBlEyAJb6dTHnN8kDbdBhGslrunIaX0z2Q',
+        authDomain: 'servicetool-81486.firebaseapp.com',
+        projectId: 'servicetool-81486'
+    });
+} else {
+    firebase.app(); // if already initialized, use that one
+}
 var db = firebase.firestore();
 
 
@@ -398,20 +406,23 @@ function zoekFunctie() {
     for (l = 0; l < ul.length; l++) {
         li = document.querySelectorAll('[id^="heading"]');
         li2 = document.querySelectorAll('[id^="antwoord"]');
-        console.log(li2[l].children[0].innerHTML);
+        console.log();
         var trefwoorden = document.querySelectorAll('[class^="trefwoordID' + li[l].children[0].children[0].innerHTML + '"]');
         var antwoord = li2[l].children[0].innerHTML;
+        var vraag = li[l].children[0].children[0].innerHTML;
         for (i = 0; i < trefwoorden.length; i++) {
             a = trefwoorden[i].innerHTML;
             txtValue = a;
             var ul1 = $(ul[l]).parents()[0];
 
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
-
                 ul1.style.display = "";
                 break;
-            } else {
-                if (antwoord.toUpperCase().indexOf(filter) > -1) {
+            } else 
+                if (vraag.toUpperCase().indexOf(filter) > -1) {
+                    ul1.style.display = "";
+                } else if
+                 (antwoord.toUpperCase().indexOf(filter) > -1) {
                     ul1.style.display = "";
                 } else {
                     ul1.style.display = "none";
@@ -419,7 +430,7 @@ function zoekFunctie() {
             }
         }
     }
-}
+
 
 //bijhouden hoe vaak er op de like knop gedrukt is
 function klikCount(vraagNaam) {
@@ -470,9 +481,7 @@ function changePhase() {
     }
     else {
         phase = true;
-/*        document.getElementById("stateChange").innerHTML = "telefoonView >>";
-*/
-        console.log(phase);
+
         vulVragen();
     }
 }

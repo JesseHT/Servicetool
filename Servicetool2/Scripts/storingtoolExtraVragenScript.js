@@ -2,7 +2,7 @@
     firebase.initializeApp({
         apiKey: 'AIzaSyBlEyAJb6dTHnN8kDbdBhGslrunIaX0z2Q',
         authDomain: 'servicetool-81486.firebaseapp.com',
-        projectId: 'servicetool- 81486'
+        projectId: 'servicetool-81486'
     });
 } else {
     firebase.app(); // if already initialized, use that one
@@ -37,7 +37,6 @@ function vragenOphalen() {
 
 
                 var vraagNaam = doc.data().titel;
-                var vraagSoort = doc.data().soort;
                 var vraagSubtext = doc.data().subtext;
                 var vraagInputText = doc.data().subAntwoord;
                 var volgorde = doc.data().volgorde;
@@ -93,17 +92,14 @@ function vragenOphalen() {
                 document.getElementById("row" + rowvar).appendChild(div);
                 variabele++;
                 divvar++;
-                console.log("laad");
             })
-            console.log("huh");
 
+
+            // Client side antwoorden op de extra vragen
             if (document.getElementById('Watisdehuidigetemperatuur?') != null) {
-                console.log("binnen");
                 document.getElementById('Watisdehuidigetemperatuur?').onkeyup = (function () {
-                    console.log("test");
                     var value = $(this).val();
                     if (value.match(myString)) {
-                        console.log("goed");
                         document.getElementById('2').removeAttribute("hidden");
 
                     } else {
