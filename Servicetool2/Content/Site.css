@@ -16,6 +16,14 @@ body {
     background-color: #dbe6f0;
 }
 
+#login {
+    font-family: Lato;
+}
+
+#create {
+    font-family: Lato;
+}
+
 pre {
     font-family: Lato;
     font-size: 16px;
@@ -27,10 +35,14 @@ pre {
     padding-top: 5px;
 }
 
-.row {
+/*.row {
     margin-bottom: 10px;
-}
+}*/
 
+#navbarInhoud {
+    position: absolute; 
+    left: 32%;
+}
 
 #storingIndexContainer {
     background-color: #ECECEC;

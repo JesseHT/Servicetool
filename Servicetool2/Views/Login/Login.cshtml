@@ -18,20 +18,20 @@
         <h2>Login</h2>
         <br />
         <input type="text" value="@ViewBag.redirectURL" id="url" hidden style="display:none" />
-        <label for="user" style="text-align:center">Je HeatTransformers mailadres:</label>
+        <label for="user" style="text-align:center">E-mail:</label>
         <br>
         <input type="text" id="user" name="user">
         <br>
         <br>
-        <label for="ww" style="text-align:center">Je wachtwoord:</label>
+        <label for="ww" style="text-align:center">wachtwoord:</label>
         <br>
         <input type="password" id="ww" name="ww">
         <br />
         <p id="error" style="color:red; display:none"></p>
         <p id="gelukt" style="color:green; display:none"></p>
-
-        <button type="button" onclick="signInWithEmailPassword()" class="schouwknop" style="width:400px">Login</button>
-        <button type="button" onclick="newAccount()" class="schouwknop" style="width:400px">Ik heb nog geen account</button>
+        <br />
+        <button type="button" onclick="signInWithEmailPassword()" class="btn btn-primary" style="width:400px">Login</button>
+        <button type="button" onclick="newAccount()" class="btn btn-primary" style="width:400px">Ik heb nog geen account</button>
     </div>
 
     <div id="create" style="display:none; text-align:center">
@@ -44,14 +44,14 @@
         <input type="text" id="user1" name="user1">
         <br>
         <br>
-        <label for="ww1" style="text-align:center">Je wachtwoord. Deze moet minstens 6 tekens zijn</label>
+        <label for="ww1" style="text-align:center">Je wachtwoord. Dit moet minstens 6 tekens zijn</label>
         <br>
         <input type="password" id="ww1" name="ww1">
         <br />
         <p id="error2" style="color:red; display:none"></p>
-
-        <button type="button" onclick="createWithEmailPassword()" class="schouwknop">Maak account aan</button>
-        <button type="button" onclick="loginAgain()" class="schouwknop">Ik heb al een account</button>
+        <br />
+        <button type="button" onclick="createWithEmailPassword()" class="btn btn-primary">Maak een account aan</button>
+        <button type="button" onclick="loginAgain()" class="btn btn-primary">Ik heb al een account</button>
 
 
     </div>

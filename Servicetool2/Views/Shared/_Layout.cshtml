@@ -36,9 +36,9 @@
     }
     // Your web app's Firebase configuration
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    var uid = localStorage.getItem("Logged_in_userid")
-    var mail = localStorage.getItem("Logged_in_user")
-    var ver = localStorage.getItem("Logged_in_emailVerified")
+    var uid = localStorage.getItem("Logged_in_userid");
+    var mail = localStorage.getItem("Logged_in_user");
+    var ver = localStorage.getItem("Logged_in_emailVerified");
     if (ver == "true") {
         ver = true
     }
@@ -144,6 +144,7 @@
 
 
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -152,62 +153,85 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
+
 <body>
-    <nav class="navbar fixed-top navbar-expand-xxl navbar-dark bg-primary" id="navbar">
-        
-            <div class="container" id="navbarText">
 
-                <a href="@Url.Action("Index", "Home", null)">
-                    <img style="width:200px; height:auto; padding-top: 13px;" src="~/Content/Logo-full-white-png(1).png" />
-                </a>
+    <div class="container">
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse" id="navbarTogglerDemo02">
-                    <ul class="nav navbar-nav mr-auto">
-                        <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Categorieën
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li>@Html.ActionLink("Algemeen", "Dashboard", "Home", new { id = "Algemeen" }, new { @class = "dropdown-item" })</li>
-                                <li>@Html.ActionLink("Afspraken", "Dashboard", "Home", new { id = "Afspraken" }, new { @class = "dropdown-item" })</li>
-                                <li>@Html.ActionLink("Financieel", "Dashboard", "Home", new { id = "Financieel" }, new { @class = "dropdown-item" })</li>
-                                <li>@Html.ActionLink("Technisch", "Index", "Storing", null, new { @class = "dropdown-item" })</li>
-                                <li>@Html.ActionLink("Overig", "Dashboard", "Home", new { id = "Overig" }, new { @class = "dropdown-item" })</li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Account
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li> <a>@Html.ActionLink("Vragenoverzicht", "Overzicht", "Home", null, new { @class = "dropdown-item" })</a></li>
-                                <li> <a>@Html.ActionLink("Storingstool aanpassen", "StoringtoolToevoegen", "Storing", null, new { @class = "dropdown-item" })</a></li>
-                                @*<li> <a>@Html.ActionLink("Vraag toevoegen", "VraagToevoegen", "Home", null, new { @class = "dropdown-item" })</a></li>*@
-                            </ul>
-                        </li>
+        <div class="row">
+
+            <div class="col-2"></div>
+
+            <div class="col-10">
+
+                <nav class="navbar fixed-top navbar-expand-xxl navbar-dark bg-primary" id="navbar">
+
+                    <a href="@Url.Action("Index", "Home", null)">
+                        <img style="width:200px; height:auto; padding-top: 18px;" src="~/Content/Logo-full-white-png(1).png" />
+                    </a>
+
+                    <button style="margin-right: 10%;" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse collapse" id="navbarTogglerDemo02">
+
+                        <ul class="nav navbar-nav mr-auto" id="navbarInhoud">
+
+                            <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Categorieën
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li>@Html.ActionLink("Algemeen", "Dashboard", "Home", new { id = "Algemeen" }, new { @class = "dropdown-item" })</li>
+                                    <li>@Html.ActionLink("Afspraken", "Dashboard", "Home", new { id = "Afspraken" }, new { @class = "dropdown-item" })</li>
+                                    <li>@Html.ActionLink("Financieel", "Dashboard", "Home", new { id = "Financieel" }, new { @class = "dropdown-item" })</li>
+                                    @*<li>@Html.ActionLink("Technisch", "Index", "Storing", null, new { @class = "dropdown-item" })</li>*@
+                                    <li>@Html.ActionLink("Overig", "Dashboard", "Home", new { id = "Overig" }, new { @class = "dropdown-item" })</li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Bewerken
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li> <a>@Html.ActionLink("Vragenoverzicht", "Overzicht", "Home", null, new { @class = "dropdown-item" })</a></li>
+                                    @*<li> <a>@Html.ActionLink("Storingstool aanpassen", "StoringtoolToevoegen", "Storing", null, new { @class = "dropdown-item" })</a></li>*@
+                                    
+                                </ul>
+                            </li>
 
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" id="loggedIn" @*background-color: #337ae2; text-align:right; color: white; height: 100%; padding-top: 15px; padding-bottom: 15px"*@>
-                                Je bent niet ingelogd momenteel
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#" onclick="toLogOut()">Uitloggen</a></li>
-                            </ul>
-                        </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" id="loggedIn" @*background-color: #337ae2; text-align:right; color: white; height: 100%; padding-top: 15px; padding-bottom: 15px"*@>
+                                    Niet ingelogd
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#" onclick="toLogOut()">Uitloggen</a></li>
+                                </ul>
+                            </li>
 
-                        <li style="padding-top: 0px;"><label id="viewTekst" style="font-size: 20px; font-family: Montserrat; font-weight: bold;"></label><br /><button class="btn btn-light" id="stateChange" onclick="changePhase()">Verander view</button></li>
+                            <li style="padding-top: 0px;">
+                                <label id="viewTekst" style="font-size: 20px; font-family: Montserrat; font-weight: bold;"></label>
+                                    <br />
+                                <button class="btn btn-light" id="stateChange" onclick="changePhase()">Verander view</button>
+                            </li>
 
-                    </ul>
-                </div>
-            </div>
-            
-    </nav>
-    
+                        </ul>
+
+                    </div>
+
+            </nav>
+
+        </div>
+
+        <div class="col-2"></div>
+    </div>
+        </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -221,9 +245,6 @@
 </body>
 </html>
 <script>
-
-@*    var usermail = localStorage.getItem("Logged_in_user");
-*@
     var Logged_in_user = localStorage.getItem("Logged_in_user");
     var Logged_in = localStorage.getItem("Logged_in");
     var Logged_in_userid = localStorage.getItem("Logged_in_userid");
