@@ -39,6 +39,7 @@ var i = 0;
                 var label = document.createElement('label');
                 label.className = "btn btn-outline-primary";
                 label.htmlFor = "btnradio " + Vraag;
+                label.id = "vraag" + Vraag;
                 label.innerHTML = Vraag;
 
 
@@ -100,6 +101,32 @@ function vraagSave() {
 
 }
 
+function zoekFunctie() {
+    // Declare variables
+    var input, filter, ul, li, a, txtValue;
+    input = document.getElementById('zoekInput');
+    filter = input.value.toUpperCase();
+    ul = document.getElementsByClassName("btn-check");
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (l = 0; l < ul.length; l++) {
+        li = document.querySelectorAll('[id^="vraag"]');
+        console.log(li[l].innerHTML);
+        var vraag = li[l];
+
+            a = vraag.innerHTML;
+        txtValue = a;
+        console.log($(ul[l]).parents()[0])
+
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                vraag.style.display = "";
+                /*break;*/
+            } else {
+                    vraag.style.display = "none";
+                }
+        }
+    
+}
 
 
 

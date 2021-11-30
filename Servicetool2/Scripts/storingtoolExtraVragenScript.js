@@ -125,9 +125,18 @@ function vragenOphalen() {
                 })
             }
 
+            
+
         });
 }
 
 vragenOphalen();
 
+function laatZien() {
+    if (document.getElementById('flowstoringCheck').checked == true) {
+        document.getElementById('flowstoringTafel').removeAttribute("hidden");
+    } else {
+        document.getElementById('flowstoringTafel').setAttribute("hidden", "true");
+    }
+}
 
