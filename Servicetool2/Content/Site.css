@@ -253,6 +253,19 @@ select {
     border-bottom: 1px solid;
 }
 
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: white;
+}
+
+#row0 {
+    border-bottom: 1px solid;
+}
+
 #extraPagina #extraVragen .row {
     background-color: #ECECEC;
 }

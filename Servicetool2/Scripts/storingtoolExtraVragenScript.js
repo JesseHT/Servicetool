@@ -9,7 +9,8 @@
 }
 
 var db = firebase.firestore();
-var myString = "22";
+var myString = [21, 22, 23, 24];
+var myString2 = "Ja";
 //cookies indelen in een variabele met een waarde en in de lijst boven aan de pagina zetten
 var cookies = document.cookie
     .split(';')
@@ -46,13 +47,14 @@ function vragenOphalen() {
                 var br = document.createElement('br');
 
                 if (variabele == 3) {
-                    var br = document.createElement('br');
+                    var br2 = document.createElement('br');
                     rowvar++;
                     var row = document.createElement('div');
                     row.className = "row";
                     row.id = "row" + rowvar;
-                    document.getElementById("extraVragen").appendChild(br);
+                    document.getElementById("extraVragen").appendChild(br2);
                     document.getElementById("extraVragen").appendChild(row);
+                    
 
                     variabele = 0;
                 }
@@ -98,15 +100,31 @@ function vragenOphalen() {
             // Client side antwoorden op de extra vragen
             if (document.getElementById('Watisdehuidigetemperatuur?') != null) {
                 document.getElementById('Watisdehuidigetemperatuur?').onkeyup = (function () {
+                    for (var i = 0; i < myString.length; i++) {
                     var value = $(this).val();
-                    if (value.match(myString)) {
+                    if (value.match(myString[i])) {
                         document.getElementById('2').removeAttribute("hidden");
+                        break;
 
                     } else {
                         document.getElementById('2').setAttribute("hidden", "true");
                     }
+                }
                 });
             }
+
+            if (document.getElementById('oranjeboekjeknippert') != null) {
+                document.getElementById('oranjeboekjeknippert').onkeyup = (function () {
+                    console.log("test");
+                    var value = $(this).val();
+                    if (value.match(myString2)) {
+                        document.getElementById('storingTafel').removeAttribute("hidden");
+                    } else {
+                        document.getElementById('storingTafel').setAttribute("hidden", "true");
+                    }
+                })
+            }
+
         });
 }
 
