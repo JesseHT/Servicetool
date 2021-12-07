@@ -113,7 +113,7 @@ function vragenOphalen() {
                 });
             }
 
-            if (document.getElementById('oranjeboekjeknippert') != null) {
+            if (document.getElementById('oranjeboekjeknippert') != null && cookies.probleem == "Storingscode op de Elga 304") {
                 document.getElementById('oranjeboekjeknippert').onkeyup = (function () {
                     console.log("test");
                     var value = $(this).val();
@@ -125,7 +125,23 @@ function vragenOphalen() {
                 })
             }
 
-            
+            if (document.getElementById('oranjeboekjeknippert') != null && cookies.probleem == "Storingscode op de Elga Ace") {
+                document.getElementById('oranjeboekjeknippert').onkeyup = (function () {
+                    console.log("test");
+                    var value = $(this).val();
+                    if (value.match(myString2)) {
+                        document.getElementById('storingTafelAce').removeAttribute("hidden");
+                    } else {
+                        document.getElementById('storingTafelAce').setAttribute("hidden", "true");
+                    }
+                })
+            }
+            if (cookies.probleem == "Storingscode op de Elga Ace") {
+                document.getElementById('aceIcon').removeAttribute("hidden");
+            }
+            if (cookies.probleem == "Storingscode op de Elga 304") {
+                document.getElementById('aceIcon').removeAttribute("hidden");
+            }
 
         });
 }
@@ -133,10 +149,17 @@ function vragenOphalen() {
 vragenOphalen();
 
 function laatZien() {
+    console.log("binnen")
     if (document.getElementById('flowstoringCheck').checked == true) {
         document.getElementById('flowstoringTafel').removeAttribute("hidden");
     } else {
         document.getElementById('flowstoringTafel').setAttribute("hidden", "true");
+    }
+
+    if (document.getElementById('flowstoringCheckAce').checked == true || document.getElementById('flowstoringCheckAce2').checked == true) {
+        document.getElementById('flowstoringTafelAce').removeAttribute("hidden");
+    } else {
+        document.getElementById('flowstoringTafelAce').setAttribute("hidden", "true");
     }
 }
 

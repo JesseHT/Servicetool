@@ -265,12 +265,14 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Database-Accept-icon.png" />
+    <Content Include="Content\Elga Ace icoontjes.png" />
     <Content Include="Content\HeatTransformers-logo-icon-400px-white-on-blue.png" />
     <Content Include="Content\HTLogo.png" />
     <Content Include="Content\images__2_-removebg-preview.png" />
     <Content Include="Content\Logo-full-white-png%281%29.png" />
     <Content Include="Content\Logo-full-white-png.png" />
     <Content Include="Content\Logo-icon-blue-png.png" />
+    <Content Include="Content\warmtepompicon.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

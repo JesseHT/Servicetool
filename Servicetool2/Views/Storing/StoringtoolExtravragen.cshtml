@@ -37,6 +37,15 @@
     </div>
     <br />
     <div class="container" id="extraVragen">
+        <div class="row" id="hulpPlaatje">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <img class="img-thumbnail" id="aceIcon" style="display: block; margin-left: auto; margin-right: auto;" src="~/Content/Elga Ace icoontjes.png" hidden />
+                <img class="img-thumbnail" id="aceIcon" style="display: block; margin-left: auto; margin-right: auto;" src="~/Content/warmtepompicon.png" hidden />
+
+            </div>
+            <div class="col-2"></div>
+        </div>
         <div class="row" id="row0"></div>
     </div>
     <br />
@@ -54,37 +63,37 @@
                     <th>Actie</th>
                 </tr>
                 <tr>
-                    <td><input type="checkbox"/></td>
+                    <td><input type="checkbox" /></td>
                     <td>1ste flits lang (code 1 op thermostaat)</td>
                     <td>Foutmelding ketel</td>
                     <td>Kijk op ketel naar de storing. <br />Noteer storing, maak ticket en stuur door.</td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox"/></td>
+                    <td><input type="checkbox" /></td>
                     <td>2de flits lang (code 2 op thermostaat)</td>
                     <td>Communicatie probleem met opentherm ketel</td>
                     <td>Vraag klant om te controlleren of kabel tussen Elga en CV ketel nog hangt. Vraag of er iets aangepast is aan de instellingen van de ketel of elga. vraag of er recent onderhoud is gepleegd aan Elga of ketel.</td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox"/></td>
+                    <td><input type="checkbox" /></td>
                     <td>3de flits lang</td>
                     <td>Communicatie probleem thermostaat</td>
                     <td>Vraag of de thermostaat wel aan staat en geen storing geeft. COntroleer draadje van thermostaat naar ketel. vraag of thermostaat vervangen is of dat er onderhoud aan ketel of elga is geweest.</td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox"/></td>
+                    <td><input type="checkbox" /></td>
                     <td>4e flits lang (code 64)</td>
                     <td>Communicatie probleem toshiba</td>
                     <td style="background-color: red;">Maak ticket aan en stuur door</td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox"/></td>
+                    <td><input type="checkbox" /></td>
                     <td>5e flits lang (code 128)</td>
                     <td>Storing toshiba</td>
                     <td>Vraag of dit 1 keer voor is gekomen of vaker de laatste tijd. Deze storing kan ontstaan bij herstarten van het systeem, of als het herstart uit standby. als het eenmalig is laat de klant dan afwachten en over 30 min kijken of alles werkt en de verwarming opwarmt.</td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox"  id="flowstoringCheck" onclick="laatZien()" /></td>
+                    <td><input type="checkbox" id="flowstoringCheck" onclick="laatZien()" /></td>
                     <td>6e flits lang (code 32)</td>
                     <td>Flowstoring</td>
                     <td>Zie "flowstoring" hieronder</td>
@@ -96,13 +105,13 @@
                     <td style="background-color: red;">Maak ticket aan en stuur door</td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox"/></td>
+                    <td><input type="checkbox" /></td>
                     <td>8e flits lang (code 16)</td>
                     <td>(Extra) buitenvoeler storing</td>
                     <td style="background-color: red;">Maak ticket aan en stuur door</td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox"/></td>
+                    <td><input type="checkbox" /></td>
                     <td>9e flits lang (code 4)</td>
                     <td>Sensor fout: NTC2</td>
                     <td style="background-color: red;">Maak ticket aan en stuur door</td>
@@ -110,8 +119,102 @@
             </table>
         </div>
         <div class="col-2"></div>
+        <br />
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <label>Standaard actie bij storing: Haal even de Elga Ace van de spanning (15 sec) zodat deze reset.</label>
+            <table id="storingTafelAce" hidden>
+                <tr>
+                    <th></th>
+                    <th>Code</th>
+                    <th>Melding</th>
+                    <th>Beschrijving</th>
+                    <th>Actie</th>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" id="flowstoringCheckAce" onclick="laatZien()" /></td>
+                    <td>H02.23</td>
+                    <td>Systeemdebiet fout</td>
+                    <td>Waterdoorstromingsfout van het systeem actief</td>
+                    <td>Zie flowstoring stappen</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" id="flowstoringCheckAce2" onclick="laatZien()" /></td>
+                    <td>E02.24</td>
+                    <td>Systeemdebiet blokkering</td>
+                    <td>Vergrendeling van de waterdoorstroming in het systeem is actief</td>
+                    <td>Zie flowstoring stappen</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" /></td>
+                    <td>H02.56</td>
+                    <td>OpenTherm fout</td>
+                    <td>De OpenTherm interface was operationeel, maar is gestopt met werken</td>
+                    <td>Reset de warmtepomp door de stroom uit en weer in te schakelen 20 seconden</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" /></td>
+                    <td>H06.01</td>
+                    <td>Wp-eenheid fout</td>
+                    <td>Storing warmtepomp opgetreden</td>
+                    <td>Storingsgeschiedenis uitlezen > <a href="https://docs.google.com/spreadsheets/d/1AjYY00E25dQPJRRxnSkEPhhtirqMk1dwcgMXmuJ84ak/edit#gid=540963535">subcode opzoeken</a> >  Codes noteren</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" /></td>
+                    <td>H06.02</td>
+                    <td>Bl hydr verwarming</td>
+                    <td>Hydraulische bijverwarming blokkeren</td>
+                    <td>Storing in de ketel oplossen > ga naar stap 4</td>
+                </tr>
+                <tr>
+                    <td>Andere codes</td>
+                    <td>Zie link:</td>
+                    <td><a href="https://tools.remeha.nl/wp-content/uploads/sites/3/2020/06/IOM-Elga-Ace-NOT-7745647-05.pdf"> Link</a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-2"></div>
     </div>
     <br />
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <table id="flowstoringTafelAce" hidden>
+                <tr>
+                    <th>Flowstoring Elga Ace</th>
+                    <th>Doorgeen aan service, maar noteer in ieder geval de volgende dingen in ticket</th>
+                </tr>
+                <tr>
+                    <th>Check de volgende dingen:</th>
+                    <th>Vervolg actie</th>
+                </tr>
+                <tr>
+                    <td>Staan alle groepen open?</td>
+                    <td>Vraag of alle radiatoren open staan en of de pompen draaien (vloerverwarming)</td>
+
+                </tr>
+                <tr>
+                    <td>Zit er by-pass en buffervat in het systeem</td>
+                    <td>Check de oplevering</td>
+                </tr>
+                <tr>
+                    <td>Is het systeem pas aangelegd?</td>
+                    <td>indien nee > is er wat gewijzigd aan het systeem, bijvoorbeeld nieuwe radiator oid</td>
+                </tr>
+                <tr>
+                    <td>Wijzigingen in het systeem?</td>
+                    <td>Ja = ontluchtingsmodus</td>
+                </tr>
+                <tr>
+                    <td>Heeft het systeem al goed gedraaid?</td>
+                    <td>Als E02.24 direct terugkomt en blijft moet servicebezoek ingepland worden</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-2"></div>
+    </div>
     <div class="row">
         <div class="col-2"></div>
         <div class="col-8">

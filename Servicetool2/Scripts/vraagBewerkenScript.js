@@ -168,8 +168,8 @@ function vraagUpdaten() {
     var vraag = document.getElementById('vraag').value;
     var telAntwoord = document.getElementById('telAntwoord').value;
     var mailAntwoord = document.getElementById('mailAntwoord').value;
-    var antwoordEchtMail = telAntwoord;
-    var antwoordEchtTel = mailAntwoord;
+    var antwoordEchtMail = mailAntwoord;
+    var antwoordEchtTel = telAntwoord;
 
     var categorie = document.getElementById('categorie-select').value;
 
