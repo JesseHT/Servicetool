@@ -39,6 +39,7 @@ function vragenOphalen() {
 
                 var vraagNaam = doc.data().titel;
                 var vraagSubtext = doc.data().subtext;
+                var soort = doc.data().soort;
                 var vraagInputText = doc.data().subAntwoord;
                 var volgorde = doc.data().volgorde;
 
@@ -54,7 +55,7 @@ function vragenOphalen() {
                     row.id = "row" + rowvar;
                     document.getElementById("extraVragen").appendChild(br2);
                     document.getElementById("extraVragen").appendChild(row);
-                    
+
 
                     variabele = 0;
                 }
@@ -78,7 +79,10 @@ function vragenOphalen() {
                 vraagTitel.innerHTML = vraagNaam;
 
                 var vraagInput = document.createElement('input');
-                vraagInput.type = 'text';
+                vraagInput.type = soort;
+                if (soort == "checkbox") {
+                    vraagInput.setAttribute("onclick", "checkDit()");
+                }
                 vraagInput.id = goedevraag;
 
 
@@ -101,52 +105,71 @@ function vragenOphalen() {
             if (document.getElementById('Watisdehuidigetemperatuur?') != null) {
                 document.getElementById('Watisdehuidigetemperatuur?').onkeyup = (function () {
                     for (var i = 0; i < myString.length; i++) {
-                    var value = $(this).val();
-                    if (value.match(myString[i])) {
-                        document.getElementById('2').removeAttribute("hidden");
-                        break;
+                        var value = $(this).val();
+                        if (value.match(myString[i])) {
+                            document.getElementById('2').removeAttribute("hidden");
+                            break;
 
-                    } else {
-                        document.getElementById('2').setAttribute("hidden", "true");
+                        } else {
+                            document.getElementById('2').setAttribute("hidden", "true");
+                        }
                     }
-                }
                 });
             }
 
-            if (document.getElementById('oranjeboekjeknippert') != null && cookies.probleem == "Storingscode op de Elga 304") {
-                document.getElementById('oranjeboekjeknippert').onkeyup = (function () {
-                    console.log("test");
-                    var value = $(this).val();
-                    if (value.match(myString2)) {
-                        document.getElementById('storingTafel').removeAttribute("hidden");
-                    } else {
-                        document.getElementById('storingTafel').setAttribute("hidden", "true");
-                    }
-                })
-            }
-
-            if (document.getElementById('oranjeboekjeknippert') != null && cookies.probleem == "Storingscode op de Elga Ace") {
-                document.getElementById('oranjeboekjeknippert').onkeyup = (function () {
-                    console.log("test");
-                    var value = $(this).val();
-                    if (value.match(myString2)) {
-                        document.getElementById('storingTafelAce').removeAttribute("hidden");
-                    } else {
-                        document.getElementById('storingTafelAce').setAttribute("hidden", "true");
-                    }
-                })
-            }
             if (cookies.probleem == "Storingscode op de Elga Ace") {
                 document.getElementById('aceIcon').removeAttribute("hidden");
             }
             if (cookies.probleem == "Storingscode op de Elga 304") {
-                document.getElementById('aceIcon').removeAttribute("hidden");
+                document.getElementById('elgaIcon').removeAttribute("hidden");
             }
+            if (cookies.probleem == "Lekkage") {
+                document.getElementById('lekkageTekst').removeAttribute("hidden");
+            }
+            if (cookies.probleem == "Ik wil koelen") {
+                document.getElementById('koelenTekst').removeAttribute("hidden");
+            }
+            if (cookies.probleem == "Hoe kan ik mijn besparing verbeteren") {
+                document.getElementById('besparingTekst').removeAttribute("hidden");
+            }
+            if (cookies.probleem == "Ik wil graag hulp bij het instellen van mijn thermostaat") {
+                document.getElementById('instellenTekst').removeAttribute("hidden");
+            }
+            if (cookies.probleem == "Storingscode op de Daikin") {
+                document.getElementById('storingDaikin').removeAttribute("hidden");
+            }
+            if (cookies.probleem == "Storingscode op de Elga Ace") {
+                document.getElementById('aceStoringTekst').removeAttribute("hidden");
+            }
+            if (cookies.probleem == "Storingscode op de ketel") {
+                document.getElementById('storingKetel').removeAttribute("hidden");
+            }
+            });
+    }
 
-        });
-}
 
 vragenOphalen();
+
+function checkDit() {
+    if (cookies.probleem == "Storingscode op de Elga 304") {
+        if (document.getElementById('oranjeboekjeknippert').checked) {
+            document.getElementById('storingTafel').removeAttribute("hidden");
+        } else {
+            document.getElementById('storingTafel').setAttribute("hidden", "true");
+        }
+    }
+
+    if (cookies.probleem == "Storingscode op de Elga Ace") {
+        if (document.getElementById('oranjeboekjeknippert').checked) {
+
+            document.getElementById('storingTafelAce').removeAttribute("hidden");
+        } else {
+            document.getElementById('storingTafelAce').setAttribute("hidden", "true");
+        }
+    }
+}
+
+
 
 function laatZien() {
     console.log("binnen")

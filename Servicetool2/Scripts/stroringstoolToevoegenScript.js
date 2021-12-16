@@ -123,6 +123,8 @@ function elementToevoegen() {
 
         db.collection("Extravragen").doc(titel).set(docData).then(() => {
             console.log("Document successfully written!");
+            location.reload();
+
         });
     }
 

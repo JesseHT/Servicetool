@@ -41,16 +41,146 @@
             <div class="col-2"></div>
             <div class="col-8">
                 <img class="img-thumbnail" id="aceIcon" style="display: block; margin-left: auto; margin-right: auto;" src="~/Content/Elga Ace icoontjes.png" hidden />
-                <img class="img-thumbnail" id="aceIcon" style="display: block; margin-left: auto; margin-right: auto;" src="~/Content/warmtepompicon.png" hidden />
-
+                <img class="img-thumbnail" id="elgaIcon" style="display: block; margin-left: auto; margin-right: auto;" src="~/Content/warmtepompicon.png" hidden />
+                <label id="koelenTekst" style="display: table; margin-left: auto; margin-right: auto;" hidden>Ik wil koelen: De link naar het document met informatie over koelen is <a href="https://docs.google.com/document/d/11o2L7eYDNZqOzaNyKAYx5RE1OzD1XJWJUw3lsNNwNUw/edit">hier</a> te vinden.</label>
+                <div id="besparingTekst" style="display: grid; margin-left: auto; margin-right: auto;" hidden>
+                    <table>
+                        <tr>
+                            <th>Welk apparaat?</th>
+                            <th>Documenten en links</th>
+                        </tr>
+                        <tr>
+                            <td>Techneco Elga</td>
+                            <td><a href="https://docs.google.com/document/d/1_XE1WTgzEDuzJzFLewm-pxIB-vXvCL84zX_LrKqSVk0/edit">Link 1</a></td>
+                        </tr>
+                        <tr>
+                            <td>Elga Ace</td>
+                            <td><a href="https://drive.google.com/file/d/11XObcYlz39mdPC_hob0BG6Y4XFHyGliz/view?usp=sharing">Link 1</a></td>
+                        </tr>
+                        <tr>
+                            <td>Daikin</td>
+                            <td><a href="https://drive.google.com/file/d/1p2Htxrgqkg_LadCjqcq3n2SxwCJFurut/view?usp=sharing">Link 1</a></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="instellenTekst" style="display: grid; margin-left: auto; margin-right: auto;" hidden>
+                    <table>
+                        <tr>
+                            <th>Waar heeft de klant hulp bij nodig?</th>
+                            <th>Link</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                Noteer wat hij wil weten, maak een ticket aan en
+                                laat de klant een afspraak maken via de volgende link
+                            </td>
+                            <td><a href="https://calendly.com/service-heattransformers/service-gesprek?back=1&month=2021-07">Link naar de pagina voor het maken van een afspraak</a> </td>
+                        </tr>
+                        <tr>
+                            <td>Zoek instructie op in bestaande lijst met instructies</td>
+                            <td><a href="https://drive.google.com/drive/folders/1HDaPSXKXXrNQvSIQyuD3UVr77odnTTnN">Link naar de map met klantinstructies</a></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="storingKetel" style="display: grid; margin-left: auto; margin-right: auto;" hidden>
+                    <table>
+                        <tr>
+                            <th>Vraag</th>
+                            <th>Actie</th>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                            <td>Ga naar de site</td>
+                        </tr>
+                        <tr>
+                            <td>Vraag klant om exacte type en merk ketel</td>
+                            <td>Handige site: <a href="https://eerstehulpbijstoring.nl/cv-ketel-storingscode/">Link</a></td>
+                        </tr>
+                        <tr>
+                            <td>Vraag klant om storingscode</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Noteer storingscode. Maak ticket aan. Belangrijkste vraag: zit u nu in de kou? </td>
+                            <td style="background-color: red; color: white;">
+                                Indien ja, in kou, direct melden aan
+                                service afdeling en ticket aanmaken
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Als het systeem al enige tijd in het stookseizoen (okt tot maart) gedraaid heeft en de ketel gaat niet aan terwijl de elga op standby staat dan heeft de ketel een storing. als de ketel niet door ons geplaatst is moet de klant zijn cv monteur bellen.</td>
+                            
+                        </tr>
+                    </table>
+                </div>
             </div>
+            
             <div class="col-2"></div>
         </div>
+        <br />
         <div class="row" id="row0"></div>
     </div>
     <br />
     <br />
     <br />
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <table id="storingDaikin" hidden>
+                <tr>
+                    <th>De storingscode wordt weergegeven op de Daikin thermostaat</th>
+                </tr>
+                <tr>
+                    <td>Storingscode</td>
+                    <td>HJ-11</td>
+                    <td>Duidt op een probleem met de ketel</td>
+                    <td>1. Check de waterdruk (zet de ketel uit met de uit-knop)</td>
+                </tr>
+                <tr>
+                    <td>HJ-7</td>
+                    <td>Flowstoring</td>
+                    <td></td>
+                    <td>2. Ketel weer aan en resetten (zie afbeelding)</td>
+                </tr>
+                <tr>
+                    <td>HJ-11</td>
+                    <td>Communicatie probleem boiler</td>
+                    <td></td>
+                    <td>vraag klant of gasketel aan staat. Dan brandt het lampje bij aan/uit en staat er geen indicatie. bij twijfel foto laten sturen</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Druk te laag</td>
+                    <td></td>
+                    <td>vraag klant op aan/uit knop van ketel te drukken. als druk onder 1.0 bar, laat klant bijvullen</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Overige</td>
+                    <td></td>
+                    <td style="background-color: red; color: white;">Ticket aanmaken en storing melden</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Warm water doet het niet</td>
+                    <td></td>
+                    <td>Druk op huisje (zodat warmtapw verschijnt en vraag of het ledje brandt) Indien antwoord is Nee dan moet de de aan knop ingedrukt worden</td>
+                </tr>
+                <tr>
+                    <td>HJ-12</td>
+                    <td style="background-color: red; color: white;">Direct melden en klant systeem laten resetten</td>
+                    <td>Storing omslaan omschakelklep</td>
+                    <td>Reset: werkschakelaar omzetten, 20 seconden spanningsloos, weer op spanning. Indien dit werkt, top.</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-2"></div>
+    </div>
     <br />
     <div class="row">
         <div class="col-2"></div>
@@ -124,7 +254,7 @@
     <div class="row">
         <div class="col-2"></div>
         <div class="col-8">
-            <label>Standaard actie bij storing: Haal even de Elga Ace van de spanning (15 sec) zodat deze reset.</label>
+            <label id="aceStoringTekst" hidden>Standaard actie bij storing: Haal even de Elga Ace van de spanning (15 sec) zodat deze reset.</label>
             <table id="storingTafelAce" hidden>
                 <tr>
                     <th></th>
@@ -134,35 +264,35 @@
                     <th>Actie</th>
                 </tr>
                 <tr>
-                    <td><input type="checkbox" id="flowstoringCheckAce" onclick="laatZien()" /></td>
+                    <td><input type="checkbox" id="flowstoringCheckAce" name="H02.23" onclick="laatZien()" /></td>
                     <td>H02.23</td>
                     <td>Systeemdebiet fout</td>
                     <td>Waterdoorstromingsfout van het systeem actief</td>
                     <td>Zie flowstoring stappen</td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox" id="flowstoringCheckAce2" onclick="laatZien()" /></td>
+                    <td><input type="checkbox" id="flowstoringCheckAce2" name="E02.24" onclick="laatZien()" /></td>
                     <td>E02.24</td>
                     <td>Systeemdebiet blokkering</td>
                     <td>Vergrendeling van de waterdoorstroming in het systeem is actief</td>
                     <td>Zie flowstoring stappen</td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox" /></td>
+                    <td><input type="checkbox" name="H02.56"/></td>
                     <td>H02.56</td>
                     <td>OpenTherm fout</td>
                     <td>De OpenTherm interface was operationeel, maar is gestopt met werken</td>
                     <td>Reset de warmtepomp door de stroom uit en weer in te schakelen 20 seconden</td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox" /></td>
+                    <td><input type="checkbox" name="H06.01"/></td>
                     <td>H06.01</td>
                     <td>Wp-eenheid fout</td>
                     <td>Storing warmtepomp opgetreden</td>
                     <td>Storingsgeschiedenis uitlezen > <a href="https://docs.google.com/spreadsheets/d/1AjYY00E25dQPJRRxnSkEPhhtirqMk1dwcgMXmuJ84ak/edit#gid=540963535">subcode opzoeken</a> >  Codes noteren</td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox" /></td>
+                    <td><input type="checkbox" name="H06.02"/></td>
                     <td>H06.02</td>
                     <td>Bl hydr verwarming</td>
                     <td>Hydraulische bijverwarming blokkeren</td>
@@ -184,7 +314,7 @@
             <table id="flowstoringTafelAce" hidden>
                 <tr>
                     <th>Flowstoring Elga Ace</th>
-                    <th>Doorgeen aan service, maar noteer in ieder geval de volgende dingen in ticket</th>
+                    <th>Doorgeven aan service, maar noteer in ieder geval de volgende dingen in ticket</th>
                 </tr>
                 <tr>
                     <th>Check de volgende dingen:</th>
