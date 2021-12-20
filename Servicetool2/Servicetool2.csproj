@@ -244,6 +244,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Ticket.cs" />
     <Compile Include="Models\Vraag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -94,6 +94,14 @@ namespace Servicetool2.Controllers
             BulkAPIResponse<ZCRMRecord> response = moduleIns.SearchByCriteria("((Partner:equals:Ketel)or(Partner:equals:Thermostaat)or((Partner:equals:HeatTransformers)and(Product_Name:starts_with:Remeha)or(Product_Name:starts_with:Daikin)))");
             List<ZCRMRecord> records = response.BulkData;
             return records;
+        }
+        
+        public void CreateTicket()
+        {
+            ZCRMRecord record;
+            record = ZCRMRecord.GetInstance("Cases", null);
+            record.SetFieldValue("Subject", "");
+            
 
         }
         public ActionResult StoringtoolProbleemKeuze()
