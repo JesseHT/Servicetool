@@ -96,14 +96,40 @@ namespace Servicetool2.Controllers
             return records;
         }
         
-        public void CreateTicket()
+        public void CreateTicket(string probleem, string extraInfo)
         {
+            List<ZCRMRecord> listRecord = new List<ZCRMRecord>();
             ZCRMRecord record;
             record = ZCRMRecord.GetInstance("Cases", null);
-            record.SetFieldValue("Subject", "");
-            
+            record.SetFieldValue("Subject", probleem);
+            record.SetFieldValue("Beschrijving", extraInfo);
+            listRecord.Add(record);
+            ZCRMModule moduleIns = ZCRMModule.GetInstance("Cases");
+            BulkAPIResponse<ZCRMRecord> responseIn = moduleIns.CreateRecords(listRecord);
 
-        }
+            foreach (EntityResponse response in responseIn.BulkEntitiesResponse)
+            {
+                Console.WriteLine("Status:" + response.Status); //To get create record response status
+                Console.WriteLine("Message:" + response.Message); //To get create record response message
+                Console.WriteLine("Details:" + response.ResponseJSON); //To get create record response details
+                ZCRMRecord record1 = (ZCRMRecord)response.Data;
+                Console.WriteLine(record1.EntityId); //To get inserted record id
+                Console.WriteLine(record1.CreatedTime);
+                Console.WriteLine(record1.ModifiedTime);
+                ZCRMUser CreatedBy = record1.CreatedBy;
+                if (CreatedBy != null)
+                {
+                    Console.WriteLine(CreatedBy.Id);
+                    Console.WriteLine(CreatedBy.FullName);
+                }
+                ZCRMUser ModifiedBy = record1.ModifiedBy;
+                if (ModifiedBy != null)
+                {
+                    Console.WriteLine(ModifiedBy.Id);
+                    Console.WriteLine(ModifiedBy.FullName);
+                }
+            }
+         }
         public ActionResult StoringtoolProbleemKeuze()
         {
             return View();
