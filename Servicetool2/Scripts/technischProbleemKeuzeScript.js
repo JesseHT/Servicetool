@@ -23,7 +23,7 @@ vraagRef.where("Categorie", "==", "Probleem")
             input.type = "radio";
             input.value = Probleem;
             input.className = "btn-check";
-            input.name = "btnradio";
+            input.name = Probleem;
             input.id = "btnradio " + Probleem;
             input.autocomplete = "off";
             input.checked;

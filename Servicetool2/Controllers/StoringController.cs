@@ -18,6 +18,8 @@ using ZCRMSDK.OAuth.Contract;
 using Google.Cloud.Firestore;
 using Microsoft.Ajax.Utilities;
 using Servicetool2.Models;
+using System.Threading.Tasks;
+using System.Text;
 
 namespace Servicetool2.Controllers
 {
@@ -53,8 +55,8 @@ namespace Servicetool2.Controllers
             string filePath = Server.MapPath("~/ZohoTokenfile") + "\\" + "Zohotokenfile.txt";
 
             config["oauth_tokens_file_path"] = filePath;
-            Debug.WriteLine("configureer nu maar");
-            ZCRMRestClient.Initialize(config);
+/*            Debug.WriteLine("configureer nu maar");
+*/            ZCRMRestClient.Initialize(config);
             ZohoOAuthClient client = ZohoOAuthClient.GetInstance();
             string refreshToken = "1000.7a1cb8e41921248cfa17a1e453ca63c7.d47b3a532efbef58fc48e1f982f13c1e";
             string userMailId = "interesse@heattransformers.com";
@@ -62,10 +64,10 @@ namespace Servicetool2.Controllers
 
             ZohoOAuthTokens tokens = client.GenerateAccessTokenFromRefreshToken(refreshToken, userMailId);
 
-            Debug.WriteLine("dit is de acces code: " + tokens.AccessToken);
+            /*Debug.WriteLine("dit is de acces code: " + tokens.AccessToken);*/
             zohotoken = tokens.AccessToken;
-            Debug.WriteLine("De mail: " + ZCRMRestClient.GetCurrentUserEmail());
-            return View();
+/*            Debug.WriteLine("De mail: " + ZCRMRestClient.GetCurrentUserEmail());
+*/            return View();
         }
 
 
@@ -95,19 +97,40 @@ namespace Servicetool2.Controllers
             List<ZCRMRecord> records = response.BulkData;
             return records;
         }
-        
-        public void CreateTicket(string probleem, string extraInfo)
+        [HttpPost]
+        public async Task<ViewResult> CreateTicket()
         {
-            List<ZCRMRecord> listRecord = new List<ZCRMRecord>();
+            Debug.WriteLine(Request.Form["infoMeegaveWarmtepomp"]);
+            Debug.WriteLine("Dit is een test");
+            StringBuilder s = new StringBuilder();
+            foreach (string key in Request.Form.Keys)
+            {
+                if (Request.Form[key] != null)
+                {
+                    s.AppendLine(key + ": " + Request.Form[key]);
+                } else
+                {
+                    s.AppendLine(key + ": " + "Nee");
+                }
+            }
+            string formData = s.ToString();
+            Debug.WriteLine(formData);
+
+
+/*            List<ZCRMRecord> listRecord = new List<ZCRMRecord>();
             ZCRMRecord record;
             record = ZCRMRecord.GetInstance("Cases", null);
-            record.SetFieldValue("Subject", probleem);
-            record.SetFieldValue("Beschrijving", extraInfo);
+            record.SetFieldValue("Subject", Request.Form["infoMeegaveProbleem"]);
+            record.SetFieldValue("Beschrijving", formData);
+            record.SetFieldValue("Postcode", Request.Form["Postcode"]);
+            record.SetFieldValue("Priority", Request.Form["prioriteitSelect"]);
             listRecord.Add(record);
-            ZCRMModule moduleIns = ZCRMModule.GetInstance("Cases");
-            BulkAPIResponse<ZCRMRecord> responseIn = moduleIns.CreateRecords(listRecord);
 
-            foreach (EntityResponse response in responseIn.BulkEntitiesResponse)
+            ZCRMModule moduleIns = ZCRMModule.GetInstance("Cases");*/
+
+/*            BulkAPIResponse<ZCRMRecord> responseIn = moduleIns.UpsertRecords(listRecord);
+*/
+           /* foreach (EntityResponse response in responseIn.BulkEntitiesResponse)
             {
                 Console.WriteLine("Status:" + response.Status); //To get create record response status
                 Console.WriteLine("Message:" + response.Message); //To get create record response message
@@ -115,20 +138,9 @@ namespace Servicetool2.Controllers
                 ZCRMRecord record1 = (ZCRMRecord)response.Data;
                 Console.WriteLine(record1.EntityId); //To get inserted record id
                 Console.WriteLine(record1.CreatedTime);
-                Console.WriteLine(record1.ModifiedTime);
-                ZCRMUser CreatedBy = record1.CreatedBy;
-                if (CreatedBy != null)
-                {
-                    Console.WriteLine(CreatedBy.Id);
-                    Console.WriteLine(CreatedBy.FullName);
-                }
-                ZCRMUser ModifiedBy = record1.ModifiedBy;
-                if (ModifiedBy != null)
-                {
-                    Console.WriteLine(ModifiedBy.Id);
-                    Console.WriteLine(ModifiedBy.FullName);
-                }
-            }
+                Console.WriteLine(record1.ModifiedTime);                
+            }*/
+            return View("TicketGestuurd");
          }
         public ActionResult StoringtoolProbleemKeuze()
         {

@@ -289,3 +289,19 @@ input, select, textarea {
 .col-6 {
     overflow: hidden;
 }
+
+#extraInfo {
+    width: 100%
+}
+
+input {
+    width: -moz-available;
+}
+
+input[type="checkbox"]{
+    width: auto;
+} 
+
+#geenTicket {
+    width: -moz-available;
+}

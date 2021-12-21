@@ -8,9 +8,10 @@
     firebase.app(); // if already initialized, use that one
 }
 
+
+
+
 var db = firebase.firestore();
-var myString = [21, 22, 23, 24];
-var myString2 = "Ja";
 //cookies indelen in een variabele met een waarde en in de lijst boven aan de pagina zetten
 var cookies = document.cookie
     .split(';')
@@ -19,10 +20,10 @@ var cookies = document.cookie
         ...accumulator,
         [key.trim()]: decodeURIComponent(value)
     }), {});
-document.getElementById("infoMeegaveWarmtepomp").innerText = cookies.warmtepomp;
-document.getElementById("infoMeegaveKetel").innerText = cookies.ketel;
-document.getElementById("infoMeegaveThermostaat").innerText = cookies.thermostaat;
-document.getElementById("infoMeegaveProbleem").innerText = cookies.probleem;
+document.getElementById("infoMeegaveWarmtepomp").value = cookies.warmtepomp;
+document.getElementById("infoMeegaveKetel").value = cookies.ketel;
+document.getElementById("infoMeegaveThermostaat").value = cookies.thermostaat;
+document.getElementById("infoMeegaveProbleem").value = cookies.probleem;
 
 //extra vragen uit de database ophalen en in rijen van 3 displayen op de webpagina
 var rowvar = 0;
@@ -83,7 +84,8 @@ function vragenOphalen() {
                 if (soort == "checkbox") {
                     vraagInput.setAttribute("onclick", "checkDit()");
                 }
-                vraagInput.id = goedevraag;
+                vraagInput.id = vraagNaam;
+                vraagInput.name = vraagNaam;
 
 
                 div.appendChild(vraagTitel);
@@ -102,8 +104,8 @@ function vragenOphalen() {
 
 
             // Client side antwoorden op de extra vragen
-            if (document.getElementById('Watisdehuidigetemperatuur?') != null) {
-                document.getElementById('Watisdehuidigetemperatuur?').onkeyup = (function () {
+            /*if (document.getElementById('Wat is de huidige temperatuur?') != null) {
+                document.getElementById('Wat is de huidige temperatuur?').onkeyup = (function () {
                     for (var i = 0; i < myString.length; i++) {
                         var value = $(this).val();
                         if (value.match(myString[i])) {
@@ -115,7 +117,7 @@ function vragenOphalen() {
                         }
                     }
                 });
-            }
+            }*/
 
             if (cookies.probleem == "Storingscode op de Elga Ace") {
                 document.getElementById('aceIcon').removeAttribute("hidden");
@@ -152,7 +154,7 @@ vragenOphalen();
 
 function checkDit() {
     if (cookies.probleem == "Storingscode op de Elga 304") {
-        if (document.getElementById('oranjeboekjeknippert').checked) {
+        if (document.getElementById('oranje boekje knippert').checked) {
             document.getElementById('storingTafel').removeAttribute("hidden");
         } else {
             document.getElementById('storingTafel').setAttribute("hidden", "true");
@@ -160,7 +162,7 @@ function checkDit() {
     }
 
     if (cookies.probleem == "Storingscode op de Elga Ace") {
-        if (document.getElementById('oranjeboekjeknippert').checked) {
+        if (document.getElementById('oranje boekje knippert').checked) {
 
             document.getElementById('storingTafelAce').removeAttribute("hidden");
         } else {
