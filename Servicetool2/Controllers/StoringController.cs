@@ -100,37 +100,41 @@ namespace Servicetool2.Controllers
         [HttpPost]
         public async Task<ViewResult> CreateTicket()
         {
-            Debug.WriteLine(Request.Form["infoMeegaveWarmtepomp"]);
+            Debug.WriteLine(Request.Form["Warmtepomp"]);
             Debug.WriteLine("Dit is een test");
             StringBuilder s = new StringBuilder();
             foreach (string key in Request.Form.Keys)
             {
-                if (Request.Form[key] != null)
+                if (Request.Form[key] == "on")
+                {
+                    s.AppendLine(key + ": Waar");
+                }
+                else
                 {
                     s.AppendLine(key + ": " + Request.Form[key]);
-                } else
-                {
-                    s.AppendLine(key + ": " + "Nee");
                 }
             }
             string formData = s.ToString();
             Debug.WriteLine(formData);
 
 
-/*            List<ZCRMRecord> listRecord = new List<ZCRMRecord>();
+            List<ZCRMRecord> listRecord = new List<ZCRMRecord>();
             ZCRMRecord record;
             record = ZCRMRecord.GetInstance("Cases", null);
-            record.SetFieldValue("Subject", Request.Form["infoMeegaveProbleem"]);
-            record.SetFieldValue("Beschrijving", formData);
+            record.SetFieldValue("Subject", "Dit is een testticket");
+            record.SetFieldValue("Description", formData);
             record.SetFieldValue("Postcode", Request.Form["Postcode"]);
-            record.SetFieldValue("Priority", Request.Form["prioriteitSelect"]);
+            record.SetFieldValue("Priority", Request.Form["prioriteit"]);
+            record.SetFieldValue("Reported_By", "Storingstool");
+            record.SetFieldValue("Case_Origin", "Storingstool");
+            record.SetFieldValue("Status", "Nieuw(e)");
             listRecord.Add(record);
 
-            ZCRMModule moduleIns = ZCRMModule.GetInstance("Cases");*/
+            ZCRMModule moduleIns = ZCRMModule.GetInstance("Cases");
 
-/*            BulkAPIResponse<ZCRMRecord> responseIn = moduleIns.UpsertRecords(listRecord);
-*/
-           /* foreach (EntityResponse response in responseIn.BulkEntitiesResponse)
+            BulkAPIResponse<ZCRMRecord> responseIn = moduleIns.CreateRecords(listRecord);
+
+            foreach (EntityResponse response in responseIn.BulkEntitiesResponse)
             {
                 Console.WriteLine("Status:" + response.Status); //To get create record response status
                 Console.WriteLine("Message:" + response.Message); //To get create record response message
@@ -138,8 +142,8 @@ namespace Servicetool2.Controllers
                 ZCRMRecord record1 = (ZCRMRecord)response.Data;
                 Console.WriteLine(record1.EntityId); //To get inserted record id
                 Console.WriteLine(record1.CreatedTime);
-                Console.WriteLine(record1.ModifiedTime);                
-            }*/
+                Console.WriteLine(record1.ModifiedTime);
+            }
             return View("TicketGestuurd");
          }
         public ActionResult StoringtoolProbleemKeuze()

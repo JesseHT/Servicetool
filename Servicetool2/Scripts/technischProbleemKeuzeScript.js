@@ -23,7 +23,7 @@ vraagRef.where("Categorie", "==", "Probleem")
             input.type = "radio";
             input.value = Probleem;
             input.className = "btn-check";
-            input.name = Probleem;
+            input.name = "btnradio"; https://crm.zoho.eu/crm/org20068823761/tab/Cases/248784000015266044
             input.id = "btnradio " + Probleem;
             input.autocomplete = "off";
             input.checked;
