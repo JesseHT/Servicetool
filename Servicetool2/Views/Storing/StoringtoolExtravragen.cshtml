@@ -162,42 +162,51 @@
                         <td>HJ-11</td>
                         <td>Duidt op een probleem met de ketel</td>
                         <td>1. Check de waterdruk (zet de ketel uit met de uit-knop)</td>
+                        <td><input type="checkbox" name="Duidt op een probleem met de ketel"></td>
                     </tr>
                     <tr>
                         <td>HJ-7</td>
                         <td>Flowstoring</td>
                         <td></td>
                         <td>2. Ketel weer aan en resetten (zie afbeelding)</td>
+                        <td><input type="checkbox" name="Flowstoring"></td>
                     </tr>
                     <tr>
                         <td>HJ-11</td>
                         <td>Communicatie probleem boiler</td>
                         <td></td>
                         <td>vraag klant of gasketel aan staat. Dan brandt het lampje bij aan/uit en staat er geen indicatie. bij twijfel foto laten sturen</td>
+                        <td><input type="checkbox" name="Communicatie probleem boiler"></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>Druk te laag</td>
                         <td></td>
                         <td>vraag klant op aan/uit knop van ketel te drukken. als druk onder 1.0 bar, laat klant bijvullen</td>
+                        <td><input type="checkbox" name="Druk te laag"></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>Overige</td>
                         <td></td>
                         <td style="background-color: red; color: white;">Ticket aanmaken en storing melden</td>
+                        <td><input type="checkbox" name="Overige"></td>
+
                     </tr>
                     <tr>
                         <td></td>
                         <td>Warm water doet het niet</td>
                         <td></td>
                         <td>Druk op huisje (zodat warmtapw verschijnt en vraag of het ledje brandt) Indien antwoord is Nee dan moet de de aan knop ingedrukt worden</td>
+                        <td><input type="checkbox" name="Warm water doet het niet"></td>
+
                     </tr>
                     <tr>
                         <td>HJ-12</td>
                         <td style="background-color: red; color: white;">Direct melden en klant systeem laten resetten</td>
                         <td>Storing omslaan omschakelklep</td>
                         <td>Reset: werkschakelaar omzetten, 20 seconden spanningsloos, weer op spanning. Indien dit werkt, top.</td>
+                        <td><input type="checkbox" name="Storing omslaan omschakelklep"></td>
                     </tr>
                 </table>
             </div>
@@ -215,58 +224,67 @@
                         <th>Actie</th>
                     </tr>
                     <tr>
-                        <td><input type="checkbox" /></td>
                         <td>1ste flits lang (code 1 op thermostaat)</td>
                         <td>Foutmelding ketel</td>
                         <td>Kijk op ketel naar de storing. <br />Noteer storing, maak ticket en stuur door.</td>
+                        <td><input type="checkbox" name="Foutmelding ketel"></td>
+
                     </tr>
                     <tr>
-                        <td><input type="checkbox" /></td>
                         <td>2de flits lang (code 2 op thermostaat)</td>
                         <td>Communicatie probleem met opentherm ketel</td>
                         <td>Vraag klant om te controlleren of kabel tussen Elga en CV ketel nog hangt. Vraag of er iets aangepast is aan de instellingen van de ketel of elga. vraag of er recent onderhoud is gepleegd aan Elga of ketel.</td>
+                        <td><input type="checkbox" name="Communicatie probleem met opentherm ketel"></td>
+
                     </tr>
                     <tr>
-                        <td><input type="checkbox" /></td>
                         <td>3de flits lang</td>
                         <td>Communicatie probleem thermostaat</td>
                         <td>Vraag of de thermostaat wel aan staat en geen storing geeft. COntroleer draadje van thermostaat naar ketel. vraag of thermostaat vervangen is of dat er onderhoud aan ketel of elga is geweest.</td>
+                        <td><input type="checkbox" name="Communicatie probleem thermostaat"></td>
+
                     </tr>
                     <tr>
-                        <td><input type="checkbox" /></td>
                         <td>4e flits lang (code 64)</td>
                         <td>Communicatie probleem toshiba</td>
                         <td style="background-color: red;">Maak ticket aan en stuur door</td>
+                        <td><input type="checkbox" name="Communicatie probleem toshiba"></td>
+
                     </tr>
                     <tr>
-                        <td><input type="checkbox" /></td>
                         <td>5e flits lang (code 128)</td>
                         <td>Storing toshiba</td>
                         <td>Vraag of dit 1 keer voor is gekomen of vaker de laatste tijd. Deze storing kan ontstaan bij herstarten van het systeem, of als het herstart uit standby. als het eenmalig is laat de klant dan afwachten en over 30 min kijken of alles werkt en de verwarming opwarmt.</td>
+                        <td><input type="checkbox" name="Storing toshiba"></td>
+
                     </tr>
                     <tr>
-                        <td><input type="checkbox" id="flowstoringCheck" onclick="laatZien()" /></td>
                         <td>6e flits lang (code 32)</td>
                         <td>Flowstoring</td>
                         <td>Zie "flowstoring" hieronder</td>
+                        <td><input type="checkbox" id="flowstoringCheck" onclick="laatZien()" name="Flowstoring"></td>
+
                     </tr>
                     <tr>
-                        <td><input type="checkbox" id="flowstoringCheck" /></td>
                         <td>7e flits lang (code 8)</td>
                         <td>Sensor fout: NTC1</td>
                         <td style="background-color: red;">Maak ticket aan en stuur door</td>
+                        <td><input type="checkbox" id="flowstoringCheck" name="Sensor fout: NTC1"></td>
+
                     </tr>
                     <tr>
-                        <td><input type="checkbox" /></td>
                         <td>8e flits lang (code 16)</td>
                         <td>(Extra) buitenvoeler storing</td>
                         <td style="background-color: red;">Maak ticket aan en stuur door</td>
+                        <td><input type="checkbox" name="(Extra) buitenvoeler storing"></td>
+
                     </tr>
                     <tr>
-                        <td><input type="checkbox" /></td>
                         <td>9e flits lang (code 4)</td>
                         <td>Sensor fout: NTC2</td>
                         <td style="background-color: red;">Maak ticket aan en stuur door</td>
+                        <td><input type="checkbox" name="Sensor fout: NTC2"></td>
+
                     </tr>
                 </table>
             </div>
@@ -286,45 +304,53 @@
                         <th>Actie</th>
                     </tr>
                     <tr>
-                        <td><input type="checkbox" id="flowstoringCheckAce" name="H02.23" onclick="laatZien()" /></td>
                         <td>H02.23</td>
                         <td>Systeemdebiet fout</td>
                         <td>Waterdoorstromingsfout van het systeem actief</td>
                         <td>Zie flowstoring stappen</td>
+                        <td><input type="checkbox" id="flowstoringCheckAce" name="H02.23 Systeemdebiet fout" onclick="laatZien()" ></td>
+
                     </tr>
                     <tr>
-                        <td><input type="checkbox" id="flowstoringCheckAce2" name="E02.24" onclick="laatZien()" /></td>
                         <td>E02.24</td>
                         <td>Systeemdebiet blokkering</td>
                         <td>Vergrendeling van de waterdoorstroming in het systeem is actief</td>
                         <td>Zie flowstoring stappen</td>
+                        <td><input type="checkbox" id="flowstoringCheckAce2" name="E02.24 Systeemdebiet blokkering" onclick="laatZien()" ></td>
+
                     </tr>
                     <tr>
-                        <td><input type="checkbox" name="H02.56" /></td>
                         <td>H02.56</td>
                         <td>OpenTherm fout</td>
                         <td>De OpenTherm interface was operationeel, maar is gestopt met werken</td>
                         <td>Reset de warmtepomp door de stroom uit en weer in te schakelen 20 seconden</td>
+                        <td><input type="checkbox" name="H02.56 OpenTherm fout" ></td>
+
                     </tr>
                     <tr>
-                        <td><input type="checkbox" name="H06.01" /></td>
                         <td>H06.01</td>
                         <td>Wp-eenheid fout</td>
                         <td>Storing warmtepomp opgetreden</td>
                         <td>Storingsgeschiedenis uitlezen > <a href="https://docs.google.com/spreadsheets/d/1AjYY00E25dQPJRRxnSkEPhhtirqMk1dwcgMXmuJ84ak/edit#gid=540963535">subcode opzoeken</a> >  Codes noteren</td>
+                        <td><input type="checkbox" name="H06.01 Wp-eenheid fout" ></td>
+
                     </tr>
                     <tr>
-                        <td><input type="checkbox" name="H06.02" /></td>
                         <td>H06.02</td>
                         <td>Bl hydr verwarming</td>
                         <td>Hydraulische bijverwarming blokkeren</td>
                         <td>Storing in de ketel oplossen > ga naar stap 4</td>
+                        <td><input type="checkbox" name="H06.02 Blokkering hydr verwarming" ></td>
+
                     </tr>
                     <tr>
                         <td>Andere codes</td>
                         <td>Zie link:</td>
                         <td><a href="https://tools.remeha.nl/wp-content/uploads/sites/3/2020/06/IOM-Elga-Ace-NOT-7745647-05.pdf"> Link</a></td>
+                        <td><input type="checkbox" name="Andere code"></td>
+
                     </tr>
+
                 </table>
             </div>
             <div class="col-2"></div>
@@ -410,6 +436,7 @@
             <div class="col-4"></div>
         </div>
         <br />
+        <br />
         <div class="row">
             <div class="col-4">
                 <label>Achternaam</label>
@@ -425,6 +452,7 @@
                 <input id="mailStoring" name="E-Mail">
             </div>
         </div>
+        <br />
         <br />
         <div class="row">
             <div class="col-4"></div>
