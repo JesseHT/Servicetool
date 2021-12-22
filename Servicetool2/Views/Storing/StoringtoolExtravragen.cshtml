@@ -155,39 +155,40 @@
             <div class="col-8">
                 <table id="storingDaikin" hidden>
                     <tr>
+                        <th>Storingscode</th>
                         <th>De storingscode wordt weergegeven op de Daikin thermostaat</th>
                     </tr>
                     <tr>
-                        <td>Storingscode</td>
-                        <td>HJ-11</td>
-                        <td>Duidt op een probleem met de ketel</td>
+                        <th>HJ-11</th>
+                        <th>Duidt op een probleem met de ketel</th>
+                        <td></td>
                         <td>1. Check de waterdruk (zet de ketel uit met de uit-knop)</td>
                         <td><input type="checkbox" name="Duidt op een probleem met de ketel"></td>
                     </tr>
                     <tr>
-                        <td>HJ-7</td>
-                        <td>Flowstoring</td>
+                        <th>HJ-7</th>
+                        <th>Flowstoring</th>
                         <td></td>
-                        <td>2. Ketel weer aan en resetten (zie afbeelding)</td>
+                        <td>2. Ketel weer aan en resetten</td>
                         <td><input type="checkbox" name="Flowstoring"></td>
                     </tr>
                     <tr>
-                        <td>HJ-11</td>
-                        <td>Communicatie probleem boiler</td>
+                        <th>HJ-11</th>
+                        <th>Communicatie probleem boiler</th>
                         <td></td>
                         <td>vraag klant of gasketel aan staat. Dan brandt het lampje bij aan/uit en staat er geen indicatie. bij twijfel foto laten sturen</td>
                         <td><input type="checkbox" name="Communicatie probleem boiler"></td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td>Druk te laag</td>
+                        <th>Druk te laag</th>
                         <td></td>
                         <td>vraag klant op aan/uit knop van ketel te drukken. als druk onder 1.0 bar, laat klant bijvullen</td>
                         <td><input type="checkbox" name="Druk te laag"></td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td>Overige</td>
+                        <th>Overige</th>
                         <td></td>
                         <td style="background-color: red; color: white;">Ticket aanmaken en storing melden</td>
                         <td><input type="checkbox" name="Overige"></td>
@@ -195,16 +196,17 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td>Warm water doet het niet</td>
+                        <th>Warm water doet het niet</th>
                         <td></td>
                         <td>Druk op huisje (zodat warmtapw verschijnt en vraag of het ledje brandt) Indien antwoord is Nee dan moet de de aan knop ingedrukt worden</td>
                         <td><input type="checkbox" name="Warm water doet het niet"></td>
 
                     </tr>
                     <tr>
-                        <td>HJ-12</td>
+                        <th>HJ-12</th>
+                        <th>Storing omslaan omschakelklep</th>
                         <td style="background-color: red; color: white;">Direct melden en klant systeem laten resetten</td>
-                        <td>Storing omslaan omschakelklep</td>
+
                         <td>Reset: werkschakelaar omzetten, 20 seconden spanningsloos, weer op spanning. Indien dit werkt, top.</td>
                         <td><input type="checkbox" name="Storing omslaan omschakelklep"></td>
                     </tr>
@@ -218,10 +220,11 @@
             <div class="col-8">
                 <table id="storingTafel" hidden>
                     <tr>
-                        <th></th>
+
                         <th>Storingscode</th>
                         <th>Storing</th>
                         <th>Actie</th>
+                        <th></th>
                     </tr>
                     <tr>
                         <td>1ste flits lang (code 1 op thermostaat)</td>
@@ -297,11 +300,12 @@
                 <label id="aceStoringTekst" hidden>Standaard actie bij storing: Haal even de Elga Ace van de spanning (15 sec) zodat deze reset.</label>
                 <table id="storingTafelAce" hidden>
                     <tr>
-                        <th></th>
                         <th>Code</th>
                         <th>Melding</th>
                         <th>Beschrijving</th>
                         <th>Actie</th>
+                        <th></th>
+
                     </tr>
                     <tr>
                         <td>H02.23</td>
@@ -316,7 +320,7 @@
                         <td>Systeemdebiet blokkering</td>
                         <td>Vergrendeling van de waterdoorstroming in het systeem is actief</td>
                         <td>Zie flowstoring stappen</td>
-                        <td><input type="checkbox" id="flowstoringCheckAce2" name="E02.24 Systeemdebiet blokkering" onclick="laatZien()" ></td>
+                        <td><input type="checkbox" id="flowstoringCheckAce2" name="E02.24 Systeemdebiet blokkering" onclick="laatZien()"></td>
 
                     </tr>
                     <tr>
@@ -324,7 +328,7 @@
                         <td>OpenTherm fout</td>
                         <td>De OpenTherm interface was operationeel, maar is gestopt met werken</td>
                         <td>Reset de warmtepomp door de stroom uit en weer in te schakelen 20 seconden</td>
-                        <td><input type="checkbox" name="H02.56 OpenTherm fout" ></td>
+                        <td><input type="checkbox" name="H02.56 OpenTherm fout"></td>
 
                     </tr>
                     <tr>
@@ -332,7 +336,7 @@
                         <td>Wp-eenheid fout</td>
                         <td>Storing warmtepomp opgetreden</td>
                         <td>Storingsgeschiedenis uitlezen > <a href="https://docs.google.com/spreadsheets/d/1AjYY00E25dQPJRRxnSkEPhhtirqMk1dwcgMXmuJ84ak/edit#gid=540963535">subcode opzoeken</a> >  Codes noteren</td>
-                        <td><input type="checkbox" name="H06.01 Wp-eenheid fout" ></td>
+                        <td><input type="checkbox" name="H06.01 Wp-eenheid fout"></td>
 
                     </tr>
                     <tr>
@@ -340,13 +344,14 @@
                         <td>Bl hydr verwarming</td>
                         <td>Hydraulische bijverwarming blokkeren</td>
                         <td>Storing in de ketel oplossen > ga naar stap 4</td>
-                        <td><input type="checkbox" name="H06.02 Blokkering hydr verwarming" ></td>
+                        <td><input type="checkbox" name="H06.02 Blokkering hydr verwarming"></td>
 
                     </tr>
                     <tr>
                         <td>Andere codes</td>
                         <td>Zie link:</td>
                         <td><a href="https://tools.remeha.nl/wp-content/uploads/sites/3/2020/06/IOM-Elga-Ace-NOT-7745647-05.pdf"> Link</a></td>
+                        <td></td>
                         <td><input type="checkbox" name="Andere code"></td>
 
                     </tr>

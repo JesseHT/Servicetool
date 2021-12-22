@@ -305,3 +305,7 @@ input[type="checkbox"]{
 #geenTicket {
     width: -moz-available;
 }
+
+#submit {
+    width: -moz-available;
+}

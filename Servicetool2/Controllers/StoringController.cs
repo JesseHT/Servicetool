@@ -121,7 +121,7 @@ namespace Servicetool2.Controllers
             List<ZCRMRecord> listRecord = new List<ZCRMRecord>();
             ZCRMRecord record;
             record = ZCRMRecord.GetInstance("Cases", null);
-            record.SetFieldValue("Subject", "Dit is een testticket");
+            record.SetFieldValue("Subject", Request.Form["Probleem"]);
             record.SetFieldValue("Description", formData);
             record.SetFieldValue("Postcode", Request.Form["Postcode"]);
             record.SetFieldValue("Priority", Request.Form["prioriteit"]);
