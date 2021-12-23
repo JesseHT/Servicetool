@@ -16,7 +16,13 @@
             <p>Klik op de knop hieronder om terug te gaan naar het beginscherm.</p>
         </div>
     </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            @Html.ActionLink("Terug naar het hoofdscherm", "Index", "Home", null, new { @class = "btn btn-primary btn-block" })
+        </div>
+        <div class="col-2"></div>
+    </div>
 </div>
 
-@*<script src="~/Scripts/technischScript.js"></script>*@
 

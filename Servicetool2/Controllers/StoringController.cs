@@ -20,11 +20,13 @@ using Microsoft.Ajax.Utilities;
 using Servicetool2.Models;
 using System.Threading.Tasks;
 using System.Text;
+using System.Net.Http;
 
 namespace Servicetool2.Controllers
 {
     public class StoringController : Controller
     {
+        private static readonly HttpClient clientHTTP = new HttpClient();
         public static Dictionary<string, string> config = new Dictionary<string, string>()
 {
     {"client_id",ConfigurationManager.AppSettings["client_id"]},
@@ -48,44 +50,66 @@ namespace Servicetool2.Controllers
 };
 
         public static string zohotoken = "";
+       
 
         public ActionResult Index()
         {
-            /*string path = Server.MapPath("~/ZohoTokenfile");*/
-            string filePath = Server.MapPath("~/ZohoTokenfile") + "\\" + "Zohotokenfile.txt";
+            
+                /*string path = Server.MapPath("~/ZohoTokenfile");*/
+                string filePath = Server.MapPath("~/ZohoTokenfile") + "\\" + "Zohotokenfile.txt";
 
-            config["oauth_tokens_file_path"] = filePath;
-/*            Debug.WriteLine("configureer nu maar");
-*/            ZCRMRestClient.Initialize(config);
+                config["oauth_tokens_file_path"] = filePath;
+                /*            Debug.WriteLine("configureer nu maar");
+                */
+                ZCRMRestClient.Initialize(config);
             ZohoOAuthClient client = ZohoOAuthClient.GetInstance();
             string refreshToken = "1000.7a1cb8e41921248cfa17a1e453ca63c7.d47b3a532efbef58fc48e1f982f13c1e";
             string userMailId = "interesse@heattransformers.com";
-            ZCRMRestClient.SetCurrentUser(userMailId);
+                ZCRMRestClient.SetCurrentUser(userMailId);
+            try
+            {
+                ZohoOAuthTokens tokens = client.GenerateAccessTokenFromRefreshToken(refreshToken, userMailId);
 
-            ZohoOAuthTokens tokens = client.GenerateAccessTokenFromRefreshToken(refreshToken, userMailId);
-
-            /*Debug.WriteLine("dit is de acces code: " + tokens.AccessToken);*/
-            zohotoken = tokens.AccessToken;
-/*            Debug.WriteLine("De mail: " + ZCRMRestClient.GetCurrentUserEmail());
-*/            return View();
+                /*Debug.WriteLine("dit is de acces code: " + tokens.AccessToken);*/
+                zohotoken = tokens.AccessToken;
+                /*            Debug.WriteLine("De mail: " + ZCRMRestClient.GetCurrentUserEmail());
+                */
+                return View();
+            }
+            catch (Exception ex)
+            {
+                ViewData["Error"] = ex.Message;
+                ViewData["Refresh"] = refreshToken;
+                ViewData["mail"] = userMailId;
+                return View("Error");
+            }
         }
 
 
         public ActionResult StoringtoolEersteKeuze()
         {
-            object test = GetRecords();
-            Debug.WriteLine(test.GetType());
-
-            List<ZCRMRecord> records = (List<ZCRMRecord>)test;
-
-            List<Product> producten = new List<Product>();
-            foreach(ZCRMRecord record in records)
+            try
             {
-                Product product = new Product(record.GetFieldValue("Product_Name").ToString(), record.GetFieldValue("Partner").ToString());
-                producten.Add(product);
-            }
+                object test = GetRecords();
+                Debug.WriteLine(test.GetType());
 
-            return View(producten);
+                List<ZCRMRecord> records = (List<ZCRMRecord>)test;
+
+                List<Product> producten = new List<Product>();
+                foreach (ZCRMRecord record in records)
+                {
+                    Product product = new Product(record.GetFieldValue("Product_Name").ToString(), record.GetFieldValue("Partner").ToString());
+                    producten.Add(product);
+                }
+
+                return View(producten);
+            }
+            catch (Exception ex)
+            {
+                ViewData["Error"] = ex;
+                ViewData["Token"] = zohotoken;
+                return View("Error");
+            }
         }
 
         public object GetRecords()
@@ -100,6 +124,7 @@ namespace Servicetool2.Controllers
         [HttpPost]
         public async Task<ViewResult> CreateTicket()
         {
+            
             Debug.WriteLine(Request.Form["Warmtepomp"]);
             Debug.WriteLine("Dit is een test");
             StringBuilder s = new StringBuilder();

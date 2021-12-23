@@ -380,6 +380,7 @@
     <Content Include="Views\Storing\VraagBewerken.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Storing\TicketGestuurd.cshtml" />
+    <Content Include="Views\Storing\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
