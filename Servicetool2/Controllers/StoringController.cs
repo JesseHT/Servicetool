@@ -13,6 +13,19 @@ using ZCRMSDK.CRM.Library.CRMException;
 using ZCRMSDK.CRM.Library.CRUD;
 using ZCRMSDK.CRM.Library.Setup.RestClient;
 using ZCRMSDK.CRM.Library.Setup.Users;
+using Com.Zoho.API.Authenticator;
+using Com.Zoho.API.Authenticator.Store;
+using Com.Zoho.Crm.API;
+using Com.Zoho.Crm.API.Dc;
+using static Com.Zoho.API.Authenticator.OAuthToken;
+using Environment = Com.Zoho.Crm.API.Dc.DataCenter.Environment;
+using SDKInitializer = Com.Zoho.Crm.API.Initializer;
+using Com.Zoho.Crm.API.Util;
+using Com.Zoho.Crm.API.Query;
+using ResponseHandler = Com.Zoho.Crm.API.Query.ResponseHandler;
+using ResponseWrapper = Com.Zoho.Crm.API.Query.ResponseWrapper;
+using Com.Zoho.Crm.API.Record;
+using ActionHandler = Com.Zoho.Crm.API.Record.ActionHandler;
 using ZCRMSDK.OAuth.Client;
 using ZCRMSDK.OAuth.Contract;
 using Google.Cloud.Firestore;
@@ -74,7 +87,23 @@ namespace Servicetool2.Controllers
                 zohotoken = tokens.AccessToken;
                 /*            Debug.WriteLine("De mail: " + ZCRMRestClient.GetCurrentUserEmail());
                 */
-                return View();
+                
+                
+                    object test = GetDeals();
+                    Debug.WriteLine(test.GetType());
+
+                    List<ZCRMRecord> records = (List<ZCRMRecord>)test;
+
+                    List<Deal> deals = new List<Deal>();
+                    foreach (ZCRMRecord record in records)
+                    {
+                        Deal deal = new Deal(record.GetFieldValue("Product_Name").ToString(), record.GetFieldValue("Partner").ToString());
+                        deals.Add(deal);
+                    }
+
+                    
+                
+                return View(deals);
             }
             catch (Exception ex)
             {
@@ -85,7 +114,54 @@ namespace Servicetool2.Controllers
             }
         }
 
+        [HttpPost]
+        public JsonResult AjaxCustomers(string name)
+        {
+            List<Deal> customers = GetCustomers(name);
+            ViewBag.Customers = customers;
 
+            return Json(customers);
+        }
+
+        public List<Deal> GetCustomers(string searchString)
+        {
+            List<Deal> deals = new List<Deal>();
+
+            QueryOperations queryOperations = new QueryOperations();
+            Com.Zoho.Crm.API.Query.BodyWrapper bodyWrapper = new Com.Zoho.Crm.API.Query.BodyWrapper();
+            string selectQuery = "SELECT First_Name, Last_Name, Email, Straat, Postcode, Plaats, Phone, Created_Time " +
+                "FROM Contacts " +
+                "WHERE (Last_Name like '%" + searchString + "%' OR Postcode  like '%" + searchString + "%') " +
+                "AND ((Email is not null or Phone is not null) AND Straat is not null) " +
+                "ORDER BY Created_Time desc";
+            bodyWrapper.SelectQuery = selectQuery;
+            APIResponse<ResponseHandler> response = queryOperations.GetRecords(bodyWrapper);
+
+            if (response.Model is null)
+            {
+                return new List<Deal>();
+            }
+
+            ResponseHandler responseHandler = response.Object;
+            if (responseHandler is ResponseWrapper)
+            {
+                ResponseWrapper responseWrapper = (ResponseWrapper)responseHandler;
+                List<Deal> records = responseWrapper.Data;
+                foreach (Deal record in records)
+                {
+                    Deal deal = new Deal();
+                    Dictionary<string, Object> keyValues = record.GetKeyValues();
+
+                    deal.Id = keyValues["id"].ToString();
+                    deal.Naam = keyValues["First_Name"].ToString() + " " + keyValues["Last_Name"].ToString();                   
+                    deal.Postcode = keyValues["Postcode"].ToString();
+
+                    deals.Add(deal);
+                }
+            }
+
+            return deals;
+        }
         public ActionResult StoringtoolEersteKeuze()
         {
             try
@@ -110,6 +186,14 @@ namespace Servicetool2.Controllers
                 ViewData["Token"] = zohotoken;
                 return View("Error");
             }
+        }
+
+        public object GetDeals()
+        {
+            ZCRMModule moduleIns = ZCRMModule.GetInstance("Deals");
+            BulkAPIResponse<ZCRMRecord> response = moduleIns.SearchByCriteria("Status:equals:Klaar");
+            List<ZCRMRecord> records = response.BulkData;
+            return records;
         }
 
         public object GetRecords()
