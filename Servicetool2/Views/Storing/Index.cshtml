@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Technisch";
 }
+@model List<Servicetool2.Models.Deal>
 
 <div id="categorieKeuze">
     <h2 style="text-align:center; color:#ffffff; font-weight: bold; padding: 5px; padding-top: 10px;">
@@ -21,8 +22,20 @@
     </div>
     <br />
     <div class="row">
-        <div class="col-4"></div>
-        <div class="col-4">Hier komt de lijst met alle deals!</div>
+        <div class="col-4"><input id="dealveld" type="text"/><br />
+        <button onclick="haalOp()">Haal deals op</button></div>
+        <div class="col-4">
+            Hier komt de lijst met alle deals!
+            <br />
+            <ul>
+            @foreach (var product in Model)
+            {
+                
+                    <li id="@product.DealNaam" value="@product.DealNaam">@product.DealNaam</li>
+                
+            }
+                </ul>
+        </div>
         <div class="col-4"></div>
 
     </div>
@@ -37,6 +50,25 @@
     </div>
 
 </div>
-
 <script src="~/Scripts/technischScript.js"></script>
+<script>
+    function haalOp() {
+
+        var postcode = document.getElementById("dealveld").innerHTML;
+        var criteria = "HWP | " + postcode;
+        $.ajax({
+            url: ('https://www.zohoapis.eu/crm/v2/Deals/search?criteria=Deal_Name:starts_with:' + criteria),
+            headers: {
+                'Authorization': 'Zoho-oauthtoken 1000.f5e0b4f54f97e5b1a211ac1e3928e9eb.b7354211dd1e91e45f8ae444eef42d23'
+
+            },
+            dataType: 'json',
+            type: 'get',
+            success: function (response) {
+                console.log(response);
+            }
+        });
+    };
+
+</script>
 

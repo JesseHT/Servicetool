@@ -11,19 +11,15 @@ namespace Servicetool2.Models
         {
         }
 
-        public Deal(string naam, string postcode)
+        public Deal(string dealnaam, string email)
         {
-            Naam = naam;
-            Postcode = postcode;
+            DealNaam = dealnaam;
+            Email = email;
 
         }
-        public string Id { get; set; }
-        public string Naam { get; set; }
-        public string Postcode { get; set; }
+        public string DealNaam { get; set; }
+        public string Email { get; set; }
 
-        internal Dictionary<string, object> GetKeyValues()
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }
