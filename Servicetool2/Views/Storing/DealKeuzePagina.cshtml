@@ -1,4 +1,4 @@
-﻿
+
 @{
     ViewBag.Title = "Technisch";
 }
@@ -14,33 +14,36 @@
     <div class="row">
         <div class="col-1"></div>
         <div class="col-10">
-            <h2>Welkom bij de storingstool van HeatTransformers!</h2>
             <p>Op de volgende pagina's is het mogelijk om de details over uw probleem te beschrijven. Hierna geven wij een indicatie van een mogelijke oplossing.</p><br />
             <p>Kies hieronder de deal uit van de klant die geholpen gaat worden.</p>
         </div>
         <div class="col-1"></div>
     </div>
     <br />
-    @using (Html.BeginForm("DealKeuzePagina", "Storing", FormMethod.Post))
-    {
-        <div class="row">
-            <div class="col-4">
-                
-            </div>
-            <div class="col-4">
-                <input id="dealveld" type="text" name="deal" /><br />
-                <input class="btn-primary btn btn-block" type="submit" id="submit" value="Deal zoeken">
-            </div>
-            <div class="col-4"></div>
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+    Hier komt de lijst met alle deals!
+    <br />
+    <ul class="list-group">
+        @foreach (var product in Model)
+        {
 
-        </div>       
-    }
+            <li class="list-group-item">
+                <input class="form-check-input me-1" type="radio" value="@product.DealNaam" name="dealLijst" id="@product.DealNaam" aria-label="...">
+                @product.DealNaam
+            </li>
+        }
+    </ul>
+        </div>
+        <div class="col-4"></div>
+    </div>
     <br />
 
     <div class="row">
         <div class="col-1"></div>
         <div class="col-10">
-            @Html.ActionLink("Storing aangeven zonder deal", "StoringtoolEersteKeuze", "Storing", null, new { @class = "btn btn-primary btn-block" })
+            @Html.ActionLink("Volgende", "StoringtoolEersteKeuze", "Storing", null, new { @class = "btn btn-primary btn-block" })
         </div>
         <div class="col-1"></div>
     </div>

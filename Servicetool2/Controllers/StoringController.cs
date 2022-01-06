@@ -54,7 +54,6 @@ namespace Servicetool2.Controllers
 
         public ActionResult Index()
         {
-            
                 /*string path = Server.MapPath("~/ZohoTokenfile");*/
                 string filePath = Server.MapPath("~/ZohoTokenfile") + "\\" + "Zohotokenfile.txt";
 
@@ -135,7 +134,30 @@ namespace Servicetool2.Controllers
             }
         }
 
-        
+
+
+        [HttpPost]
+        public ActionResult DealKeuzePagina()
+        {
+            var deal = Request.Form["deal"];
+            var input = "HWP | " + deal;
+            ZCRMModule moduleIns = ZCRMModule.GetInstance("Deals"); // api naam
+            Debug.WriteLine(zohotoken);
+            Debug.WriteLine(moduleIns.Properties.Count);
+            BulkAPIResponse<ZCRMRecord> response = moduleIns.SearchByCriteria("(Deal_Name:starts_with:" + input+")");
+            List<ZCRMRecord> records = response.BulkData;
+
+            List<ZCRMRecord> records2 = (List<ZCRMRecord>)records;
+
+            List<Deal> deals = new List<Deal>();
+            foreach (ZCRMRecord record in records2)
+            {
+                Deal newDeal = new Deal(record.GetFieldValue("Deal_Name").ToString(), record.GetFieldValue("Postcode").ToString());
+                deals.Add(newDeal);
+            }
+
+            return View(deals);
+        }
 
         public object GetRecords()
         {
