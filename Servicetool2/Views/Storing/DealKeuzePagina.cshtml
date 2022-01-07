@@ -12,23 +12,21 @@
 <div class="container" id="storingIndexContainer">
 
     <div class="row">
-        <div class="col-1"></div>
-        <div class="col-10">
-            <p>Op de volgende pagina's is het mogelijk om de details over uw probleem te beschrijven. Hierna geven wij een indicatie van een mogelijke oplossing.</p><br />
+        <div class="col-3"></div>
+        <div class="col-7">
+            <p>Op de volgende pagina's is het mogelijk om de details over je probleem te beschrijven. Hierna geven wij een indicatie van een mogelijke oplossing.</p><br />
             <p>Kies hieronder de deal uit van de klant die geholpen gaat worden.</p>
         </div>
-        <div class="col-1"></div>
+        <div class="col-2"></div>
     </div>
     <br />
     <div class="row">
         <div class="col-4"></div>
         <div class="col-4">
-    Hier komt de lijst met alle deals!
     <br />
-    <ul class="list-group">
+    <ul class="list-group" id="dealKeuze">
         @foreach (var product in Model)
         {
-
             <li class="list-group-item">
                 <input class="form-check-input me-1" type="radio" value="@product.DealNaam" name="dealLijst" id="@product.DealNaam" aria-label="...">
                 @product.DealNaam
@@ -43,12 +41,12 @@
     <div class="row">
         <div class="col-1"></div>
         <div class="col-10">
-            @Html.ActionLink("Volgende", "StoringtoolEersteKeuze", "Storing", null, new { @class = "btn btn-primary btn-block" })
+            @Html.ActionLink("Volgende", "StoringtoolEersteKeuze", "Storing", null, new { @class = "btn btn-primary btn-block", onclick = "dealSave()" })
         </div>
         <div class="col-1"></div>
     </div>
 
 </div>
-<script src="~/Scripts/technischScript.js"></script>
+<script src="~/Scripts/technischProbleemKeuzeScript.js"></script>
 
 

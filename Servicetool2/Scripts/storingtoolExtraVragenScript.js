@@ -24,6 +24,7 @@ document.getElementById("infoMeegaveWarmtepomp").value = cookies.warmtepomp;
 document.getElementById("infoMeegaveKetel").value = cookies.ketel;
 document.getElementById("infoMeegaveThermostaat").value = cookies.thermostaat;
 document.getElementById("infoMeegaveProbleem").value = cookies.probleem;
+document.getElementById("infoMeegaveDeal").value = cookies.deal;
 
 //extra vragen uit de database ophalen en in rijen van 3 displayen op de webpagina
 var rowvar = 0;

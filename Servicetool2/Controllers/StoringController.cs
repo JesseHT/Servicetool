@@ -199,6 +199,7 @@ namespace Servicetool2.Controllers
             record.SetFieldValue("Priority", Request.Form["prioriteit"]);
             record.SetFieldValue("Reported_By", "Storingstool");
             record.SetFieldValue("Case_Origin", "Storingstool");
+            record.SetFieldValue("Deal_Name", Request.Form["Deal"]);
             record.SetFieldValue("Status", "Nieuw(e)");
             listRecord.Add(record);
 

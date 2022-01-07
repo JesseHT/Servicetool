@@ -42,6 +42,23 @@ vraagRef.where("Categorie", "==", "Probleem")
         console.log("Error getting documents: ", error);
     });
 
+function dealSave() {
+    const rbs = document.querySelectorAll('input[name="dealLijst"]');
+    let selectedValue;
+    for (const rb of rbs) {
+        if (rb.checked) {
+            selectedValue = rb.value;
+            break;
+        }
+
+    }
+    if (selectedValue == null) {
+        document.cookie = "deal=Geen probleem ingevuld"
+    } else {
+        document.cookie = "deal=" + selectedValue;
+    }
+}
+
 //data opslaan in cookies
 function storingSave() {
 

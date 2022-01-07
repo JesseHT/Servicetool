@@ -29,6 +29,7 @@
             <div class="row">
                 <div class="col-4">
                     <ul>
+                        <li><input id="infoMeegaveDeal" name="Deal"></li>
                         <li><input id="infoMeegaveWarmtepomp" name="Warmtepomp"></li>
                         <li><input id="infoMeegaveKetel" name="Ketel"></li>
                         <li><input id="infoMeegaveThermostaat" name="Thermostaat"></li>
@@ -435,34 +436,18 @@
         <div class="row">
             <div class="col-4"></div>
             <div class="col-4">
-                @Html.ActionLink("Afronden zonder het maken van een ticket", "Index", "Home", null, new { @class = " btn btn-sm btn-primary", @id = "geenTicket" })
+                @Html.ActionLink("Afgeronde ticket aanmaken", "Index", "Home", null, new { @class = " btn btn-sm btn-primary", @id = "geenTicket" })
 
             </div>
             <div class="col-4"></div>
         </div>
         <br />
         <br />
-        <div class="row">
-            <div class="col-4">
-                <label>Achternaam</label>
-                <input id="achternaamStoring" name="Achternaam">
-            </div>
-            <div class="col-4">
-                <label>Postcode</label>
-                <input id="postcodeStoring" name="Postcode">
-
-            </div>
-            <div class="col-4">
-                <label>E-Mail</label>
-                <input id="mailStoring" name="E-Mail">
-            </div>
-        </div>
-        <br />
         <br />
         <div class="row">
             <div class="col-4"></div>
             <div class="col-4">
-                <input class="btn-primary" type="submit" id="submit" value="Ticket aanmaken">
+                <input class="btn-primary" type="submit" id="submit" value="Open ticket aanmaken">
             </div>
             <div class="col-4"></div>
         </div>
