@@ -152,7 +152,7 @@ namespace Servicetool2.Controllers
             List<Deal> deals = new List<Deal>();
             foreach (ZCRMRecord record in records2)
             {
-                Deal newDeal = new Deal(record.GetFieldValue("Deal_Name").ToString(), record.GetFieldValue("Postcode").ToString());
+                Deal newDeal = new Deal(record.GetFieldValue("Deal_Name").ToString(), record.EntityId.ToString());
                 deals.Add(newDeal);
             }
 
@@ -195,11 +195,12 @@ namespace Servicetool2.Controllers
             record = ZCRMRecord.GetInstance("Cases", null);
             record.SetFieldValue("Subject", Request.Form["Probleem"]);
             record.SetFieldValue("Description", formData);
-            record.SetFieldValue("Postcode", Request.Form["Postcode"]);
-            record.SetFieldValue("Priority", Request.Form["prioriteit"]);
+/*            record.SetFieldValue("Postcode", Request.Form["Postcode"]);
+ *            
+*/            record.SetFieldValue("Priority", Request.Form["prioriteit"]);
+            record.SetFieldValue("Deal_Name", Request.Form["Deal"]);
             record.SetFieldValue("Reported_By", "Storingstool");
             record.SetFieldValue("Case_Origin", "Storingstool");
-            record.SetFieldValue("Deal_Name", Request.Form["Deal"]);
             record.SetFieldValue("Status", "Nieuw(e)");
             listRecord.Add(record);
 
@@ -209,13 +210,13 @@ namespace Servicetool2.Controllers
 
             foreach (EntityResponse response in responseIn.BulkEntitiesResponse)
             {
-                Console.WriteLine("Status:" + response.Status); //To get create record response status
-                Console.WriteLine("Message:" + response.Message); //To get create record response message
-                Console.WriteLine("Details:" + response.ResponseJSON); //To get create record response details
+                Debug.WriteLine("Status:" + response.Status); //To get create record response status
+                Debug.WriteLine("Message:" + response.Message); //To get create record response message
+                Debug.WriteLine("Details:" + response.ResponseJSON); //To get create record response details
                 ZCRMRecord record1 = (ZCRMRecord)response.Data;
-                Console.WriteLine(record1.EntityId); //To get inserted record id
-                Console.WriteLine(record1.CreatedTime);
-                Console.WriteLine(record1.ModifiedTime);
+                Debug.WriteLine(record1.EntityId); //To get inserted record id
+                Debug.WriteLine(record1.CreatedTime);
+                Debug.WriteLine(record1.ModifiedTime);
             }
             return View("TicketGestuurd");
          }

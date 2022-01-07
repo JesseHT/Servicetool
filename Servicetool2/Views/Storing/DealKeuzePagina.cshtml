@@ -28,7 +28,7 @@
         @foreach (var product in Model)
         {
             <li class="list-group-item">
-                <input class="form-check-input me-1" type="radio" value="@product.DealNaam" name="dealLijst" id="@product.DealNaam" aria-label="...">
+                <input class="form-check-input me-1" type="radio" value="@product.Id" name="dealLijst" id="@product.DealNaam" aria-label="...">
                 @product.DealNaam
             </li>
         }

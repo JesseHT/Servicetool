@@ -11,14 +11,14 @@ namespace Servicetool2.Models
         {
         }
 
-        public Deal(string dealnaam, string email)
+        public Deal(string dealnaam, string id)
         {
             DealNaam = dealnaam;
-            Email = email;
+            Id = id;
 
         }
         public string DealNaam { get; set; }
-        public string Email { get; set; }
+        public string Id { get; set; }
 
 
     }

@@ -45,17 +45,21 @@ vraagRef.where("Categorie", "==", "Probleem")
 function dealSave() {
     const rbs = document.querySelectorAll('input[name="dealLijst"]');
     let selectedValue;
+    let selectedId;
     for (const rb of rbs) {
         if (rb.checked) {
             selectedValue = rb.value;
+            selectedId = rb.id;
             break;
         }
 
     }
     if (selectedValue == null) {
-        document.cookie = "deal=Geen probleem ingevuld"
+        document.cookie = "deal=Geen Deal ingevuld"
+        document.cookie = "dealNaam=Geen Deal ingevuld"
     } else {
         document.cookie = "deal=" + selectedValue;
+        document.cookie = "dealNaam=" + selectedId;
     }
 }
 
