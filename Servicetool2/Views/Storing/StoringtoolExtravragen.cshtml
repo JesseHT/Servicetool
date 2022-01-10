@@ -2,11 +2,13 @@
 @{
     ViewBag.Title = "TechnischProbleemKeuze";
 }
+@model List<Servicetool2.Models.dealTicket>
+
 <div id="categorieKeuze">
     <h2 style="text-align:center; color:#ffffff; font-weight: bold; padding: 5px; padding-top: 10px;">
         Extra vragen
     </h2>
-    </div>
+</div>
 <div class="container" id="extraPagina">
     <div class="col-1">
         @Html.ActionLink("Terug", "StoringtoolEersteKeuze", "Storing", null, new { @class = " btn btn-sm btn-primary" })
@@ -29,13 +31,27 @@
             <div class="row">
                 <div class="col-4">
                     <ul>
-                        
+
                         <li><input id="infoMeegaveDealNaam"><input id="infoMeegaveDeal" name="Deal" hidden></li>
                         <li><input id="infoMeegaveWarmtepomp" name="Warmtepomp"></li>
                         <li><input id="infoMeegaveKetel" name="Ketel"></li>
                         <li><input id="infoMeegaveThermostaat" name="Thermostaat"></li>
                         <li><input id="infoMeegaveProbleem" name="Probleem"></li>
                     </ul>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-4">
+                    <label>Eerdere tickets:</label>
+                    <ul>
+                    @foreach (var product in Model)
+                    {
+                        
+                            <li id="@product.TicketOnderwerp" value="@product.TicketOnderwerp">@product.TicketOnderwerp | @product.Status</li>
+                        
+                    }
+                        </ul>
                 </div>
             </div>
         </div>
@@ -144,7 +160,7 @@
                 </select>
             </div>
             <div class="col-4">
-                
+
             </div>
             <div class="col-4">
                 <label>Aanvullende informatie</label><br />
@@ -314,7 +330,7 @@
                         <td>Systeemdebiet fout</td>
                         <td>Waterdoorstromingsfout van het systeem actief</td>
                         <td>Zie flowstoring stappen</td>
-                        <td><input type="checkbox" id="flowstoringCheckAce" name="H02.23 Systeemdebiet fout" onclick="laatZien()" ></td>
+                        <td><input type="checkbox" id="flowstoringCheckAce" name="H02.23 Systeemdebiet fout" onclick="laatZien()"></td>
 
                     </tr>
                     <tr>

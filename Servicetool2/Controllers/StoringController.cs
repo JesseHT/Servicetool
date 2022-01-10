@@ -227,7 +227,22 @@ namespace Servicetool2.Controllers
 
         public ActionResult StoringtoolExtraVragen()
         {
-            return View();
+            var dealTicket = Request.Cookies["deal"].Value;
+            ZCRMModule moduleIns = ZCRMModule.GetInstance("Cases"); // api naam
+            Debug.WriteLine(zohotoken);
+            Debug.WriteLine(moduleIns.Properties.Count);
+            BulkAPIResponse<ZCRMRecord> response = moduleIns.SearchByCriteria("(Deal_Name:equals:" + dealTicket + ")");
+            List<ZCRMRecord> records = response.BulkData;
+
+            List<ZCRMRecord> records2 = (List<ZCRMRecord>)records;
+
+            List<dealTicket> tickets = new List<dealTicket>();
+            foreach (ZCRMRecord record in records)
+            {
+                dealTicket ticket = new dealTicket(record.GetFieldValue("Subject").ToString(), record.GetFieldValue("Status").ToString());
+                tickets.Add(ticket);
+            }
+            return View(tickets);
         }
 
 

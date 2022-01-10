@@ -249,6 +249,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Deal.cs" />
+    <Compile Include="Models\dealTicket.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Ticket.cs" />
     <Compile Include="Models\Vraag.cs" />
