@@ -190,11 +190,11 @@
                                     <li>@Html.ActionLink("Algemeen", "Dashboard", "Home", new { id = "Algemeen" }, new { @class = "dropdown-item" })</li>
                                     <li>@Html.ActionLink("Afspraken", "Dashboard", "Home", new { id = "Afspraken" }, new { @class = "dropdown-item" })</li>
                                     <li>@Html.ActionLink("Financieel", "Dashboard", "Home", new { id = "Financieel" }, new { @class = "dropdown-item" })</li>
-                                    <li>@Html.ActionLink("Technisch", "Index", "Storing", null, new { @class = "dropdown-item" })</li>
+                                    <li>@Html.ActionLink("Technisch", "Dashboard", "Home", new { id = "Technisch" }, new { @class = "dropdown-item" })</li>
                                     <li>@Html.ActionLink("Overig", "Dashboard", "Home", new { id = "Overig" }, new { @class = "dropdown-item" })</li>
                                 </ul>
                             </li>
-
+                            <li>@Html.ActionLink("Storingstool", "Index", "Storing", null, new { @class = "nav-link" })</li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Bewerken
@@ -202,7 +202,7 @@
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li> <a>@Html.ActionLink("Vragenoverzicht", "Overzicht", "Home", null, new { @class = "dropdown-item" })</a></li>
                                     <li> <a>@Html.ActionLink("Storingstool aanpassen", "StoringtoolToevoegen", "Storing", null, new { @class = "dropdown-item" })</a></li>
-                                    
+
                                 </ul>
                             </li>
 
@@ -218,7 +218,7 @@
 
                             <li style="padding-top: 0px;">
                                 <label id="viewTekst" style="font-size: 20px; font-family: Montserrat; font-weight: bold;"></label>
-                                    <br />
+                                <br />
                                 <button class="btn btn-light" id="stateChange" onclick="changePhase()">Verander view</button>
                             </li>
 

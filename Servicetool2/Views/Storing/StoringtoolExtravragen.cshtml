@@ -160,7 +160,11 @@
                 </select>
             </div>
             <div class="col-4">
-
+                <label>Is de storing verholpen tijdens het gesprek?</label>
+                <select class="form-select" id="statusSelect" name="status">
+                    <option value="Afgesloten">Ja (Maak een gesloten ticket)</option>
+                    <option value="Nieuw(e)">Nee (Maak een open ticket)</option>
+                </select>
             </div>
             <div class="col-4">
                 <label>Aanvullende informatie</label><br />
@@ -450,21 +454,11 @@
             <div class="col-2"></div>
         </div>
         <br />
-        <div class="row">
-            <div class="col-4"></div>
-            <div class="col-4">
-                @Html.ActionLink("Afgeronde ticket aanmaken", "Index", "Home", null, new { @class = " btn btn-sm btn-primary", @id = "geenTicket" })
-
-            </div>
-            <div class="col-4"></div>
-        </div>
-        <br />
-        <br />
         <br />
         <div class="row">
             <div class="col-4"></div>
             <div class="col-4">
-                <input class="btn-primary" type="submit" id="submit" value="Open ticket aanmaken">
+                <input class="btn btn-sm btn-primary" type="submit" id="submit" value="Open ticket aanmaken">
             </div>
             <div class="col-4"></div>
         </div>

@@ -201,7 +201,7 @@ namespace Servicetool2.Controllers
             record.SetFieldValue("Deal_Name", Request.Form["Deal"]);
             record.SetFieldValue("Reported_By", "Storingstool");
             record.SetFieldValue("Case_Origin", "Storingstool");
-            record.SetFieldValue("Status", "Nieuw(e)");
+            record.SetFieldValue("Status", Request.Form["status"]);
             listRecord.Add(record);
 
             ZCRMModule moduleIns = ZCRMModule.GetInstance("Cases");

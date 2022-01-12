@@ -14,17 +14,17 @@
 <div class="container" id="knoppenHome">
     <div class="row" id="row1">
         <div class="col-lg-5">
-            
 
-                <button onclick="loading()" type="submit" class="homeKnop" style="vertical-align:middle"><span>@Html.ActionLink("Algemeen", "Dashboard", "Home", new { id = "Algemeen" }, new {@class = "nav-link", @style = "color:white"})</span></button>
 
-            
+            <button onclick="loading()" type="submit" class="homeKnop" style="vertical-align:middle"><span>@Html.ActionLink("Algemeen", "Dashboard", "Home", new { id = "Algemeen" }, new { @class = "nav-link", @style = "color:white" })</span></button>
+
+
             @*<p>Algemene vragen over het bedrijf, het bestelproces, warmtepompen en het geluid dat ze maken.</p>*@
         </div>
         <div class="col-lg-7" id="algemeenDiv">
 
         </div>
-        </div>
+    </div>
     <div class="row" id="row2">
         <div class="col-lg-5">
             @using (Html.BeginForm("Afspraken", "Home"))
@@ -33,7 +33,7 @@
                 <button onclick="loading()" type="submit" class="homeKnop" style="vertical-align:middle"><span>@Html.ActionLink("Afspraken", "Dashboard", "Home", new { id = "Afspraken" }, new { @class = "nav-link", @style = "color:white" })</span></button>
 
             }
-           @* <p>Alles wat met afspraken te maken heeft; plannen, verzetten, afzeggen, etc.</p>*@
+            @* <p>Alles wat met afspraken te maken heeft; plannen, verzetten, afzeggen, etc.</p>*@
         </div>
         <div class="col-lg-7" id="afsprakenDiv">
 
@@ -47,7 +47,7 @@
                 <button onclick="loading()" type="submit" class="homeKnop" style="vertical-align:middle"><span>@Html.ActionLink("Financieel", "Dashboard", "Home", new { id = "Financieel" }, new { @class = "nav-link", @style = "color:white" }) </span></button>
 
             }
-           @* <p>Vragen over offertes, contracten, subsidies en overige financiële zaken.</p>*@
+            @* <p>Vragen over offertes, contracten, subsidies en overige financiële zaken.</p>*@
         </div>
         <div class="col-lg-7" id="financieelDiv">
 
@@ -55,13 +55,27 @@
     </div>
     <div class="row" id="row2">
         <div class="col-lg-5">
+            @using (Html.BeginForm("Technisch", "Home"))
+            {
+
+                <button onclick="loading()" type="submit" class="homeKnop" style="vertical-align:middle"><span>@Html.ActionLink("Technisch", "Dashboard", "Home", new { id = "Technisch" }, new { @class = "nav-link", @style = "color:white" }) </span></button>
+
+            }
+            @* <p>Overige vragen die niet in de andere categoriën passen.</p>*@
+        </div>
+        <div class="col-lg-7" id="technischDiv">
+
+        </div>
+    </div>
+    <div class="row" id="row1">
+        <div class="col-lg-5">
             @using (Html.BeginForm("Overig", "Home"))
             {
 
                 <button onclick="loading()" type="submit" class="homeKnop" style="vertical-align:middle"><span>@Html.ActionLink("Overig", "Dashboard", "Home", new { id = "Overig" }, new { @class = "nav-link", @style = "color:white" }) </span></button>
 
             }
-           @* <p>Overige vragen die niet in de andere categoriën passen.</p>*@
+            @* <p>Overige vragen die niet in de andere categoriën passen.</p>*@
         </div>
         <div class="col-lg-7" id="overigDiv">
 
