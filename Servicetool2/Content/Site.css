@@ -1,6 +1,8 @@
-﻿html {
+﻿
+html {
     height: 100%;
     overflow: auto;
+    font-family: 'Montserrat', sans-serif;
 }
 
 body {
