@@ -5,7 +5,7 @@
 @model List<Servicetool2.Models.dealTicket>
 
 <div id="categorieKeuze">
-    <h2 style="text-align:center; color:#ffffff; font-weight: bold; padding: 5px; padding-top: 10px;">
+    <h2 style="text-align:center; color:black; font-weight: bold; padding: 5px; padding-top: 10px;">
         Extra vragen
     </h2>
 </div>
@@ -45,11 +45,14 @@
                 <div class="col-4">
                     <label>Eerdere tickets:</label>
                     <ul>
-                    @foreach (var product in Model)
+                    @if (Model != null)
                     {
-                        
+                        foreach (var product in Model)
+                        {
+
                             <li id="@product.TicketOnderwerp" value="@product.TicketOnderwerp">@product.TicketOnderwerp | @product.Status</li>
-                        
+
+                        }
                     }
                         </ul>
                 </div>

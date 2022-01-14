@@ -6,19 +6,14 @@
 @model List<Servicetool2.Models.Product>
 
     <div id="categorieKeuze">
-        <h2 style="text-align:center; color:#ffffff; font-weight: bold; padding: 5px; padding-top: 10px;">
-            Basisvragen
+        <h2 style="text-align:center; color:black; font-weight: bold; padding: 5px; padding-top: 10px;">
+            Basisvragen storingstool
         </h2>
     </div>
     <div class="container" id="eersteKeuze">
         <br />
-        <div class="row">
-
-            <div class="col-6">
-                <h1>Basisvragen storingstool</h1>
-
-            </div>
-
+        <div class="col-1">
+            @Html.ActionLink("Terug", "Index", "Storing", null, new { @class = " btn btn-sm btn-primary" })
         </div>
         @*<form action="/Storing/StoringtoolExtraVragen">*@
 
@@ -29,6 +24,7 @@
                 <h3>Welke warmtepomp heb je?</h3>
                 <select class="form-select" aria-label="Default select example" id="technischWarmtepompen" name="technischWarmtepompen">
                     <option selected>Kies een warmtepomp</option>
+                    
                     @foreach (var product in Model)
                     {
                         if (product.Type == "Heattransformers")

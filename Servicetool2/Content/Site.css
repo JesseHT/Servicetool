@@ -42,6 +42,7 @@ pre {
 #navbarInhoud {
     position: absolute; 
     left: 32%;
+    background-color: #337ae2;
 }
 
 #storingIndexContainer {
@@ -103,6 +104,10 @@ textarea {
         font-weight: bold;
         color: #0f3647;
     }
+
+.navbar-nav .dropdown-menu {
+    background-color: #337ae2;
+}
 
 
 
