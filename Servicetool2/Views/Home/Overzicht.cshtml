@@ -28,11 +28,11 @@
                     </div>
             </div>
             <div class="col-4">
-                @Html.ActionLink("Vraag toevoegen", "vraagToevoegen", "Home", null, new { @class = "btn btn-primary btn-block", @style = "margin: 10px;width: auto;" })
-
+                <div class="row">
+                @Html.ActionLink("Vraag toevoegen", "vraagToevoegen", "Home", null, new { @class = "btn btn-primary btn-block", @style = "margin: 10px;" })
+                    </div>
                 <div class="row">
                     @Html.ActionLink("Vraag bewerken", "vraagBewerken", "Home", null, new { @class = "btn btn-primary btn-block", onclick = "vraagSave();", @style = "margin: 10px; width: 45%; margin-left: 22px;" })
-
                     <button class="btn btn-danger" style="margin: 10px; float: right; width: 40%; margin-left: 33px;" onclick="verwijderVraag();">Vraag verwijderen</button>
                 </div>
             </div>

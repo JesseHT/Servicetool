@@ -14,18 +14,14 @@ var vraagRef = db.collection("Vraag");
 var i = 0;
 //vragen laden uit de db 
 
-    vraagRef.orderBy("Klikcount", "desc")
+    vraagRef.orderBy("Vraag", "asc")
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
 
                 //data uit de db halen
                 var Vraag = doc.data().Vraag;
-                var Antwoord = doc.data().MailAntwoord;
-                var Kliks = doc.data().Klikcount;
                 var Categorie = doc.data().Categorie;
-                var Trefwoorden = doc.data().Trefwoorden;
-                var Gerelateerd = doc.data().Gerelateerd;
 
                 var input = document.createElement('input');
                 input.type = "radio";
@@ -40,7 +36,7 @@ var i = 0;
                 label.className = "btn btn-outline-primary";
                 label.htmlFor = "btnradio " + Vraag;
                 label.id = "vraag" + Vraag;
-                label.innerHTML = Vraag;
+                label.innerHTML = Categorie +" | "+Vraag;
 
 
 

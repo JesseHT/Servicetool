@@ -146,7 +146,8 @@ namespace Servicetool2.Controllers
                 ZCRMModule moduleIns = ZCRMModule.GetInstance("Deals"); // api naam
                 Debug.WriteLine(zohotoken);
                 Debug.WriteLine(moduleIns.Properties.Count);
-                BulkAPIResponse<ZCRMRecord> response = moduleIns.SearchByCriteria("(Deal_Name:starts_with:" + input + ")");
+
+                BulkAPIResponse<ZCRMRecord> response = moduleIns.SearchByCriteria("(Postcode:starts_with:" + deal + ")");
                 List<ZCRMRecord> records = response.BulkData;
 
                 List<ZCRMRecord> records2 = (List<ZCRMRecord>)records;
