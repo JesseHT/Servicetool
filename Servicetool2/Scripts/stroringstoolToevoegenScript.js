@@ -100,6 +100,8 @@ function elementToevoegen() {
 
         db.collection("Storingstool").doc(categorie + " | " + probleemTekst).set(docData).then(() => {
             console.log("Document successfully written!");
+            location.reload();
+
         });
     }
     else if (categorie == "Extravraag") {

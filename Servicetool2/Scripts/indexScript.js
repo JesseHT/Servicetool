@@ -333,19 +333,6 @@ function vulVragen() {
 					cardbody.appendChild(antwoord);
 					cardbody.appendChild(bl3);
 
-					//gerelateerde vragen
-					/*for (j = 0; j < Gerelateerd.length; j++) {
-						var gerelateerdeVragenHyperlink = document.createElement("button");
-						gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
-						gerelateerdeVragenHyperlink.className = "btn btn-secondary";
-						gerelateerdeVragenHyperlink.innerHTML = Gerelateerd[j];
-						gerelateerdeVragenHyperlink.setAttribute("onclick", "openVraag('" + Gerelateerd[j] + "');");
-						cardbody.appendChild(breakline);
-						cardbody.appendChild(gerelateerdeVragenHyperlink);
-						cardbody.appendChild(bl5);
-						cardbody.appendChild(bl6);
-					}*/
-
 					//aantal kliks
 					var klikKnop = document.createElement("button");
 					var klikKnopTekst = document.createElement("p");
@@ -454,19 +441,6 @@ function vulVragen() {
 					cardbody.appendChild(antwoord);
 					cardbody.appendChild(bl3);
 
-					//gerelateerde vragen
-					/*for (j = 0; j < Gerelateerd.length; j++) {
-						var gerelateerdeVragenHyperlink = document.createElement("button");
-						gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
-						gerelateerdeVragenHyperlink.className = "btn btn-secondary";
-						gerelateerdeVragenHyperlink.innerHTML = Gerelateerd[j];
-						gerelateerdeVragenHyperlink.setAttribute("onclick", "openVraag('" + Gerelateerd[j] + "');");
-						cardbody.appendChild(breakline);
-						cardbody.appendChild(gerelateerdeVragenHyperlink);
-						cardbody.appendChild(bl5);
-						cardbody.appendChild(bl6);
-					}*/
-
 					//aantal kliks
 					var klikKnop = document.createElement("button");
 					var klikKnopTekst = document.createElement("p");
@@ -574,19 +548,6 @@ function vulVragen() {
 					antwoord.innerHTML = Antwoord;
 					cardbody.appendChild(antwoord);
 					cardbody.appendChild(bl3);
-
-					//gerelateerde vragen
-					/*for (j = 0; j < Gerelateerd.length; j++) {
-						var gerelateerdeVragenHyperlink = document.createElement("button");
-						gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
-						gerelateerdeVragenHyperlink.className = "btn btn-secondary";
-						gerelateerdeVragenHyperlink.innerHTML = Gerelateerd[j];
-						gerelateerdeVragenHyperlink.setAttribute("onclick", "openVraag('" + Gerelateerd[j] + "');");
-						cardbody.appendChild(breakline);
-						cardbody.appendChild(gerelateerdeVragenHyperlink);
-						cardbody.appendChild(bl5);
-						cardbody.appendChild(bl6);
-					}*/
 
 					//aantal kliks
 					var klikKnop = document.createElement("button");
@@ -706,19 +667,6 @@ function vulVragen() {
 					cardbody.appendChild(antwoord);
 					cardbody.appendChild(bl3);
 
-					//gerelateerde vragen
-					/*for (j = 0; j < Gerelateerd.length; j++) {
-						var gerelateerdeVragenHyperlink = document.createElement("button");
-						gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
-						gerelateerdeVragenHyperlink.className = "btn btn-secondary";
-						gerelateerdeVragenHyperlink.innerHTML = Gerelateerd[j];
-						gerelateerdeVragenHyperlink.setAttribute("onclick", "openVraag('" + Gerelateerd[j] + "');");
-						cardbody.appendChild(breakline);
-						cardbody.appendChild(gerelateerdeVragenHyperlink);
-						cardbody.appendChild(bl5);
-						cardbody.appendChild(bl6);
-					}*/
-
 					//aantal kliks
 					var klikKnop = document.createElement("button");
 					var klikKnopTekst = document.createElement("p");
@@ -827,19 +775,6 @@ function vulVragen() {
 					antwoord.innerHTML = Antwoord;
 					cardbody.appendChild(antwoord);
 					cardbody.appendChild(bl3);
-
-					//gerelateerde vragen
-					/*for (j = 0; j < Gerelateerd.length; j++) {
-						var gerelateerdeVragenHyperlink = document.createElement("button");
-						gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
-						gerelateerdeVragenHyperlink.className = "btn btn-secondary";
-						gerelateerdeVragenHyperlink.innerHTML = Gerelateerd[j];
-						gerelateerdeVragenHyperlink.setAttribute("onclick", "openVraag('" + Gerelateerd[j] + "');");
-						cardbody.appendChild(breakline);
-						cardbody.appendChild(gerelateerdeVragenHyperlink);
-						cardbody.appendChild(bl5);
-						cardbody.appendChild(bl6);
-					}*/
 
 					//aantal kliks
 					var klikKnop = document.createElement("button");
@@ -950,19 +885,6 @@ function vulVragen() {
 					cardbody.appendChild(antwoord);
 					cardbody.appendChild(bl3);
 
-					//gerelateerde vragen
-					/*for (j = 0; j < Gerelateerd.length; j++) {
-						var gerelateerdeVragenHyperlink = document.createElement("button");
-						gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
-						gerelateerdeVragenHyperlink.className = "btn btn-secondary";
-						gerelateerdeVragenHyperlink.innerHTML = Gerelateerd[j];
-						gerelateerdeVragenHyperlink.setAttribute("onclick", "openVraag('" + Gerelateerd[j] + "');");
-						cardbody.appendChild(breakline);
-						cardbody.appendChild(gerelateerdeVragenHyperlink);
-						cardbody.appendChild(bl5);
-						cardbody.appendChild(bl6);
-					}*/
-
 					//aantal kliks
 					var klikKnop = document.createElement("button");
 					var klikKnopTekst = document.createElement("p");
@@ -1071,19 +993,6 @@ function vulVragen() {
 					antwoord.innerHTML = Antwoord;
 					cardbody.appendChild(antwoord);
 					cardbody.appendChild(bl3);
-
-					//gerelateerde vragen
-					/*for (j = 0; j < Gerelateerd.length; j++) {
-						var gerelateerdeVragenHyperlink = document.createElement("button");
-						gerelateerdeVragenHyperlink.tagName = "gerelateerd" + j;
-						gerelateerdeVragenHyperlink.className = "btn btn-secondary";
-						gerelateerdeVragenHyperlink.innerHTML = Gerelateerd[j];
-						gerelateerdeVragenHyperlink.setAttribute("onclick", "openVraag('" + Gerelateerd[j] + "');");
-						cardbody.appendChild(breakline);
-						cardbody.appendChild(gerelateerdeVragenHyperlink);
-						cardbody.appendChild(bl5);
-						cardbody.appendChild(bl6);
-					}*/
 
 					//aantal kliks
 					var klikKnop = document.createElement("button");

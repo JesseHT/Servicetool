@@ -144,6 +144,7 @@ function vragenOphalen() {
             }
             if (cookies.probleem == "Storingscode op de Elga Ace") {
                 document.getElementById('aceStoringTekst').removeAttribute("hidden");
+                document.getElementById('storingTafelAce').removeAttribute("hidden");
             }
             if (cookies.probleem == "Storingscode op de ketel") {
                 document.getElementById('storingKetel').removeAttribute("hidden");
