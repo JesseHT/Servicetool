@@ -95,6 +95,7 @@ function elementToevoegen() {
     if (categorie == "Probleem") {
         var docData = {
             Probleem: probleemTekst,
+            Klikcount: 0,
             Categorie: categorie
         };
 
@@ -131,6 +132,25 @@ function elementToevoegen() {
     }
 
     
+}
+var extraVraagRef = db.collection("Extravragen");
+function verwijderVraag() {
+    console.log("Binnen");
+    const rbs = document.querySelectorAll('input[name^="btnradio"]');
+    
+    let selectedValue;
+    for (const rb of rbs) {
+        if (rb.checked) {
+            console.log(rb.value);
+            selectedValue = rb.value;
+            extraVraagRef.doc(selectedValue).delete().then(() => {
+                console.log("Document is verwijderd!");
+            }).catch((error) => {
+                console.error("Error removing document: ", error);
+            });
+            break;
+        }
+    }
 }
 
 function vraagSave() {

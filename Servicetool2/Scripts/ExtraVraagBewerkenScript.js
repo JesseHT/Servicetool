@@ -87,7 +87,9 @@ function vraagUpdaten() {
     //console.log("call methode");
     var Titel = document.getElementById('titel').value;
     var Subtext = document.getElementById('subtext').value;
+    var soort = document.getElementById('extraSoort').value;
 
+    console.log(titel);
 
     var related = [];
     var relatedInputs = document.getElementsByName('gerelateerdProb');
@@ -103,15 +105,23 @@ function vraagUpdaten() {
 
     var docData = {
         titel: Titel,
+        soort: soort,
         subtext: Subtext,
         GerelateerdeProblemen: related
     };
+    try {
+        db.collection("Extravragen").doc(Titel).update({ GerelateerdeProblemen: firebase.firestore.FieldValue.delete() });
 
-    db.collection("Extravragen").doc(Titel).update({ GerelateerdeProblemen: firebase.firestore.FieldValue.delete() });
 
+        db.collection("Extravragen").doc(Titel).set(docData).then(() => {
+            console.log("Document successfully written!");
+        });
+    }
 
-    db.collection("Extravragen").doc(Titel).set(docData).then(() => {
-        console.log("Document successfully written!");
-    });
+    catch {
+        db.collection("Extravragen").doc(Titel).set(docData).then(() => {
+            console.log("Document successfully written!");
+        });
+    }
 
 }

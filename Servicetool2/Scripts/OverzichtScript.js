@@ -2,7 +2,8 @@
     firebase.initializeApp({
         apiKey: 'AIzaSyBlEyAJb6dTHnN8kDbdBhGslrunIaX0z2Q',
         authDomain: 'servicetool-81486.firebaseapp.com',
-        projectId: 'servicetool-81486'
+        projectId: 'servicetool-81486',
+        storageBucket: "gs://servicetool-81486.appspot.com"
     });
 } else {
     firebase.app(); // if already initialized, use that one

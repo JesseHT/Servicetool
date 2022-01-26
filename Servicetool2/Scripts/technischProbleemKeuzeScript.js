@@ -112,6 +112,12 @@ function storingSave() {
         document.cookie = "probleem=" + selectedValue;
     }
 
+    var ref = db.collection("Storingstool");
+    const increment = firebase.firestore.FieldValue.increment(1);
+
+    ref.doc("Probleem | " + selectedValue).update({ Klikcount: increment });
+
+
 }
 
 

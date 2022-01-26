@@ -12,8 +12,8 @@ var db = firebase.firestore();
 
 var vraagRef = db.collection("Vraag");
 var i = 0;
-console.log(phase);
-//vragen laden uit de db 
+/*console.log(phase);
+*///vragen laden uit de db 
 function vulVragen() {
     if (phase) {
 
@@ -85,11 +85,12 @@ function vulVragen() {
                 collapse.className = "accordion-collapse collapse";
                 collapse.setAttribute("aria-labelledby", "heading" + i);
 
+
                 //inhoud van vraag
                 var cardbody = document.createElement('div');
                 cardbody.className = "accordion-body";
-                
 
+                
                 //trefwoorden
                 for (k = 0; k < Trefwoorden.length; k++) {
                     var trefwoorden = document.createElement('label');
@@ -111,8 +112,14 @@ function vulVragen() {
                 var row2 = document.createElement("div");
                 row2.id = "kaartinfo";
                 row2.className = "row";
-                
+                /*var bewerkKnop = document.createElement("input");
+                bewerkKnop.type = "button";
+                bewerkKnop.className = "btn btn-info";
+                bewerkKnop.value = "Bewerk vraag";
+                bewerkKnop.setAttribute("onclick", "vraagSave('" + Vraag + "');");*/
 
+/*                cardbody.appendChild(bewerkKnop);
+*/
                 var col2 = document.createElement("div");
                 col2.className = "col-6";
                 col2.id = "col2";
@@ -378,10 +385,10 @@ vulVragen();
 function openVraag(vraagNaam) {
     var elements = document.getElementsByClassName("accordion-button");
     for (var i = 0; i < elements.length; i++) {
-        console.log(elements[i].innerHTML);
-        if (elements[i].innerHTML.includes(vraagNaam)) {
-            console.log(elements[i].parentElement.parentElement.parentElement);
-            if (elements[i].parentElement.parentElement.parentElement.style.display == "none") {
+/*        console.log(elements[i].innerHTML);
+*/        if (elements[i].innerHTML.includes(vraagNaam)) {
+/*            console.log(elements[i].parentElement.parentElement.parentElement);
+*/            if (elements[i].parentElement.parentElement.parentElement.style.display == "none") {
                 console.log("test");
                 elements[i].parentElement.parentElement.parentElement.style.display = "block";
             }
@@ -408,8 +415,8 @@ function zoekFunctie() {
         li2 = document.querySelectorAll('[id^="antwoord"]');
         console.log();
         var trefwoorden = document.querySelectorAll('[class^="trefwoordID' + li[l].children[0].children[0].innerHTML + '"]');
-        var antwoord = li2[l].children[0].innerHTML;
-        var vraag = li[l].children[0].children[0].innerHTML;
+/*        var antwoord = li2[l].children[0].innerHTML;
+*/        var vraag = li[l].children[0].children[0].innerHTML;
         for (i = 0; i < trefwoorden.length; i++) {
             a = trefwoorden[i].innerHTML;
             txtValue = a;
@@ -421,10 +428,10 @@ function zoekFunctie() {
             } else 
                 if (vraag.toUpperCase().indexOf(filter) > -1) {
                     ul1.style.display = "";
-                } else if
+                } else /*if
                  (antwoord.toUpperCase().indexOf(filter) > -1) {
                     ul1.style.display = "";
-                } else {
+                } else*/ {
                     ul1.style.display = "none";
                 }
             }
@@ -449,7 +456,24 @@ function klikCount(vraagNaam) {
     }
 }
 
+/*function vraagSave(element) {
 
+    console.log(element);
+    if (element == null) {
+        console.log("fout");
+        document.cookie = "vraag=Geen probleem ingevuld"
+    } else {
+        console.log("goed");
+        document.cookie = "vraag=" + element;
+        redirect();
+    }
+
+}
+
+function redirect() {
+    window.open("https://localhost:44330/Home/vraagBewerken", "_self")
+}
+*/
 //bijhouden hoe vaak de vraag opengeklikt is
 function viewCount(vraagNaam) {
     var boolvraagNaam = false;
@@ -457,8 +481,8 @@ function viewCount(vraagNaam) {
     const increment = firebase.firestore.FieldValue.increment(1);
     var elements = document.getElementsByClassName("accordion-button");
     for (var i = 0; i < elements.length; i++) {
-        console.log(elements[i].innerHTML);
-        console.log(vraagNaam);
+/*        console.log(elements[i].innerHTML);
+        console.log(vraagNaam);*/
         if (elements[i].innerHTML == vraagNaam) {
             if (boolvraagNaam) {
                 boolvraagNaam = false;

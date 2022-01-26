@@ -2,7 +2,8 @@
     firebase.initializeApp({
         apiKey: 'AIzaSyBlEyAJb6dTHnN8kDbdBhGslrunIaX0z2Q',
         authDomain: 'servicetool-81486.firebaseapp.com',
-        projectId: 'servicetool-81486'
+        projectId: 'servicetool-81486',
+        storageBucket: "gs://servicetool-81486.appspot.com"
     });
 } else {
     firebase.app(); // if already initialized, use that one
@@ -105,6 +106,25 @@ function addRelated() {
 
 }
 
+function uploadImage(naam) {
+    const ref = firebase.storage().ref();
+
+    const file = document.querySelector("#foto").files[0];
+
+    const name = naam;
+
+    const metadata = {
+        contentType: file.type
+    }
+
+    const task = ref.child(name).put(file, metadata);
+
+    task.then(snapshot => snapshot.ref.getDownloadURL()).then(url => {
+        console.log(url)
+        
+    })
+}
+
 function vraagToevoegen() {
     //console.log("call methode");
     var vraag = document.getElementById('vraag').value;
@@ -123,7 +143,7 @@ function vraagToevoegen() {
     }
     //const trefwoordArray = trefwoorden.map((obj) => { return Object.assign({}, obj) });
 
-
+    uploadImage(vraag);
     var gerelateerde = [];
     var gerelateerdInputs = document.getElementsByName('gerelateerd');
     for (var i = 0; i < gerelateerdInputs.length; i++) {
