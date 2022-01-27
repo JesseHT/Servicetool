@@ -2,7 +2,8 @@
 	firebase.initializeApp({
 		apiKey: 'AIzaSyBlEyAJb6dTHnN8kDbdBhGslrunIaX0z2Q',
 		authDomain: 'servicetool-81486.firebaseapp.com',
-		projectId: 'servicetool-81486'
+		projectId: 'servicetool-81486',
+		storageBucket: "gs://servicetool-81486.appspot.com"
 	});
 } else {
 	firebase.app(); // if already initialized, use that one
@@ -35,6 +36,8 @@ function vulVragen() {
 					var Kliks = doc.data().Klikcount;
 					var Categorie = doc.data().Categorie;
 					var Trefwoorden = doc.data().Trefwoorden;
+
+
 
 					var kliks = document.createElement('p');
 					kliks.innerHTML = Kliks;
@@ -101,6 +104,26 @@ function vulVragen() {
 					antwoord.innerHTML = Antwoord;
 					cardbody.appendChild(antwoord);
 					cardbody.appendChild(bl3);
+
+					var image = document.createElement('img');
+
+					
+						console.log("gelukt?")
+						firebase.storage().ref().child(Vraag).getDownloadURL()
+							.then((url) => {
+								// `url` is the download URL for 'images/stars.jpg'
+								// Or inserted into an <img> element
+								image.setAttribute('src', url);
+								cardbody.appendChild(image);
+							})
+							.catch((error) => {
+								// Handle any errors
+								console.log(error);
+							});
+					/*} catch (error2) {
+						console.log("geen foto");
+						console.log(error2);
+					};*/
 
 					//aantal kliks
 					var klikKnop = document.createElement("button");

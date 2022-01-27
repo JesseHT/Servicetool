@@ -2,7 +2,9 @@
     firebase.initializeApp({
         apiKey: 'AIzaSyBlEyAJb6dTHnN8kDbdBhGslrunIaX0z2Q',
         authDomain: 'servicetool-81486.firebaseapp.com',
-        projectId: 'servicetool-81486'
+        projectId: 'servicetool-81486',
+        storageBucket: "gs://servicetool-81486.appspot.com"
+
     });
 } else {
     firebase.app(); // if already initialized, use that one
@@ -108,6 +110,22 @@ function vulVragen() {
                 antwoord.id = "antwoord"+ Vraag;
                 cardbody.appendChild(antwoord);
                 cardbody.appendChild(bl3);
+
+                var image = document.createElement('img');
+                image.setAttribute("style", "width: 100%; height: auto;");
+                var editedVraag = Vraag.slice(0, -1);
+ 
+                firebase.storage().ref().child(editedVraag+".png").getDownloadURL()
+                    .then((url) => {
+                        // `url` is the download URL for 'images/stars.jpg'
+                        // Or inserted into an <img> element
+                        image.setAttribute('src', url);
+                        cardbody.appendChild(image);
+                    })
+                    .catch((error) => {
+                        // Handle any errors
+                        /*console.log(error);*/
+                    });
 
                 var row2 = document.createElement("div");
                 row2.id = "kaartinfo";
