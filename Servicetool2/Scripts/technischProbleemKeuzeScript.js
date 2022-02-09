@@ -32,6 +32,7 @@ vraagRef.where("Categorie", "==", "Probleem")
             label.className = "btn btn-outline-primary";
             label.htmlFor = "btnradio " + Probleem;
             label.innerHTML = Probleem;
+            label.id = "probleem" + Probleem;
             
             document.getElementById("probleemLijst").append(input);
             document.getElementById("probleemLijst").append(label);
@@ -120,6 +121,31 @@ function storingSave() {
 
 }
 
+function zoekFunctie() {
+    // Declare variables
+    var input, filter, ul, li, a, txtValue;
+    input = document.getElementById('zoekInputProbleem');
+    filter = input.value.toUpperCase();
+    ul = document.getElementsByClassName("btn-check");
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (l = 0; l < ul.length; l++) {
+        li = document.querySelectorAll('[id^="probleem"]');
+        console.log(li[l].innerHTML);
+        var vraag = li[l];
+
+        a = vraag.innerHTML;
+        txtValue = a;
+
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            vraag.style.display = "";
+            /*break;*/
+        } else {
+            vraag.style.display = "none";
+        }
+    }
+
+}
 
 
 

@@ -22,7 +22,7 @@
                 <h3>Welke warmtepomp heb je?</h3>
                 <select class="form-select" aria-label="Default select example" id="technischWarmtepompen" name="technischWarmtepompen">
                     <option selected>Kies een warmtepomp</option>
-                    
+
                     @foreach (var product in Model)
                     {
                         if (product.Type == "Heattransformers")
@@ -73,25 +73,35 @@
         </div>
         <br />
         <div class="row">
-            <h3>Wat is het huidige probleem</h3>
+            <div class="col-11"></div>
+            <div class="col-1">
+                <div id="zoekbalk">
 
-            <div class="col-12 d-grid gap-2">
-                <div class="btn-group-vertical" role="group" aria-label="Basic radio toggle button group" id="probleemLijst">
+                    <input type="text" id="zoekInputProbleem" onkeyup="zoekFunctie()" placeholder="Zoeken..">
                 </div>
             </div>
             <br />
-        </div>
-        <br />
+            <div class="row">
+                <h3>Wat is het huidige probleem</h3>
 
-        <div class="row">
-            <div class="col-5"></div>
-            <div class="col-2">
-                @Html.ActionLink("Volgende", "StoringtoolExtraVragen", "Storing", null, new { @class = "btn btn-primary btn-block", onclick = "storingSave()" })
+                <div class="col-12 d-grid gap-2">
+                    <div class="btn-group-vertical" role="group" aria-label="Basic radio toggle button group" id="probleemLijst">
+                    </div>
+                    <br />
+                </div>
+                <br />
             </div>
-            <div class="col-4"></div>
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-5"></div>
+                <div class="col-2">
+                    @Html.ActionLink("Volgende", "StoringtoolExtraVragen", "Storing", null, new { @class = "btn btn-primary btn-block", onclick = "storingSave()" })
+                </div>
+                <div class="col-4"></div>
+            </div>
+            @*</form>*@
         </div>
-        @*</form>*@
-    </div>
 
-    <script src="~/Scripts/technischProbleemKeuzeScript.js"></script>
+        <script src="~/Scripts/technischProbleemKeuzeScript.js"></script>
 
