@@ -209,6 +209,12 @@ namespace Servicetool2.Controllers
             record.SetFieldValue("Reported_By", "Storingstool");
             record.SetFieldValue("Case_Origin", "Storingstool");
             record.SetFieldValue("Status", Request.Form["status"]);
+            //Voor de file upload later
+/*            List<ZCRMFiles> fileObjects = new List<ZCRMFiles>();
+            ZCRMFiles file = ZCRMFiles.GetInstance("Afbeeldingen", null);
+            fileObjects.Add(file);
+            record.SetFieldValue("Aanvullende_Afbeeldingen", fileObjects);*/
+
             listRecord.Add(record);
 
             ZCRMModule moduleIns = ZCRMModule.GetInstance("Cases");

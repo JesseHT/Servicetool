@@ -28,6 +28,8 @@ vraagRef.get().then((querySnapshot) => {
         console.log("Error getting documents: ", error);
     });
 
+
+
 function addTrefwoord() {
     var nieuwVeld = document.createElement('input');
     var lb = document.createElement("BR");
@@ -102,8 +104,16 @@ function addRelated() {
         });
     document.getElementById("gerelateerdSectie").appendChild(lb);
     document.getElementById("gerelateerdSectie").appendChild(lb2);
+}
 
-
+function checkChecked() {
+    console.log(document.getElementById("antwoordCheck"));
+    
+    if (document.getElementById("antwoordCheck").checked) {
+        document.getElementById("mailAntwoord").disabled = true;
+    } else {
+        document.getElementById("mailAntwoord").disabled = false;
+    }
 }
 
 function uploadImage(naam) {
@@ -166,19 +176,33 @@ function vraagToevoegen() {
     }
     console.log(gerelateerdInputs.length);
     //const gerelateerdArray = gerelateerde.map((obj) => { return Object.assign({}, obj) });
-
-    var docData = {
-        Vraag: vraag,
-        TelAntwoord: antwoordEchtTel,
-        MailAntwoord: antwoordEchtMail,
-        Categorie: categorie,
-        Trefwoorden: trefwoorden,
-        Link: links,
-        Linktexten: linkTexts,
-        Gerelateerd: gerelateerde,
-        Klikcount: 0,
-        Viewcount: 0
-    };
+    if (document.getElementById("antwoordCheck").checked) {
+        var docData = {
+            Vraag: vraag,
+            TelAntwoord: antwoordEchtTel,
+            MailAntwoord: antwoordEchtTel,
+            Categorie: categorie,
+            Trefwoorden: trefwoorden,
+            Link: links,
+            Linktexten: linkTexts,
+            Gerelateerd: gerelateerde,
+            Klikcount: 0,
+            Viewcount: 0
+        };
+    } else {
+        var docData = {
+            Vraag: vraag,
+            TelAntwoord: antwoordEchtTel,
+            MailAntwoord: antwoordEchtMail,
+            Categorie: categorie,
+            Trefwoorden: trefwoorden,
+            Link: links,
+            Linktexten: linkTexts,
+            Gerelateerd: gerelateerde,
+            Klikcount: 0,
+            Viewcount: 0
+        };
+    }
 
     db.collection("Vraag").doc(categorie + " | " + vraag).set(docData).then(() => {
         console.log("Document successfully written!");
